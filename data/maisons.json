@@ -806,10 +806,10 @@
       "identity_image": null,
       "key_position": "Creative Director",
       "key_position_name": "Patricia Anastassiadis",
-      "logo_image": "https://github.com/hugocg1995/arapua/blob/main/Artefacto_Logo.png?raw=true",
-      "cover_image_url": "https://s2-casavogue.glbimg.com/hNLBZM56l6-QdVlk8ri5ulkvys8=/0x0:3000x2001/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_d72fd4bf0af74c0c89d27a5a226dbbf8/internal_photos/bs/2023/Q/w/7vA5ryQwASkGbvkhvPzQ/artefacto-cidade-jardim-credito-fran-parente-5-.jpg",
-      "identity_image_url": "https://artefacto.com.br/assets/images/edition2026/2026_Cosmos_Carrossel_2d.webp",
-      "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/Artefacto_Store.png?raw=true",
+      "logo_image": "./images/artefacto/logo.png",
+      "cover_image_url": "./images/artefacto/cover.png",
+      "identity_image_url": "./images/artefacto/identity.png",
+      "boutique_image_url": "./images/artefacto/boutique.png",
       "boutique_address": "Via Durini | Milan | Italy"
     },
     "etel": {
@@ -892,10 +892,10 @@
       "identity_image": null,
       "key_position": "Creative Director",
       "key_position_name": "Francesca Alzati",
-      "logo_image": "https://github.com/hugocg1995/arapua/blob/main/ByKamy_Logo.png?raw=true",
-      "cover_image_url": "https://bykamy.com.br/media/wysiwyg/fotos-blog/nova-loja-by-kamy-no-shopping-cidade-jardim/montagem-fotos-blog_nova-loja-by-kamy-no-shopping-cidade-jardim-2.webp",
-      "identity_image_url": "https://bykamy.com.br/media/wysiwyg/fotos-blog/nova-loja-by-kamy-no-shopping-cidade-jardim/montagem-fotos-blog_nova-loja-by-kamy-no-shopping-cidade-jardim-3.webp",
-      "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/ByKamy_Store.png?raw=true",
+      "logo_image": "./images/by-kamy/logo.png",
+      "cover_image_url": "./images/by-kamy/cover.png",
+      "identity_image_url": "./images/by-kamy/identity.png",
+      "boutique_image_url": "./images/by-kamy/boutique.png",
       "boutique_address": "Ayoyama | Tokyo | Japan"
     },
     "granado": {
@@ -1653,10 +1653,10 @@
       "countries": 21,
       "key_position": "Creative Director",
       "key_position_name": "Sasha Meneghel",
-      "logo_image": "https://github.com/hugocg1995/arapua/blob/main/MP_Maison_logo.png?raw=true",
-      "cover_image_url": "https://github.com/hugocg1995/arapua/blob/main/MP_Maison_Ad.png?raw=true",
-      "identity_image_url": "https://github.com/hugocg1995/arapua/blob/main/MP_Maison_Store.png?raw=true",
-      "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/MP_Maison_Madison%20Av.png?raw=true",
+      "logo_image": "./images/mondepars_maison/logo.png",
+      "cover_image_url": "./images/mondepars_maison/cover.png",
+      "identity_image_url": "./images/mondepars_maison/identity.png",
+      "boutique_image_url": "./images/mondepars_maison/boutique.png",
       "boutique_address": "Madison Av. | New York - NY | USA"
     }
   }
