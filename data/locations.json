@@ -25477,6 +25477,530 @@
         "format": "Boutique",
         "rationale": "Amplia a cobertura internacional em um mercado prioritário, seguindo a lógica de distribuição seletiva e capilaridade da referência Moynat."
       }
+    ],
+    "ana-rocha-appolinario": [
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Shopping Cidade Jardim",
+        "format": "Global Flagship"
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Ipanema — Garcia d'Ávila",
+        "format": "Global Flagship"
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Rue du Faubourg Saint-Honoré",
+        "format": "Global Flagship"
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Iguatemi São Paulo / Faria Lima",
+        "format": "Maison"
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Avenue Montaigne",
+        "format": "Maison"
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "JK Iguatemi",
+        "format": "Flagship"
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Leblon — Dias Ferreira",
+        "format": "Flagship"
+      },
+      {
+        "country": "Monaco",
+        "city": "Monaco",
+        "location": "Métropole Shopping Monte-Carlo",
+        "format": "Flagship"
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Sloane Street",
+        "format": "Flagship"
+      },
+      {
+        "country": "Switzerland",
+        "city": "Geneva",
+        "location": "Rue du Rhône",
+        "format": "Flagship"
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Rue Saint-Honoré",
+        "format": "Flagship"
+      },
+      {
+        "country": "Spain",
+        "city": "Madrid",
+        "location": "Barrio de Salamanca",
+        "format": "Flagship"
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Via Durini",
+        "format": "Flagship"
+      },
+      {
+        "country": "Spain",
+        "city": "Barcelona",
+        "location": "Passeig de Gràcia",
+        "format": "Flagship"
+      },
+      {
+        "country": "United States",
+        "city": "Bal Harbour, FL",
+        "location": "Bal Harbour Shops",
+        "format": "Flagship"
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Alameda Gabriel Monteiro da Silva",
+        "format": "Boutique"
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Shopping Pátio Higienópolis",
+        "format": "Boutique"
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Rua Oscar Freire / Jardins",
+        "format": "Boutique"
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "VillageMall",
+        "format": "Boutique"
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Shopping Leblon",
+        "format": "Boutique"
+      },
+      {
+        "country": "Monaco",
+        "city": "Monaco",
+        "location": "Carré d'Or",
+        "format": "Boutique"
+      },
+      {
+        "country": "Switzerland",
+        "city": "Geneva",
+        "location": "Quai des Bergues",
+        "format": "Boutique"
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Rua Visconde de Pirajá",
+        "format": "Boutique"
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Via della Spiga",
+        "format": "Boutique"
+      },
+      {
+        "country": "Switzerland",
+        "city": "Geneva",
+        "location": "Place du Molard",
+        "format": "Boutique"
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Via Montenapoleone",
+        "format": "Boutique"
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "CasaShopping",
+        "format": "Boutique"
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Galleria Vittorio Emanuele II",
+        "format": "Boutique"
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Selfridges / Oxford Street",
+        "format": "Boutique"
+      },
+      {
+        "country": "Monaco",
+        "city": "Monaco",
+        "location": "One Monte-Carlo",
+        "format": "Boutique"
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Via Sant'Andrea",
+        "format": "Boutique"
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Mount Street — Mayfair",
+        "format": "Boutique"
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Bond Street",
+        "format": "Boutique"
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Galeries Lafayette / Haussmann",
+        "format": "Boutique"
+      },
+      {
+        "country": "Spain",
+        "city": "Madrid",
+        "location": "Galería Canalejas",
+        "format": "Boutique"
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Le Bon Marché / Rue de Sèvres",
+        "format": "Boutique"
+      },
+      {
+        "country": "Spain",
+        "city": "Barcelona",
+        "location": "Avinguda Diagonal",
+        "format": "Boutique"
+      },
+      {
+        "country": "Spain",
+        "city": "Madrid",
+        "location": "Calle Serrano",
+        "format": "Boutique"
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Brera Design District",
+        "format": "Boutique"
+      },
+      {
+        "country": "Spain",
+        "city": "Madrid",
+        "location": "Calle Ortega y Gasset",
+        "format": "Boutique"
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Harrods / Knightsbridge",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "Miami, FL",
+        "location": "Miami Beach — Collins Avenue",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "Miami, FL",
+        "location": "Brickell City Centre",
+        "format": "Boutique"
+      },
+      {
+        "country": "South Korea",
+        "city": "Seoul",
+        "location": "Shinsegae Gangnam",
+        "format": "Boutique"
+      },
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "location": "Xintiandi",
+        "format": "Boutique"
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "location": "Aoyama / Minami-Aoyama",
+        "format": "Boutique"
+      },
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "location": "HKRI Taikoo Hui",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "Beverly Hills, CA",
+        "location": "Beverly Drive",
+        "format": "Boutique"
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "location": "Ginza — Chuo-dori",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "SoHo — Greene / Mercer Street",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "Fifth Avenue",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "Beverly Hills, CA",
+        "location": "Rodeo Drive",
+        "format": "Boutique"
+      },
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "location": "Former French Concession",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "Los Angeles, CA",
+        "location": "Central Flagship District",
+        "format": "Boutique"
+      },
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "location": "Plaza 66 — Nanjing West Road",
+        "format": "Boutique"
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "location": "The Shoppes at Marina Bay Sands",
+        "format": "Boutique"
+      },
+      {
+        "country": "Mexico",
+        "city": "Mexico City",
+        "location": "Artz Pedregal",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "Palm Beach, FL",
+        "location": "Worth Avenue",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "Beverly Hills, CA",
+        "location": "Melrose Place",
+        "format": "Boutique"
+      },
+      {
+        "country": "China",
+        "city": "Beijing",
+        "location": "SKP Beijing",
+        "format": "Boutique"
+      },
+      {
+        "country": "South Korea",
+        "city": "Seoul",
+        "location": "Cheongdam-dong",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "Tribeca",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "Palm Beach, FL",
+        "location": "Royal Poinciana Plaza",
+        "format": "Boutique"
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "location": "Dempsey Hill",
+        "format": "Boutique"
+      },
+      {
+        "country": "Mexico",
+        "city": "Mexico City",
+        "location": "Antara Fashion Hall",
+        "format": "Boutique"
+      },
+      {
+        "country": "United States",
+        "city": "Miami, FL",
+        "location": "Miami Design District",
+        "format": "Boutique"
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "location": "Paragon",
+        "format": "Boutique"
+      },
+      {
+        "country": "South Korea",
+        "city": "Seoul",
+        "location": "Apgujeong Rodeo",
+        "format": "Boutique"
+      },
+      {
+        "country": "China",
+        "city": "Beijing",
+        "location": "Taikoo Li Sanlitun",
+        "format": "Boutique"
+      },
+      {
+        "country": "Qatar",
+        "city": "Doha / Lusail",
+        "location": "Place Vendôme",
+        "format": "Boutique"
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Jumeirah / Al Wasl",
+        "format": "Boutique"
+      },
+      {
+        "country": "Turkey",
+        "city": "Istanbul",
+        "location": "İstinyePark",
+        "format": "Boutique"
+      },
+      {
+        "country": "Turkey",
+        "city": "Istanbul",
+        "location": "Abdi İpekçi Caddesi — Nişantaşı",
+        "format": "Boutique"
+      },
+      {
+        "country": "Turkey",
+        "city": "Istanbul",
+        "location": "Zorlu Center",
+        "format": "Boutique"
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Mall of the Emirates",
+        "format": "Boutique"
+      },
+      {
+        "country": "Australia",
+        "city": "Sydney, NSW",
+        "location": "The Strand Arcade",
+        "format": "Boutique"
+      },
+      {
+        "country": "Argentina",
+        "city": "Buenos Aires",
+        "location": "Avenida Alvear — Recoleta",
+        "format": "Boutique"
+      },
+      {
+        "country": "Australia",
+        "city": "Sydney, NSW",
+        "location": "Double Bay",
+        "format": "Boutique"
+      },
+      {
+        "country": "Argentina",
+        "city": "Buenos Aires",
+        "location": "Galerías Pacífico",
+        "format": "Boutique"
+      },
+      {
+        "country": "Argentina",
+        "city": "Buenos Aires",
+        "location": "Palermo Chico",
+        "format": "Boutique"
+      },
+      {
+        "country": "Mexico",
+        "city": "Mexico City",
+        "location": "Avenida Presidente Masaryk — Polanco",
+        "format": "Boutique"
+      },
+      {
+        "country": "Qatar",
+        "city": "Doha / Lusail",
+        "location": "The Pearl — Porto Arabia",
+        "format": "Boutique"
+      },
+      {
+        "country": "Saudi Arabia",
+        "city": "Riyadh",
+        "location": "Centria Mall / Olaya",
+        "format": "Boutique"
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Dubai Design District — d3",
+        "format": "Boutique"
+      },
+      {
+        "country": "Argentina",
+        "city": "Buenos Aires",
+        "location": "Patio Bullrich",
+        "format": "Boutique"
+      },
+      {
+        "country": "Australia",
+        "city": "Sydney, NSW",
+        "location": "Castlereagh Street",
+        "format": "Boutique"
+      },
+      {
+        "country": "Germany",
+        "city": "Berlin",
+        "location": "Kurfürstendamm",
+        "format": "Global Flagship"
+      }
     ]
   }
 }
