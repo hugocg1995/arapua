@@ -50,7 +50,7 @@ td input{min-width:140px}
 .status{padding:10px 12px;border-radius:8px;background:#ece9e1;color:var(--muted);font-size:13px}
 .hidden{display:none!important}
 @media(max-width:800px){.grid,.lang-grid,.preview-grid{grid-template-columns:1fr}.header-inner{align-items:flex-start;flex-direction:column}main{padding:18px}.stats{grid-template-columns:1fr}}
-</style>
+fieldset{border:0;padding:0;margin:0;min-width:0}button:disabled{opacity:.5;cursor:wait}.connection{margin-bottom:22px}.connection input{max-width:440px}.connection .actions{align-items:center}#connectionStatus{white-space:pre-wrap}#editor:disabled{opacity:.6}</style>
 </head>
 <body>
 <header>
@@ -67,6 +67,21 @@ td input{min-width:140px}
 </header>
 
 <main>
+  <section class="card connection" aria-labelledby="connectionTitle">
+    <h2 id="connectionTitle">Salvar alterações no site</h2>
+    <form id="connectForm">
+      <label for="adminKey">Chave de acesso do admin</label>
+      <input id="adminKey" type="password" autocomplete="off" spellcheck="false" placeholder="Digite sua chave do admin">
+      <div class="actions">
+        <button class="primary" id="connectButton" type="submit">Conectar</button>
+        <button id="reloadButton" type="button" disabled>Recarregar dados</button>
+        <button id="logoutButton" type="button" disabled>Desconectar</button>
+      </div>
+    </form>
+    <p class="note" id="connectionStatus" role="status" aria-live="polite">Use a chave que você guardou como ADMIN_TOKEN. Ela permanece apenas nesta aba enquanto estiver conectada. O token do GitHub não deve ser inserido aqui.</p>
+    <p class="note">Salve cada seção após editar. A publicação do site pode levar alguns minutos. As imagens continuam sendo atualizadas pelo GitHub.</p>
+  </section>
+  <fieldset id="editor" disabled>
   <div class="tabs">
     <button class="tab active" data-tab="info">Brand Info</button>
     <button class="tab" data-tab="editorial">Editorial &amp; Media</button>
@@ -95,7 +110,8 @@ td input{min-width:140px}
       </div>
     </div>
     <div class="actions">
-      <button class="primary" id="downloadInfo">Baixar info.json desta Maison</button>
+      <button class="primary" id="saveInfo" type="button">Salvar informações</button>
+      <button id="downloadInfo" type="button">Baixar info.json desta Maison</button>
     </div>
   </section>
 
@@ -133,7 +149,8 @@ td input{min-width:140px}
       <div id="iconFields" class="lang-grid"></div>
     </div>
     <div class="actions">
-      <button class="primary" id="downloadMaisons">Baixar maisons.json atualizado</button>
+      <button class="primary" id="saveMaisons" type="button">Salvar editorial</button>
+      <button id="downloadMaisons" type="button">Baixar maisons.json atualizado</button>
     </div>
   </section>
 
@@ -150,9 +167,11 @@ td input{min-width:140px}
       </table>
     </div>
     <div class="actions">
-      <button class="primary" id="downloadLocations">Baixar locations.json atualizado</button>
+      <button class="primary" id="saveLocations" type="button">Salvar lojas</button>
+      <button id="downloadLocations" type="button">Baixar locations.json atualizado</button>
     </div>
   </section>
+  </fieldset>
 </main>
 
 <script>
@@ -174,47 +193,115 @@ async function loadJSON(url){
 
 function folderFor(slug){ return `../images/${slug}`; }
 
-async function init(){
-  try{
-    setStatus('Carregando…');
-    [MAISONS_PAYLOAD, LOCATIONS_PAYLOAD] = await Promise.all([
-      loadJSON('../data/maisons.json'),
-      loadJSON('../data/locations.json')
-    ]);
-
-    const select = $('maisonSelect');
-    select.innerHTML = '';
-    Object.values(MAISONS_PAYLOAD.maisons)
-      .sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'))
-      .forEach(m=>{
-        const o=document.createElement('option');
-        o.value=m.slug; o.textContent=m.name; select.appendChild(o);
-      });
-
-    select.addEventListener('change',()=>selectMaison(select.value));
-    if(select.options.length) await selectMaison(select.options[0].value);
-    setStatus('Pronto');
-  }catch(e){
-    console.error(e);
-    setStatus('Erro ao carregar');
-    alert('Não foi possível carregar o CMS. Veja o Console do navegador.');
-  }
+const WORKER = 'https://arapua-admin-api.hugocg95.workers.dev';
+let key = '', ready = false, busy = false;
+const versions = new Map(), originals = new Map(), dirty = new Set();
+const clone = value => JSON.parse(JSON.stringify(value));
+const message = text => { $('connectionStatus').textContent=text; };
+function syncControls(){
+  $('editor').disabled=busy||!ready;
+  $('maisonSelect').disabled=busy||!ready;
+  $('connectButton').disabled=busy||ready;
+  $('adminKey').disabled=busy||ready;
+  $('reloadButton').disabled=busy||!key;
+  $('logoutButton').disabled=busy||!key;
 }
-
-async function selectMaison(slug){
-  currentSlug = slug;
-  const m = MAISONS_PAYLOAD.maisons[slug];
-  setStatus(`Carregando ${m.name}…`);
+function discardOK(){return !dirty.size||confirm('Há alterações não salvas. Deseja descartá-las?');}
+async function api(route, body){
+  let response;
   try{
-    currentInfo = await loadJSON(`${folderFor(slug)}/info.json`);
-  }catch(e){
-    console.warn(e);
-    currentInfo = {};
+    response=await fetch(WORKER+route,{
+      method:body===undefined?'GET':'POST',cache:'no-store',
+      headers:{Authorization:'Bearer '+key,...(body===undefined?{}:{'Content-Type':'application/json'})},
+      ...(body===undefined?{}:{body:JSON.stringify(body)}),signal:AbortSignal.timeout(40000)
+    });
+  }catch{throw Error('Não foi possível confirmar a operação. Verifique sua conexão. Se estava salvando, confira o GitHub antes de repetir.');}
+  let result;
+  try{result=await response.json();}catch{throw Error('O Worker não retornou uma resposta válida. Confira se o código foi publicado.');}
+  if(!response.ok){const e=Error(result.error||'Falha ao acessar o serviço.');e.status=response.status;throw e;}
+  return result;
+}
+async function loadFile(path, allowMissing=false){
+  let file;
+  try{file=await api('/file?path='+encodeURIComponent(path));}
+  catch(e){if(allowMissing&&e.status===404) file={sha:null,data:{}};else throw e;}
+  versions.set(path,file.sha);originals.set(path,clone(file.data));
+  return file.data;
+}
+async function loadAll(preferred){
+  ready=false;
+  const [maisons,locations]=await Promise.all([loadFile('data/maisons.json'),loadFile('data/locations.json')]);
+  if(!maisons.maisons||!locations.locations)throw Error('Os arquivos de conteúdo estão em um formato inesperado.');
+  MAISONS_PAYLOAD=maisons;LOCATIONS_PAYLOAD=locations;
+  const select=$('maisonSelect');select.innerHTML='';
+  Object.values(maisons.maisons).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR')).forEach(m=>{
+    const option=document.createElement('option');option.value=m.slug;option.textContent=m.name;select.appendChild(option);
+  });
+  const slug=maisons.maisons[preferred]?preferred:select.options[0]?.value;
+  if(!slug)throw Error('Nenhuma Maison encontrada.');
+  await selectMaison(slug);dirty.clear();ready=true;
+}
+async function selectMaison(slug){
+  const info=await loadFile('images/'+slug+'/info.json',true);
+  currentSlug=slug;currentInfo=info;$('maisonSelect').value=slug;
+  fillInfo();fillEditorial();fillRetail();
+  setStatus(MAISONS_PAYLOAD.maisons[slug].name);
+}
+async function connect(){
+  if(busy||ready)return;
+  key=$('adminKey').value.trim();
+  if(!key){message('Digite a chave de acesso do admin.');return;}
+  if(key.startsWith('github_pat_')||key.startsWith('ghp_')){
+    key='';$('adminKey').value='';message('Use a chave ADMIN_TOKEN. O token do GitHub fica somente na Cloudflare.');return;
   }
-  fillInfo();
-  fillEditorial();
-  fillRetail();
-  setStatus(m.name);
+  busy=true;syncControls();message('Conectando e carregando os dados atuais…');
+  try{await loadAll(currentSlug);$('adminKey').value='';message('Conectado. Edite uma seção e clique em Salvar.');}
+  catch(e){key='';ready=false;message(e.message);setStatus('Falha ao conectar');}
+  finally{busy=false;syncControls();}
+}
+async function reload(){
+  if(busy||!key||!discardOK())return;
+  busy=true;syncControls();message('Recarregando…');
+  try{await loadAll(currentSlug);message('Dados atualizados com a versão do GitHub.');}
+  catch(e){ready=false;message(e.message);}
+  finally{busy=false;syncControls();}
+}
+async function switchMaison(slug){
+  if(busy||!ready)return;
+  if(!discardOK()){$('maisonSelect').value=currentSlug;return;}
+  busy=true;syncControls();
+  try{
+    // Discard only after the requested Maison has loaded successfully.
+    const info=await loadFile('images/'+slug+'/info.json',true);
+    MAISONS_PAYLOAD=clone(originals.get('data/maisons.json'));
+    LOCATIONS_PAYLOAD=clone(originals.get('data/locations.json'));
+    currentSlug=slug;currentInfo=info;
+    fillInfo();fillEditorial();fillRetail();dirty.clear();
+    setStatus(MAISONS_PAYLOAD.maisons[slug].name);message('Maison carregada.');
+  }catch(e){$('maisonSelect').value=currentSlug;message(e.message);}
+  finally{busy=false;syncControls();}
+}
+async function saveSection(section){
+  if(busy||!ready)return;
+  let path,data;
+  if(section==='info'){path='images/'+currentSlug+'/info.json';data=readInfo();}
+  else if(section==='editorial'){path='data/maisons.json';readEditorial();data=MAISONS_PAYLOAD;}
+  else{path='data/locations.json';readRetail();data=LOCATIONS_PAYLOAD;}
+  if(!versions.has(path)){message('Recarregue os dados antes de salvar.');return;}
+  const snapshot=clone(data);
+  busy=true;syncControls();setStatus('Salvando…');message('Salvando no GitHub…');
+  try{
+    const result=await api('/save',{path,data:snapshot,sha:versions.get(path)});
+    versions.set(path,result.sha);originals.set(path,snapshot);dirty.delete(section);
+    if(section==='editorial'){
+      const option=[...$('maisonSelect').options].find(o=>o.value===currentSlug);
+      if(option)option.textContent=MAISONS_PAYLOAD.maisons[currentSlug].name;
+    }
+    setStatus('Salvo');message('Salvo no GitHub. Aguarde alguns minutos para o site publicar a alteração.'+(dirty.size?' Ainda há alterações não salvas em outras seções.':''));
+  }catch(e){
+    dirty.add(section);setStatus('Não confirmado');
+    message(e.message+(e.status===409?' Seus campos foram preservados. Baixe uma cópia do JSON antes de recarregar, se precisar guardar suas alterações.':''));
+  }finally{busy=false;syncControls();}
 }
 
 function fillInfo(){
@@ -309,7 +396,7 @@ function addStoreRow(store={}, index=null){
     <td><input data-k="format" value="${escapeAttr(store.format||'')}"></td>
     <td><input data-k="rationale" value="${escapeAttr(store.rationale||'')}"></td>
     <td><button class="danger">Excluir</button></td>`;
-  tr.querySelector('.danger').onclick=()=>{tr.remove(); readRetail();};
+  tr.querySelector('.danger').onclick=()=>{tr.remove(); readRetail(); dirty.add('retail');};
   tr.querySelectorAll('input').forEach(i=>i.addEventListener('input',readRetail));
   body.appendChild(tr);
 }
@@ -336,7 +423,7 @@ function downloadJSON(filename,obj){
 $('downloadInfo').onclick=()=>downloadJSON('info.json',readInfo());
 $('downloadMaisons').onclick=()=>{readEditorial();downloadJSON('maisons.json',MAISONS_PAYLOAD)};
 $('downloadLocations').onclick=()=>{readRetail();downloadJSON('locations.json',LOCATIONS_PAYLOAD)};
-$('addStore').onclick=()=>{addStoreRow();readRetail()};
+$('addStore').onclick=()=>{addStoreRow();readRetail();dirty.add('retail')};
 
 document.querySelectorAll('.tab').forEach(btn=>{
   btn.onclick=()=>{
@@ -345,7 +432,21 @@ document.querySelectorAll('.tab').forEach(btn=>{
   };
 });
 
-init();
+$('maisonSelect').disabled=true;
+setStatus('Conecte para editar');
+$('connectForm').onsubmit=e=>{e.preventDefault();connect();};
+$('reloadButton').onclick=()=>reload();
+$('logoutButton').onclick=()=>{
+  if(!discardOK())return;
+  key=''; ready=false; dirty.clear(); $('adminKey').value='';
+  syncControls(); setStatus('Desconectado'); message('Chave removida desta aba. Conecte novamente para editar.');
+};
+$('maisonSelect').onchange=()=>switchMaison($('maisonSelect').value);
+document.querySelectorAll('.panel').forEach(panel=>panel.addEventListener('input',()=>dirty.add(panel.id)));
+$('saveInfo').onclick=()=>saveSection('info');
+$('saveMaisons').onclick=()=>saveSection('editorial');
+$('saveLocations').onclick=()=>saveSection('retail');
+window.addEventListener('beforeunload',e=>{if(dirty.size){e.preventDefault();e.returnValue='';}});
 </script>
 </body>
 </html>
