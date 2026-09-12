@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARAPUÃ Admin</title>
+<style>
+:root{
+  --bg:#f4f1ea; --paper:#fffdf8; --ink:#1b1d19; --muted:#70736c;
+  --line:#d8d4ca; --green:#263a31; --green2:#385244; --danger:#8f352f;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:5;background:rgba(244,241,234,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.header-inner{max-width:1400px;margin:auto;padding:18px 28px;display:flex;gap:22px;align-items:center;justify-content:space-between}
+.brand{font-family:Georgia,serif;font-size:25px;letter-spacing:.16em}
+.sub{font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+select,input,textarea{font:inherit;color:inherit;background:white;border:1px solid var(--line);border-radius:8px;padding:10px 11px}
+select{min-width:220px}
+button{font:inherit;border:1px solid var(--line);background:white;border-radius:8px;padding:10px 14px;cursor:pointer}
+button.primary{background:var(--green);color:white;border-color:var(--green)}
+button.danger{color:var(--danger)}
+main{max-width:1400px;margin:auto;padding:28px}
+.tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.tab{background:transparent}
+.tab.active{background:var(--green);color:white;border-color:var(--green)}
+.panel{display:none}.panel.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h2{margin:0 0 18px;font:600 18px Georgia,serif}
+label{display:block;font-size:12px;color:var(--muted);margin:14px 0 6px}
+input,textarea{width:100%}
+textarea{min-height:92px;resize:vertical}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{padding:16px;background:#f8f6f1;border:1px solid var(--line);border-radius:10px;text-align:center}
+.stat strong{display:block;font-size:26px;font-family:Georgia,serif}
+.lang-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.preview{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#eee}
+.preview img{display:block;width:100%;height:180px;object-fit:cover}
+.preview .cap{padding:8px 10px;font-size:12px;color:var(--muted);background:white}
+.note{font-size:13px;color:var(--muted);line-height:1.5}
+.table-wrap{overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;min-width:900px}
+th,td{border-bottom:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:#f8f6f1}
+td input{min-width:140px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.status{padding:10px 12px;border-radius:8px;background:#ece9e1;color:var(--muted);font-size:13px}
+.hidden{display:none!important}
+@media(max-width:800px){.grid,.lang-grid,.preview-grid{grid-template-columns:1fr}.header-inner{align-items:flex-start;flex-direction:column}main{padding:18px}.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand">ARAPUÃ</div>
+      <div class="sub">Content Administration</div>
+    </div>
+    <div class="controls">
+      <select id="maisonSelect"><option>Carregando...</option></select>
+      <span id="status" class="status">Inicializando</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="tabs">
+    <button class="tab active" data-tab="info">Brand Info</button>
+    <button class="tab" data-tab="editorial">Editorial &amp; Media</button>
+    <button class="tab" data-tab="retail">Retail Network</button>
+  </div>
+
+  <section id="info" class="panel active">
+    <div class="grid">
+      <div class="card">
+        <h2>Informações principais</h2>
+        <label>Key position</label><input id="key_position">
+        <label>Key position name</label><input id="key_position_name">
+        <label>Creation date</label><input id="founded">
+        <label>Headquarters</label><input id="hq">
+        <label>Website</label><input id="website">
+        <label>Boutique address</label><input id="boutique_address">
+      </div>
+      <div class="card">
+        <h2>Presença física</h2>
+        <div class="stats">
+          <div class="stat"><strong id="statStores">0</strong><span>Stores</span></div>
+          <div class="stat"><strong id="statCountries">0</strong><span>Countries</span></div>
+          <div class="stat"><strong id="statCities">0</strong><span>Cities</span></div>
+        </div>
+        <p class="note">Esses números não são editáveis. Eles são calculados automaticamente a partir de <code>data/locations.json</code>.</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="downloadInfo">Baixar info.json desta Maison</button>
+    </div>
+  </section>
+
+  <section id="editorial" class="panel">
+    <div class="grid">
+      <div class="card">
+        <h2>Estrutura</h2>
+        <label>Name</label><input id="name">
+        <label>Category</label><input id="cat">
+        <label>Positioning — reach</label><input id="reach">
+        <label>Positioning — model</label><input id="model">
+      </div>
+      <div class="card">
+        <h2>Media</h2>
+        <div class="preview-grid">
+          <div class="preview"><img id="prevLogo"><div class="cap">logo.png</div></div>
+          <div class="preview"><img id="prevCover"><div class="cap">cover.png</div></div>
+          <div class="preview"><img id="prevIdentity"><div class="cap">identity.png</div></div>
+          <div class="preview"><img id="prevBoutique"><div class="cap">boutique.png</div></div>
+        </div>
+        <p class="note">As imagens são inferidas automaticamente de <code>images/&lt;slug&gt;/</code>. Nesta primeira versão do Admin, a troca de arquivos continua sendo feita pelo GitHub.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h2>Right to exist</h2>
+      <div id="rightFields" class="lang-grid"></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h2>Code / métier</h2>
+      <div id="metierFields" class="lang-grid"></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h2>Hero / signature</h2>
+      <div id="iconFields" class="lang-grid"></div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="downloadMaisons">Baixar maisons.json atualizado</button>
+    </div>
+  </section>
+
+  <section id="retail" class="panel">
+    <div class="card" style="margin-bottom:18px">
+      <h2>Retail Network</h2>
+      <p class="note">Cada linha vira uma loja em <code>data/locations.json</code>. Stores, Countries e Cities são recalculados automaticamente.</p>
+      <button id="addStore">+ Adicionar loja</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Country</th><th>City</th><th>Location / address</th><th>Format</th><th>Rationale</th><th></th></tr></thead>
+        <tbody id="retailBody"></tbody>
+      </table>
+    </div>
+    <div class="actions">
+      <button class="primary" id="downloadLocations">Baixar locations.json atualizado</button>
+    </div>
+  </section>
+</main>
+
+<script>
+const LANGS = ['pt','en','es','fr'];
+let MAISONS_PAYLOAD = null;
+let LOCATIONS_PAYLOAD = null;
+let currentSlug = null;
+let currentInfo = {};
+
+const $ = id => document.getElementById(id);
+
+function setStatus(msg){ $('status').textContent = msg; }
+
+async function loadJSON(url){
+  const r = await fetch(url, {cache:'no-store'});
+  if(!r.ok) throw new Error(`${url}: ${r.status}`);
+  return r.json();
+}
+
+function folderFor(slug){ return `../images/${slug}`; }
+
+async function init(){
+  try{
+    setStatus('Carregando…');
+    [MAISONS_PAYLOAD, LOCATIONS_PAYLOAD] = await Promise.all([
+      loadJSON('../data/maisons.json'),
+      loadJSON('../data/locations.json')
+    ]);
+
+    const select = $('maisonSelect');
+    select.innerHTML = '';
+    Object.values(MAISONS_PAYLOAD.maisons)
+      .sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'))
+      .forEach(m=>{
+        const o=document.createElement('option');
+        o.value=m.slug; o.textContent=m.name; select.appendChild(o);
+      });
+
+    select.addEventListener('change',()=>selectMaison(select.value));
+    if(select.options.length) await selectMaison(select.options[0].value);
+    setStatus('Pronto');
+  }catch(e){
+    console.error(e);
+    setStatus('Erro ao carregar');
+    alert('Não foi possível carregar o CMS. Veja o Console do navegador.');
+  }
+}
+
+async function selectMaison(slug){
+  currentSlug = slug;
+  const m = MAISONS_PAYLOAD.maisons[slug];
+  setStatus(`Carregando ${m.name}…`);
+  try{
+    currentInfo = await loadJSON(`${folderFor(slug)}/info.json`);
+  }catch(e){
+    console.warn(e);
+    currentInfo = {};
+  }
+  fillInfo();
+  fillEditorial();
+  fillRetail();
+  setStatus(m.name);
+}
+
+function fillInfo(){
+  ['key_position','key_position_name','founded','hq','website','boutique_address'].forEach(k=>{
+    $(k).value = currentInfo[k] ?? '';
+  });
+  updateStats();
+}
+
+function readInfo(){
+  ['key_position','key_position_name','founded','hq','website','boutique_address'].forEach(k=>{
+    let v=$(k).value.trim();
+    if(k==='founded' && /^\d+$/.test(v)) v=Number(v);
+    currentInfo[k]=v || null;
+  });
+  return currentInfo;
+}
+
+function makeLangFields(containerId, objectKey){
+  const c=$(containerId); c.innerHTML='';
+  LANGS.forEach(lang=>{
+    const wrap=document.createElement('div');
+    wrap.innerHTML=`<label>${lang.toUpperCase()}</label><textarea data-object="${objectKey}" data-lang="${lang}"></textarea>`;
+    c.appendChild(wrap);
+  });
+}
+
+makeLangFields('rightFields','right');
+makeLangFields('metierFields','metier');
+makeLangFields('iconFields','icon');
+
+function fillEditorial(){
+  const m=MAISONS_PAYLOAD.maisons[currentSlug];
+  $('name').value=m.name ?? '';
+  $('cat').value=m.cat ?? '';
+  $('reach').value=m.positioning?.reach ?? '';
+  $('model').value=m.positioning?.model ?? '';
+
+  document.querySelectorAll('textarea[data-object]').forEach(t=>{
+    t.value = m[t.dataset.object]?.[t.dataset.lang] ?? '';
+  });
+
+  const f=folderFor(currentSlug);
+  $('prevLogo').src=`${f}/logo.png`;
+  $('prevCover').src=`${f}/cover.png`;
+  $('prevIdentity').src=`${f}/identity.png`;
+  $('prevBoutique').src=`${f}/boutique.png`;
+}
+
+function readEditorial(){
+  const m=MAISONS_PAYLOAD.maisons[currentSlug];
+  m.name=$('name').value.trim();
+  m.cat=$('cat').value.trim();
+  m.positioning=m.positioning||{};
+  m.positioning.reach=$('reach').value.trim();
+  m.positioning.model=$('model').value.trim();
+
+  ['right','metier','icon'].forEach(key=>{
+    m[key]=m[key]||{};
+    document.querySelectorAll(`textarea[data-object="${key}"]`).forEach(t=>{
+      m[key][t.dataset.lang]=t.value;
+    });
+  });
+}
+
+function currentStores(){
+  if(!LOCATIONS_PAYLOAD.locations) LOCATIONS_PAYLOAD.locations={};
+  if(!Array.isArray(LOCATIONS_PAYLOAD.locations[currentSlug])) LOCATIONS_PAYLOAD.locations[currentSlug]=[];
+  return LOCATIONS_PAYLOAD.locations[currentSlug];
+}
+
+function updateStats(){
+  const rows=currentStores();
+  $('statStores').textContent=rows.length;
+  $('statCountries').textContent=new Set(rows.map(x=>x.country).filter(Boolean)).size;
+  $('statCities').textContent=new Set(rows.filter(x=>x.country&&x.city).map(x=>`${x.country}|||${x.city}`)).size;
+}
+
+function fillRetail(){
+  const body=$('retailBody'); body.innerHTML='';
+  currentStores().forEach((store,i)=>addStoreRow(store,i));
+  updateStats();
+}
+
+function addStoreRow(store={}, index=null){
+  const body=$('retailBody');
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td><input data-k="country" value="${escapeAttr(store.country||'')}"></td>
+    <td><input data-k="city" value="${escapeAttr(store.city||'')}"></td>
+    <td><input data-k="location" value="${escapeAttr(store.location||'')}"></td>
+    <td><input data-k="format" value="${escapeAttr(store.format||'')}"></td>
+    <td><input data-k="rationale" value="${escapeAttr(store.rationale||'')}"></td>
+    <td><button class="danger">Excluir</button></td>`;
+  tr.querySelector('.danger').onclick=()=>{tr.remove(); readRetail();};
+  tr.querySelectorAll('input').forEach(i=>i.addEventListener('input',readRetail));
+  body.appendChild(tr);
+}
+
+function readRetail(){
+  const rows=[...$('retailBody').querySelectorAll('tr')].map(tr=>{
+    const x={}; tr.querySelectorAll('input[data-k]').forEach(i=>x[i.dataset.k]=i.value.trim());
+    return x;
+  });
+  LOCATIONS_PAYLOAD.locations[currentSlug]=rows;
+  updateStats();
+  return rows;
+}
+
+function escapeAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function downloadJSON(filename,obj){
+  const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=filename; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),500);
+}
+
+$('downloadInfo').onclick=()=>downloadJSON('info.json',readInfo());
+$('downloadMaisons').onclick=()=>{readEditorial();downloadJSON('maisons.json',MAISONS_PAYLOAD)};
+$('downloadLocations').onclick=()=>{readRetail();downloadJSON('locations.json',LOCATIONS_PAYLOAD)};
+$('addStore').onclick=()=>{addStoreRow();readRetail()};
+
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active'); $(btn.dataset.tab).classList.add('active');
+  };
+});
+
+init();
+</script>
+</body>
+</html>
