@@ -439,6 +439,32 @@ body.light-header .langmenu{background:rgba(247,244,237,.98);border-color:var(--
   .maison-store-caption strong{display:block;text-align:left;margin-top:6px}
 }
 
+
+/* MAISONS MEGA MENU */
+.maisons-menu{
+  position:fixed;inset:0;z-index:1200;background:rgba(20,25,21,.96);color:#f4f1e9;
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .28s ease,visibility .28s ease;
+  overflow:auto
+}
+.maisons-menu.open{opacity:1;visibility:visible;pointer-events:auto}
+.maisons-menu-inner{max-width:1420px;margin:0 auto;padding:118px 54px 70px;min-height:100vh}
+.maisons-menu-head{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.18)}
+.maisons-menu-kicker{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#c8bda8;margin-bottom:12px}
+.maisons-menu-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,4.6rem);font-weight:400;line-height:1;margin:0}
+.maisons-menu-close{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;width:44px;height:44px;border-radius:50%;font-size:23px;cursor:pointer;transition:.2s}
+.maisons-menu-close:hover{background:#fff;color:#24342c}
+.maisons-menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:55px;margin-top:22px}
+.maisons-menu-item{display:flex;justify-content:space-between;align-items:center;gap:25px;padding:25px 2px;border-bottom:1px solid rgba(255,255,255,.14);color:inherit;text-decoration:none;transition:padding .2s ease,background .2s ease}
+.maisons-menu-item:hover{padding-left:14px;padding-right:14px;background:rgba(255,255,255,.045)}
+.maisons-menu-item h3{font-family:'Playfair Display',serif;font-weight:400;font-size:1.55rem;margin:0 0 6px}
+.maisons-menu-item small{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#bfb7a7}
+.maisons-menu-arrow{font-size:1.3rem;opacity:.7}
+.maisons-menu-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:30px;color:#c9c4b8;font-size:.8rem}
+.maisons-menu-all{color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px}
+body.maisons-menu-open{overflow:hidden}
+@media(max-width:760px){
+  .maisons-menu-inner{padding:100px 24px 40px}.maisons-menu-grid{grid-template-columns:1fr}.maisons-menu-footer{align-items:flex-start;flex-direction:column}
+}
 </style>
 </head>
 <body>
@@ -447,13 +473,30 @@ body.light-header .langmenu{background:rgba(247,244,237,.98);border-color:var(--
   <div class="navright">
     <nav class="navlinks" id="navLinks">
       <a href="#about" data-home-target="about"></a>
-      <a href="#maisons" data-home-target="maisons"></a>
+      <a href="#maisons" id="maisonsMenuTrigger"></a>
       <a href="#metiers" data-metiers></a>
       <a href="#institutional" data-home-target="institutional"></a>
     </nav>
     <div class="lang" id="lang"><button class="langbtn" id="langBtn">EN</button><div class="langmenu" id="langMenu"><button data-lang="pt">PT</button><button data-lang="en">EN</button><button data-lang="es">ES</button><button data-lang="fr">FR</button></div></div>
   </div>
 </header>
+
+<div class="maisons-menu" id="maisonsMenu" aria-hidden="true">
+  <div class="maisons-menu-inner">
+    <div class="maisons-menu-head">
+      <div>
+        <div class="maisons-menu-kicker" id="maisonsMenuKicker">Our Maisons</div>
+        <h2 class="maisons-menu-title" id="maisonsMenuTitle">Discover by division</h2>
+      </div>
+      <button class="maisons-menu-close" id="maisonsMenuClose" aria-label="Close">×</button>
+    </div>
+    <div class="maisons-menu-grid" id="maisonsMenuGrid"></div>
+    <div class="maisons-menu-footer">
+      <span id="maisonsMenuCount"></span>
+      <a class="maisons-menu-all" id="maisonsMenuAll" href="#maisons">View all divisions</a>
+    </div>
+  </div>
+</div>
 
 <main>
 <section class="page active" id="homePage">
@@ -667,6 +710,7 @@ function applyStatic(){
   const nl=document.querySelectorAll('#navLinks a');
   nl[0].textContent=t('nav_about'); nl[1].textContent=t('nav_maisons'); nl[2].textContent=t('nav_metiers'); nl[3].textContent=t('nav_culture');
   renderDivisionGrid();
+  if(maisonsMenu?.classList.contains('open')) renderMaisonsMenu();
   if(currentCategory) renderCategory(currentCategory,false);
   if(currentMaison) renderMaison(currentMaison,false);
 }
@@ -983,6 +1027,51 @@ function renderMaison(slug,push=true){
 function renderMetiers(push=true){currentCategory=null;currentMaison=null;showPage('metiersPage',true);if(push)history.pushState({},'','#metiers')}
 
 document.querySelectorAll('[data-home]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showHome(null,true)}));
+
+
+// Maisons navigation mega menu
+const maisonsMenu=document.getElementById('maisonsMenu');
+const maisonsMenuTrigger=document.getElementById('maisonsMenuTrigger');
+const maisonsMenuClose=document.getElementById('maisonsMenuClose');
+const maisonsMenuGrid=document.getElementById('maisonsMenuGrid');
+const maisonsMenuAll=document.getElementById('maisonsMenuAll');
+
+function renderMaisonsMenu(){
+  maisonsMenuGrid.innerHTML='';
+  Object.entries(CATEGORIES).forEach(([key,c])=>{
+    const count=BRANDS.filter(b=>b.cat===key).length || c.count || 0;
+    const a=document.createElement('a');
+    a.href='#division/'+key;
+    a.className='maisons-menu-item';
+    a.innerHTML=`<div><h3>${local(c.name)}</h3><small>${count} maisons</small></div><span class="maisons-menu-arrow">↗</span>`;
+    a.addEventListener('click',e=>{e.preventDefault();closeMaisonsMenu();renderCategory(key,true)});
+    maisonsMenuGrid.appendChild(a);
+  });
+  document.getElementById('maisonsMenuCount').textContent=`${BRANDS.length || 36} maisons · ${Object.keys(CATEGORIES).length} divisions`;
+  const labels={
+    en:['Our Maisons','Discover by division','View all divisions'],
+    pt:['Nossas Maisons','Descubra por divisão','Ver todas as divisões'],
+    es:['Nuestras Maisons','Descubra por división','Ver todas las divisiones'],
+    fr:['Nos Maisons','Découvrir par division','Voir toutes les divisions']
+  };
+  const l=labels[currentLang]||labels.en;
+  document.getElementById('maisonsMenuKicker').textContent=l[0];
+  document.getElementById('maisonsMenuTitle').textContent=l[1];
+  maisonsMenuAll.textContent=l[2];
+}
+function openMaisonsMenu(){
+  renderMaisonsMenu();
+  maisonsMenu.classList.add('open');document.body.classList.add('maisons-menu-open');maisonsMenu.setAttribute('aria-hidden','false');
+}
+function closeMaisonsMenu(){
+  maisonsMenu.classList.remove('open');document.body.classList.remove('maisons-menu-open');maisonsMenu.setAttribute('aria-hidden','true');
+}
+maisonsMenuTrigger?.addEventListener('click',e=>{e.preventDefault();openMaisonsMenu()});
+maisonsMenuClose?.addEventListener('click',closeMaisonsMenu);
+maisonsMenu?.addEventListener('click',e=>{if(e.target===maisonsMenu)closeMaisonsMenu()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMaisonsMenu()});
+maisonsMenuAll?.addEventListener('click',e=>{e.preventDefault();closeMaisonsMenu();showHome('maisons',true)});
+
 document.querySelectorAll('[data-home-target]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showHome(a.dataset.homeTarget,true)}));
 document.querySelectorAll('[data-metiers]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();renderMetiers(true)}));
 
@@ -1093,7 +1182,6 @@ async function loadCMSData(){
   );
 
   BRANDS = maisonEntries;
-  Object.entries(CATEGORIES).forEach(([key,category]) => { category.count = BRANDS.filter(brand => brand.cat === key).length; });
 }
 
 function showCMSLoadError(error){
