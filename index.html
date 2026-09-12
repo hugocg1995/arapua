@@ -1011,54 +1011,88 @@ async function loadCMSData(){
   const maisonObject = maisonsPayload.maisons || {};
   const locationObject = locationsPayload.locations || {};
 
-  BRANDS = Object.values(maisonObject).map(sourceMaison => {
-    const b = JSON.parse(JSON.stringify(sourceMaison));
-    const rawLocations = Array.isArray(locationObject[b.slug]) ? locationObject[b.slug] : [];
+  const maisonEntries = await Promise.all(
+    Object.values(maisonObject).map(async sourceMaison => {
+      const b = JSON.parse(JSON.stringify(sourceMaison));
+      const folder = `./maisons/${b.slug}`;
 
-    if(rawLocations.length){
-      const grouped = new Map();
+      // Objective Maison information lives beside the Maison's images.
+      try{
+        const infoResponse = await fetch(`${folder}/info.json`, {cache:'no-store'});
+        if(infoResponse.ok){
+          const info = await infoResponse.json();
+          Object.assign(b, info);
+        }else{
+          console.warn(`No info.json for ${b.slug}: ${infoResponse.status}`);
+        }
+      }catch(error){
+        console.warn(`Could not load info.json for ${b.slug}`, error);
+      }
 
-      rawLocations.forEach(store => {
-        const country = store.country || '';
-        const city = store.city || '';
+      // Image paths are inferred; they no longer need to be stored in JSON.
+      b.logo_image = `${folder}/logo.png`;
+      b.cover_image_url = `${folder}/cover.png`;
+      b.identity_image_url = `${folder}/identity.png`;
+      b.boutique_image_url = `${folder}/boutique.png`;
 
-        if(!grouped.has(country)) grouped.set(country, new Map());
-        const cities = grouped.get(country);
-        if(!cities.has(city)) cities.set(city, []);
+      const rawLocations = Array.isArray(locationObject[b.slug]) ? locationObject[b.slug] : [];
 
-        cities.get(city).push({
-          address: store.location || null,
-          store_type: store.format || null,
-          rationale: store.rationale || null
+      if(rawLocations.length){
+        const grouped = new Map();
+
+        rawLocations.forEach(store => {
+          const country = store.country || '';
+          const city = store.city || '';
+
+          if(!grouped.has(country)) grouped.set(country, new Map());
+          const cities = grouped.get(country);
+          if(!cities.has(city)) cities.set(city, []);
+
+          cities.get(city).push({
+            address: store.location || null,
+            store_type: store.format || null,
+            rationale: store.rationale || null
+          });
         });
-      });
 
-      b.retail_by_country = [...grouped.entries()]
-        .sort(([a],[b]) => a.localeCompare(b, undefined, {sensitivity:'base'}))
-        .map(([country, cities]) => ({
-          country,
-          cities: [...cities.entries()]
-            .sort(([a],[b]) => a.localeCompare(b, undefined, {sensitivity:'base'}))
-            .map(([city, stores]) => ({city, stores}))
-        }));
+        b.retail_by_country = [...grouped.entries()]
+          .sort(([a],[b]) => a.localeCompare(b, undefined, {sensitivity:'base'}))
+          .map(([country, cities]) => ({
+            country,
+            cities: [...cities.entries()]
+              .sort(([a],[b]) => a.localeCompare(b, undefined, {sensitivity:'base'}))
+              .map(([city, stores]) => ({city, stores}))
+          }));
 
-      b.cities = b.retail_by_country.flatMap(group =>
-        group.cities.map(city => ({
-          city: city.city,
-          country: group.country,
-          stores: city.stores
-        }))
-      );
+        b.cities = b.retail_by_country.flatMap(group =>
+          group.cities.map(city => ({
+            city: city.city,
+            country: group.country,
+            stores: city.stores
+          }))
+        );
 
-      b.stores = rawLocations.length;
-      b.countries = new Set(rawLocations.map(x => x.country).filter(Boolean)).size;
-    } else {
-      b.retail_by_country = [];
-      b.cities = [];
-    }
+        // Network metrics are always calculated from locations.json.
+        b.stores = rawLocations.length;
+        b.countries = new Set(rawLocations.map(x => x.country).filter(Boolean)).size;
+        b.city_count = new Set(
+          rawLocations
+            .filter(x => x.country && x.city)
+            .map(x => `${x.country}|||${x.city}`)
+        ).size;
+      }else{
+        b.retail_by_country = [];
+        b.cities = [];
+        b.stores = 0;
+        b.countries = 0;
+        b.city_count = 0;
+      }
 
-    return b;
-  });
+      return b;
+    })
+  );
+
+  BRANDS = maisonEntries;
 }
 
 function showCMSLoadError(error){
@@ -1068,7 +1102,7 @@ function showCMSLoadError(error){
       <div style="max-width:680px;background:white;padding:42px;border:1px solid rgba(0,0,0,.12)">
         <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px">ARAPUÃ</div>
         <h1 style="font-family:Georgia,serif;font-weight:400;margin:0 0 18px;font-size:36px">Content could not be loaded.</h1>
-        <p style="line-height:1.6;color:#596059">Check that <strong>data/maisons.json</strong> and <strong>data/locations.json</strong> exist next to this site and contain valid JSON.</p>
+        <p style="line-height:1.6;color:#596059">Check that <strong>data/maisons.json</strong>, <strong>data/locations.json</strong> and each <strong>maisons/&lt;slug&gt;/info.json</strong> exist and contain valid JSON.</p>
         <p style="line-height:1.6;color:#777;font-size:13px;margin-top:24px">${String(error.message || error)}</p>
       </div>
     </main>`;
