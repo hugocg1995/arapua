@@ -1014,7 +1014,8 @@ async function loadCMSData(){
   const maisonEntries = await Promise.all(
     Object.values(maisonObject).map(async sourceMaison => {
       const b = JSON.parse(JSON.stringify(sourceMaison));
-      const folder = `./maisons/${b.slug}`;
+      const folderSlug = b.slug === 'mondepars-maison' ? 'mondepars_maison' : b.slug;
+      const folder = `./images/${folderSlug}`;
 
       // Objective Maison information lives beside the Maison's images.
       try{
