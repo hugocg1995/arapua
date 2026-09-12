@@ -232,16 +232,16 @@
         "reach": "global",
         "model": "broad_luxury"
       },
-      "stores": null,
-      "countries": null,
+      "stores": 160,
+      "countries": 27,
       "store_image": null,
       "cover_image": null,
       "identity_image": null,
-      "key_position": null,
-      "key_position_name": null,
-      "logo_image": null,
-      "cover_image_url": null,
-      "identity_image_url": null,
+      "key_position": "creative director",
+      "key_position_name": "Alexandre Birman",
+      "logo_image": "https://github.com/hugocg1995/arapua/blob/main/Alexandre%20Birman_logo.png?raw=true",
+      "cover_image_url": "https://github.com/hugocg1995/arapua/blob/main/Alexandre%20Birman_logo.png?raw=true",
+      "identity_image_url": "https://revistasacada.com.br/wp-content/uploads/2023/06/Alexandre-Birman-lanca-colecao-Pre-Fall-23-6-Copy.jpg",
       "boutique_image_url": null
     },
     "adriana-degreas": {
