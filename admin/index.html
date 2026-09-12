@@ -158,7 +158,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}button:disabled{opacity:.5;curs
     <div class="card" style="margin-bottom:18px">
       <h2>Retail Network</h2>
       <p class="note">Cada linha vira uma loja em <code>data/locations.json</code>. Stores, Countries e Cities são recalculados automaticamente.</p>
-      <div class="retail-tools"><div class="search"><label for="retailSearch">Buscar na rede de lojas</label><input id="retailSearch" type="search" placeholder="País, cidade, endereço, formato ou rationale"></div><div><label for="retailSize">Linhas por página</label><select id="retailSize"><option>25</option><option>50</option><option>100</option></select></div><button type="button" id="clearRetailFilters">Limpar filtros</button><button type="button" id="addStore">+ Adicionar loja</button></div><p class="note">Clique nos títulos para alternar A–Z e Z–A. Filtros e ordenação mudam apenas a visualização; todas as lojas são preservadas ao salvar.</p>
+      <div class="retail-tools"><div class="search"><label for="retailSearch">Buscar na rede de lojas</label><input id="retailSearch" type="search" placeholder="País, cidade, endereço, formato ou rationale"></div><div><label for="retailSize">Linhas por página</label><select id="retailSize"><option>25</option><option>50</option><option>100</option></select></div><button type="button" id="clearRetailFilters">Limpar filtros</button><button type="button" id="importCSV">Importar CSV</button><button type="button" id="addStore">+ Adicionar loja</button></div><p class="note">Clique nos títulos para alternar A–Z e Z–A. Filtros e ordenação mudam apenas a visualização; todas as lojas são preservadas ao salvar.</p>
     </div>
     <div class="table-wrap">
       <table class="retail-table" aria-label="Lojas da Maison">
@@ -176,7 +176,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}button:disabled{opacity:.5;curs
 
 <dialog id="createDialog" aria-labelledby="createTitle"><form id="createMaisonForm"><h2 id="createTitle">Nova Maison</h2><label for="newMaisonName">Nome</label><input id="newMaisonName" maxlength="120" required><label for="newMaisonSlug">Identificador no endereço</label><input id="newMaisonSlug" required maxlength="80" pattern="[a-z0-9]+([-_][a-z0-9]+)*"><p class="note">Gerado a partir do nome. Use letras sem acentos, números e hífens.</p><label for="newMaisonCat">Categoria</label><select id="newMaisonCat" required></select><p class="note">A Maison será criada no site. Depois, preencha o editorial e as informações. As imagens são adicionadas pelo GitHub.</p><p id="createError" class="dialog-error" role="alert"></p><div class="actions"><button type="button" data-close-dialog="createDialog">Cancelar</button><button class="primary" type="submit">Criar Maison</button></div></form></dialog>
 <dialog id="deleteDialog" aria-labelledby="deleteTitle"><form id="deleteMaisonForm"><h2 id="deleteTitle">Excluir Maison</h2><p id="deleteDetails"></p><label for="confirmMaisonName">Para confirmar, digite: <strong id="deleteName"></strong></label><input id="confirmMaisonName" required autocomplete="off"><p id="deleteError" class="dialog-error" role="alert"></p><div class="actions"><button type="button" data-close-dialog="deleteDialog">Cancelar</button><button class="danger primary" type="submit">Excluir definitivamente do cadastro</button></div></form></dialog>
-<script>
+<dialog id="csvDialog" aria-labelledby="csvTitle" style="max-width:900px"><h2 id="csvTitle">Importar boutiques</h2><p>Maison selecionada: <strong id="csvMaison"></strong></p><label for="csvFile">Arquivo CSV</label><input type="file" id="csvFile" accept=".csv,text/csv"><p class="note">Colunas: Country, City, Address / Location, Format e Rationale. Brand é opcional; se existir, deve corresponder à Maison selecionada. Aceita ponto e vírgula, vírgula ou tabulação.</p><label for="csvMode">Como aplicar</label><select id="csvMode"><option value="append">Adicionar às boutiques existentes</option><option value="replace">Substituir todas as boutiques desta Maison</option></select><p id="csvError" class="dialog-error" role="alert"></p><p id="csvSummary" class="note" role="status"></p><div class="table-wrap" style="max-height:300px"><table aria-label="Prévia do CSV" style="min-width:650px"><thead><tr><th>Country</th><th>City</th><th>Location</th><th>Format</th></tr></thead><tbody id="csvPreview"></tbody></table></div><p class="note">Prévia das primeiras 8 linhas. Nenhuma alteração será publicada até você clicar em Salvar lojas.</p><div class="actions"><button type="button" data-close-dialog="csvDialog">Cancelar</button><button type="button" class="primary" id="csvApply" disabled>Aplicar à tabela</button></div></dialog><script>
 const LANGS = ['pt','en','es','fr'];
 let MAISONS_PAYLOAD = null;
 let LOCATIONS_PAYLOAD = null;
@@ -229,6 +229,7 @@ async function loadFile(path, allowMissing=false){
   let file;
   try{file=await api('/file?path='+encodeURIComponent(path));}
   catch(e){if(allowMissing&&e.status===404) file={sha:null,data:{}};else throw e;}
+  if(!file||!file.data||typeof file.data!=='object'||Array.isArray(file.data)||!(file.sha===null||typeof file.sha==='string'))throw Error('O Worker não retornou os dados do arquivo. Publique o código completo do Worker e tente novamente.');
   versions.set(path,file.sha);originals.set(path,clone(file.data));
   return file.data;
 }
@@ -448,6 +449,87 @@ $('clearRetailFilters').onclick=()=>clearRetailFilters();
 $('retailSize').onchange=()=>{retailView.size=Number($('retailSize').value);retailView.page=1;fillRetail();};
 $('retailPrev').onclick=()=>{retailView.page--;fillRetail();};
 $('retailNext').onclick=()=>{retailView.page++;fillRetail();};
+
+function parseBoutiquesCSV(text,maison){
+  text=text.replace(/^\uFEFF/,'');
+  const first=text.split(/\r?\n/)[0];
+  const delimiter=first.includes(';')?';':first.includes('\t')?'\t':',';
+  const records=[];let row=[],cell='',quoted=false,closed=false,line=1,startLine=1;
+  const finishCell=()=>{row.push(cell.trim());cell='';closed=false;};
+  const finishRow=()=>{finishCell();if(row.some(x=>x!==''))records.push({cells:row,line:startLine});row=[];startLine=line+1;};
+  for(let i=0;i<text.length;i++){
+    const ch=text[i];
+    if(quoted){if(ch==='"'){if(text[i+1]==='"'){cell+='"';i++;}else{quoted=false;closed=true;}}else{cell+=ch;if(ch==='\n')line++;}continue;}
+    if(ch===delimiter){finishCell();continue;}
+    if(ch==='\r'||ch==='\n'){if(ch==='\r'&&text[i+1]==='\n')i++;finishRow();line++;continue;}
+    if(closed){if(!/\s/.test(ch))throw Error('Linha '+line+': conteúdo inesperado após aspas.');continue;}
+    if(ch==='"'){if(cell.trim())throw Error('Linha '+line+': aspas em posição inválida.');cell='';quoted=true;continue;}
+    cell+=ch;
+  }
+  if(quoted)throw Error('CSV contém um campo com aspas não fechadas.');
+  finishRow();if(records.length<2)throw Error('O CSV deve conter um cabeçalho e pelo menos uma boutique.');
+  const aliases={brand:'brand',marca:'brand',maison:'brand',country:'country',pais:'country',city:'city',cidade:'city',
+    'addresslocation':'location',location:'location',locations:'location',address:'location',endereco:'location',local:'location',
+    format:'format',formato:'format',rationale:'rationale',justificativa:'rationale'};
+  const fields=records[0].cells.map(s=>aliases[normalize(s).replace(/[^a-z0-9]/g,'')]);
+  for(const k of ['country','city','location'])if(!fields.includes(k))throw Error('Coluna obrigatória ausente: '+k+'.');
+  for(const k of fields.filter(Boolean))if(fields.filter(x=>x===k).length>1)throw Error('Coluna repetida: '+k+'.');
+  const ignored=records[0].cells.filter((_,i)=>!fields[i]);
+  const errors=[],rows=[];
+  for(const rec of records.slice(1)){
+    if(rec.cells.length!==fields.length){errors.push('Linha '+rec.line+': quantidade de colunas diferente do cabeçalho.');continue;}
+    const mapped={};fields.forEach((k,i)=>{if(k)mapped[k]=rec.cells[i];});
+    if(fields.includes('brand')&&(!mapped.brand||![maison.name,maison.slug].some(x=>normalize(x).trim()===normalize(mapped.brand).trim()))){errors.push('Linha '+rec.line+': marca "'+(mapped.brand||'vazia')+'" não corresponde a '+maison.name+'.');continue;}
+    const missing=['country','city','location'].filter(k=>!mapped[k]);
+    if(missing.length){errors.push('Linha '+rec.line+': preencha '+missing.join(', ')+'.');continue;}
+    rows.push(Object.fromEntries(['country','city','location','format','rationale'].map(k=>[k,mapped[k]||''])));
+  }
+  if(errors.length)throw Error(errors.slice(0,8).join('\n')+(errors.length>8?'\n… e mais '+(errors.length-8)+' linhas inválidas.':'')+'\nCorrija o arquivo e tente novamente. Nenhuma linha foi importada.');
+  return {rows,ignored};
+}
+const csvIdentity=store=>JSON.stringify(['country','city','location','format','rationale'].map(k=>String(store[k]??'').trim()));
+function planCSVImport(incoming,existing,replace){
+  const seen=new Set((replace?[]:existing).map(csvIdentity)),added=[];let duplicates=0;
+  for(const store of incoming){const id=csvIdentity(store);if(seen.has(id)){duplicates++;continue;}seen.add(id);added.push({...store});}
+  return {result:replace?added:[...existing,...added],added:added.length,duplicates};
+}
+let csvPending=null,csvRead=0;
+$('importCSV').onclick=()=>{
+  if(!ready||busy||!currentSlug)return;
+  csvPending=null;csvRead++;$('csvFile').value='';$('csvMode').value='append';$('csvError').textContent='';$('csvPreview').replaceChildren();$('csvSummary').textContent='Escolha um CSV para conferir as boutiques antes de importar.';$('csvApply').disabled=true;
+  $('csvMaison').textContent=MAISONS_PAYLOAD.maisons[currentSlug].name;$('csvDialog').showModal();
+};
+$('csvFile').onchange=async()=>{
+  const seq=++csvRead,file=$('csvFile').files[0],slug=currentSlug;
+  csvPending=null;$('csvApply').disabled=true;$('csvError').textContent='';$('csvPreview').replaceChildren();$('csvSummary').textContent='Lendo arquivo…';
+  if(!file){$('csvSummary').textContent='Selecione um arquivo.';return;}
+  try{
+    if(file.size>8*1024*1024)throw Error('O CSV deve ter no máximo 8 MB.');
+    const buffer=await file.arrayBuffer();let text;
+    try{text=new TextDecoder('utf-8',{fatal:true}).decode(buffer);}catch{text=new TextDecoder('windows-1252').decode(buffer);}
+    if(seq!==csvRead||!$('csvDialog').open||slug!==currentSlug)return;
+    const parsed=parseBoutiquesCSV(text,MAISONS_PAYLOAD.maisons[slug]);csvPending={...parsed,slug};renderCSVPreview();
+  }catch(e){if(seq===csvRead){$('csvError').textContent=e.message;$('csvSummary').textContent='Arquivo não importado.';}}
+};
+function renderCSVPreview(){
+  if(!csvPending)return;
+  const replace=$('csvMode').value==='replace',plan=planCSVImport(csvPending.rows,currentStores(),replace);
+  $('csvSummary').textContent=`${csvPending.rows.length} linhas válidas. ${plan.added} boutiques a importar. ${plan.duplicates} duplicatas idênticas ignoradas. Total após aplicar: ${plan.result.length}.`+
+    (replace?` As ${currentStores().length} lojas atuais desta Maison serão substituídas.`:' As boutiques atuais serão mantidas.')+
+    (csvPending.ignored.length?' Colunas não utilizadas: '+csvPending.ignored.join(', ')+'.':'');
+  $('csvPreview').replaceChildren();
+  csvPending.rows.slice(0,8).forEach(store=>{const tr=document.createElement('tr');for(const k of ['country','city','location','format']){const td=document.createElement('td');td.textContent=store[k];tr.append(td);}$('csvPreview').append(tr);});
+  $('csvApply').disabled=!plan.added;
+}
+$('csvMode').onchange=renderCSVPreview;
+$('csvApply').onclick=()=>{
+  if(!csvPending||csvPending.slug!==currentSlug||!ready||busy)return;
+  const replace=$('csvMode').value==='replace',plan=planCSVImport(csvPending.rows,currentStores(),replace);
+  if(replace&&!confirm(`Substituir as ${currentStores().length} boutiques de ${MAISONS_PAYLOAD.maisons[currentSlug].name} pelas ${plan.result.length} boutiques do CSV?`))return;
+  LOCATIONS_PAYLOAD.locations[currentSlug]=plan.result;dirty.add('retail');clearRetailFilters(false);fillRetail();
+  $('csvDialog').close();csvPending=null;setStatus('Importação pendente');message('CSV aplicado à tabela. Revise os dados e clique em Salvar lojas para publicar.');
+};
+$('csvDialog').addEventListener('close',()=>{csvRead++;csvPending=null;});
 
 const categoryNames={fashion:'Moda & Artigos de Couro',jewelry:'Joalheria & Alta Joalheria',home:'Casa & Art de Vivre',beauty:'Beleza & Artes Olfativas',terroir:'Gastronomia & Terroir Brasileiro',hospitality:'Hospitalidade & Gastronomia',wines:'Vinhos & Terroirs'};
 for(const [value,label]of Object.entries(categoryNames)){
