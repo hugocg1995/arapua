@@ -776,7 +776,7 @@ function renderCategory(key,push=true){
   BRANDS.filter(b=>b.cat===key).sort((a,b)=>a.name.localeCompare(b.name,currentLang,{sensitivity:'base'})).forEach((b,i)=>{
     const im=brandImage(key,i); const a=document.createElement('a');a.className='brand-card';a.href='#maison/'+b.slug;
     const cardVisual=b.cover_image_url || b.cover_image || im.url;
-    a.innerHTML=`<div class="brandbg" style="background-image:url('${cardVisual}');background-position:${im.pos}"></div><div class="brand-center"><div><h2>${b.name}</h2><span>${t('discover')}</span></div></div>`;
+    a.innerHTML=`<div class="brandbg" data-photo-slug="${b.slug}" data-photo-kind="cover" style="background-image:url('${cardVisual}');background-position:${im.pos}"></div><div class="brand-center"><div><h2>${b.name}</h2><span>${t('discover')}</span></div></div>`;
     a.addEventListener('click',e=>{e.preventDefault();renderMaison(b.slug,true)});
     grid.appendChild(a);
   });
@@ -847,7 +847,7 @@ function renderMaison(slug,push=true){
   document.getElementById('maisonContent').innerHTML=`
   <div class="maison-shell">
     <section class="maison-cover">
-      <div class="maison-cover-bg" style="background-image:url('${coverVisual}')"></div>
+      <div class="maison-cover-bg" data-photo-slug="${b.slug}" data-photo-kind="cover" style="background-image:url('${coverVisual}')"></div>
       <div class="maison-cover-inner">
         ${b.logo_image
           ? `<img class="maison-cover-logo" src="${b.logo_image}" alt="${t('brand_logo_alt')}">`
@@ -866,7 +866,7 @@ function renderMaison(slug,push=true){
     </section>
 
     <section class="maison-identity-wrap">
-      <div class="maison-identity-stage" style="background-image:url('${identityVisual}')">
+      <div class="maison-identity-stage" data-photo-slug="${b.slug}" data-photo-kind="identity" style="background-image:url('${identityVisual}')">
         <article class="maison-identity-card">
           <div class="eyebrow">${t('identity')}</div>
           ${b.logo_image
@@ -926,7 +926,7 @@ function renderMaison(slug,push=true){
       <div class="maison-stores-layout">
         <figure class="maison-store-figure">
           ${boutiqueVisual
-            ? `<div class="maison-store-image" role="img" aria-label="${t('store_image_alt')}" style="background-image:url('${boutiqueVisual}')"></div>`
+            ? `<div class="maison-store-image" data-photo-slug="${b.slug}" data-photo-kind="boutique" role="img" aria-label="${t('store_image_alt')}" style="background-image:url('${boutiqueVisual}')"></div>`
             : `<div class="maison-store-image empty"><span>${t('no_store_data')}</span></div>`
           }
           ${b.boutique_address
@@ -1262,6 +1262,7 @@ async function loadCMSData(){
   );
 
   BRANDS = maisonEntries;
+  Object.entries(CATEGORIES).forEach(([key,category]) => { category.count = BRANDS.filter(brand => brand.cat === key).length; });
 }
 
 function showCMSLoadError(error){
@@ -1293,6 +1294,36 @@ loadCMSData()
     route();
   })
   .catch(showCMSLoadError);
+
+const frameImages=new Map(),frameElements=new WeakMap();
+function frameSettings(value={}){
+  const number=(v,d,min,max)=>Number.isFinite(Number(v))?Math.min(max,Math.max(min,Number(v))):d;
+  return {x:number(value.x??50,50,0,100),y:number(value.y??50,50,0,100),zoom:number(value.zoom??1,1,.5,3)};
+}
+function paintPhotoFrame(element){
+  const state=frameElements.get(element);if(!state||!state.image.naturalWidth)return;
+  const {image,settings}=state,w=element.clientWidth,h=element.clientHeight;
+  const scale=Math.max(w/image.naturalWidth,h/image.naturalHeight)*settings.zoom;
+  element.style.backgroundImage=`url("${image.src}")`;
+  element.style.backgroundSize=`${image.naturalWidth*scale}px ${image.naturalHeight*scale}px`;
+  element.style.backgroundPosition=`${settings.x}% ${settings.y}%`;
+  element.style.backgroundRepeat='no-repeat';
+}
+const frameResize=new ResizeObserver(entries=>entries.forEach(e=>paintPhotoFrame(e.target)));
+function setPhotoFrame(element,url,value){
+  let image=frameImages.get(url);
+  if(!image){image=new Image();image.src=url;frameImages.set(url,image);}
+  frameElements.set(element,{image,settings:frameSettings(value)});frameResize.observe(element);
+  if(image.complete)paintPhotoFrame(element);else image.addEventListener('load',()=>paintPhotoFrame(element),{once:true});
+}
+
+function attachPhotoFrames(root){
+  const elements=[...(root.matches?.('[data-photo-kind]')?[root]:[]),...root.querySelectorAll('[data-photo-kind]')];
+  for(const element of elements){const brand=BRANDS.find(b=>b.slug===element.dataset.photoSlug),kind=element.dataset.photoKind;
+    if(brand?.photo_framing?.[kind])setPhotoFrame(element,brand[kind+'_image_url'],brand.photo_framing[kind]);}
+}
+new MutationObserver(records=>{for(const record of records){for(const removed of record.removedNodes)if(removed.nodeType===1){frameResize.unobserve(removed);removed.querySelectorAll('[data-photo-kind]').forEach(el=>frameResize.unobserve(el));}for(const node of record.addedNodes)if(node.nodeType===1)attachPhotoFrames(node);}}).observe(document.body,{childList:true,subtree:true});
+
 </script>
 </body>
 </html>
