@@ -240,9 +240,10 @@
       "key_position": "creative director",
       "key_position_name": "Alexandre Birman",
       "logo_image": "https://github.com/hugocg1995/arapua/blob/main/Alexandre%20Birman_logo.png?raw=true",
-      "cover_image_url": "https://github.com/hugocg1995/arapua/blob/main/Alexandre%20Birman_logo.png?raw=true",
-      "identity_image_url": "https://revistasacada.com.br/wp-content/uploads/2023/06/Alexandre-Birman-lanca-colecao-Pre-Fall-23-6-Copy.jpg",
-      "boutique_image_url": null
+      "cover_image_url": "https://revistasacada.com.br/wp-content/uploads/2023/06/Alexandre-Birman-lanca-colecao-Pre-Fall-23-6-Copy.jpg",
+      "identity_image_url": "https://imageio.forbes.com/blogs-images/felicitycarter/files/2019/05/Shot_37-037-1-e1557942216917.jpg?height=537&width=711&fit=bounds",
+      "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/Alexandre%20Birman_Store.png?raw=true"
+      "boutique_address": "Quai des Bergues | Geneva | Switzerland"
     },
     "adriana-degreas": {
       "slug": "adriana-degreas",
@@ -280,17 +281,18 @@
         "reach": "international_selective",
         "model": "specialist"
       },
-      "stores": null,
-      "countries": null,
+      "stores": 160,
+      "countries": 28,
       "store_image": null,
       "cover_image": null,
       "identity_image": null,
-      "key_position": null,
-      "key_position_name": null,
-      "logo_image": null,
-      "cover_image_url": null,
-      "identity_image_url": null,
-      "boutique_image_url": null
+      "key_position": "Creative Director",
+      "key_position_name": "Adriana Degreas",
+      "logo_image": "https://github.com/hugocg1995/arapua/blob/main/Adriana%20Degreas_Logo.png?raw=true",
+      "cover_image_url": "https://github.com/hugocg1995/arapua/blob/main/Adriana%20Degreas_Ad.png?raw=true",
+      "identity_image_url": "https://github.com/hugocg1995/arapua/blob/main/Adriana%20Degreas_Ad2.png?raw=true",
+      "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/Adriana%20Degreas_Store.png?raw=true"
+      "boutique_address": "Resort Centre — Luxury Retail Axis | Mykonos | Greece"
     },
     "lenny-niemeyer": {
       "slug": "lenny-niemeyer",
@@ -765,7 +767,7 @@
       "cover_image_url": "https://s2-vogue.glbimg.com/gpyxQvzgRVQRo3j4i8zocQwj9eM=/0x0:6048x4024/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_5dfbcf92c1a84b20a5da5024d398ff2f/internal_photos/bs/2023/B/U/Deq7fITOW9og3tNZUikw/tbcopa-987ok.jpg",
       "identity_image_url": "https://braziljournal.com/wp-content/uploads/2022/06/c11e5886-373a-4a96-ec1f-3ac54a8e44a4.jpg",
       "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/T%C3%A2nia%20Bulh%C3%B5es_Store.png?raw=true",
-      "boutique_address": "Rua Colômbia, 270 São Paulo SP Brazil"
+      "boutique_address": "Rua Colômbia, 270 | São Paulo - SP | Brazil"
     },
     "artefacto": {
       "slug": "artefacto",
@@ -808,7 +810,7 @@
       "cover_image_url": "https://s2-casavogue.glbimg.com/hNLBZM56l6-QdVlk8ri5ulkvys8=/0x0:3000x2001/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_d72fd4bf0af74c0c89d27a5a226dbbf8/internal_photos/bs/2023/Q/w/7vA5ryQwASkGbvkhvPzQ/artefacto-cidade-jardim-credito-fran-parente-5-.jpg",
       "identity_image_url": "https://artefacto.com.br/assets/images/edition2026/2026_Cosmos_Carrossel_2d.webp",
       "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/Artefacto_Store.png?raw=true",
-      "boutique_address": "Via Durini\nMilan Italy"
+      "boutique_address": "Via Durini | Milan | Italy"
     },
     "etel": {
       "slug": "etel",
@@ -851,7 +853,7 @@
       "cover_image_url": "https://one-etel.nyc3.cdn.digitaloceanspaces.com/7a3e29be083a4f8da5668d6d6385cda7.jpg",
       "identity_image_url": "https://one-etel.nyc3.cdn.digitaloceanspaces.com/ff5891befd0b9fb387ff4d10288c8575.jpg",
       "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/ETEL_Store.png?raw=true",
-      "boutique_address": "Tribeca\nNew York NY USA"
+      "boutique_address": "Tribeca | New York - NY | USA"
     },
     "by-kamy": {
       "slug": "by-kamy",
@@ -894,7 +896,7 @@
       "cover_image_url": "https://bykamy.com.br/media/wysiwyg/fotos-blog/nova-loja-by-kamy-no-shopping-cidade-jardim/montagem-fotos-blog_nova-loja-by-kamy-no-shopping-cidade-jardim-2.webp",
       "identity_image_url": "https://bykamy.com.br/media/wysiwyg/fotos-blog/nova-loja-by-kamy-no-shopping-cidade-jardim/montagem-fotos-blog_nova-loja-by-kamy-no-shopping-cidade-jardim-3.webp",
       "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/ByKamy_Store.png?raw=true",
-      "boutique_address": "Ayoyama\nTokyo Japan"
+      "boutique_address": "Ayoyama | Tokyo | Japan"
     },
     "granado": {
       "slug": "granado",
@@ -1603,7 +1605,7 @@
       "cover_image_url": "https://lojatrousseau.vtexassets.com/assets/vtex.file-manager-graphql/images/6a52df6f-906a-4213-91ea-1eeebe8d504c___2ec7160227858b634c3d2e336952470c.jpg",
       "identity_image_url": "https://lojatrousseau.vtexassets.com/assets/vtex.file-manager-graphql/images/c7220042-c6af-4469-b8fb-bb7d6dd588c6___03be3f9e8ed492f14fbcd7949292f36e.webp",
       "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/Trousseau_Store.png?raw=true",
-      "boutique_address": "Av. da Liberdade\nChiado Lisboa\nPortugal"
+      "boutique_address": "Av. da Liberdade | Chiado,  Lisboa | Portugal"
     },
     "mondepars-maison": {
       "slug": "mondepars-maison",
@@ -1655,7 +1657,7 @@
       "cover_image_url": "https://github.com/hugocg1995/arapua/blob/main/MP_Maison_Ad.png?raw=true",
       "identity_image_url": "https://github.com/hugocg1995/arapua/blob/main/MP_Maison_Store.png?raw=true",
       "boutique_image_url": "https://github.com/hugocg1995/arapua/blob/main/MP_Maison_Madison%20Av.png?raw=true",
-      "boutique_address": "Madison Av.\nNew York NY USA"
+      "boutique_address": "Madison Av. | New York - NY | USA"
     }
   }
 }
