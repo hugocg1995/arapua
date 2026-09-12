@@ -1,1 +1,1805 @@
-Update locations data
+{
+  "_meta": {
+    "schemaVersion": 1,
+    "description": "ARAPUÃ retail network by Maison."
+  },
+  "locations": {
+    "tania-bulhoes": [
+      {
+        "country": "Argentina",
+        "city": "Buenos Aires",
+        "location": "Recoleta / Avenida Alvear",
+        "format": "Flagship",
+        "rationale": "É uma ausência evidente numa marca brasileira de art de vivre com ambição latino-americana."
+      },
+      {
+        "country": "Australia",
+        "city": "Sydney, NSW",
+        "location": "Sydney — CBD / Castlereagh Street",
+        "format": "Flagship",
+        "rationale": "A Austrália é suficientemente relevante para presença própria em uma rede de 50+ unidades."
+      },
+      {
+        "country": "Brazil",
+        "city": "Balneário Camboriú, SC",
+        "location": "Balneário Shopping",
+        "format": "Boutique",
+        "rationale": "Apartamentos de alto padrão e elevada compra de casa e decoração."
+      },
+      {
+        "country": "Brazil",
+        "city": "Barueri, SP",
+        "location": "Iguatemi Alphaville",
+        "format": "Boutique",
+        "rationale": "Condomínios de altíssimo padrão e cliente com elevado consumo de home e gifts."
+      },
+      {
+        "country": "Brazil",
+        "city": "Belo Horizonte, MG",
+        "location": "DiamondMall / Lourdes",
+        "format": "Flagship",
+        "rationale": "Minas possui significado adicional para a narrativa da fundadora e da identidade da marca."
+      },
+      {
+        "country": "Brazil",
+        "city": "Brasília, DF",
+        "location": "Lago Sul",
+        "format": "Flagship",
+        "rationale": "Excelente para casa, gifting e clientela de alto patrimônio."
+      },
+      {
+        "country": "Brazil",
+        "city": "Campinas, SP",
+        "location": "Iguatemi Campinas",
+        "format": "Boutique",
+        "rationale": "Mercado suficientemente grande para operação própria e forte em listas de casamento, gifting e casa."
+      },
+      {
+        "country": "Brazil",
+        "city": "Curitiba, PR",
+        "location": "Pátio Batel",
+        "format": "Boutique",
+        "rationale": "Expansão natural da capilaridade brasileira premium."
+      },
+      {
+        "country": "Brazil",
+        "city": "Florianópolis, SC",
+        "location": "Jurerê Internacional",
+        "format": "Boutique",
+        "rationale": "Lifestyle, second homes e gifting tornam o mercado bastante aderente."
+      },
+      {
+        "country": "Brazil",
+        "city": "Fortaleza, CE",
+        "location": "Iguatemi Fortaleza",
+        "format": "Flagship",
+        "rationale": "Eu incluiria como uma das grandes lojas do Nordeste."
+      },
+      {
+        "country": "Brazil",
+        "city": "Goiânia, GO",
+        "location": "Flamboyant Shopping",
+        "format": "Flagship",
+        "rationale": "Mercado forte de luxury consumption e entertaining."
+      },
+      {
+        "country": "Brazil",
+        "city": "Porto Alegre, RS",
+        "location": "Iguatemi Porto Alegre",
+        "format": "Flagship",
+        "rationale": "Importante lacuna geográfica na rede proposta."
+      },
+      {
+        "country": "Brazil",
+        "city": "Porto Feliz, SP",
+        "location": "Fazenda Boa Vista",
+        "format": "Boutique",
+        "rationale": "Poderia funcionar muito bem como pequeno jewel box de presentes, perfumaria e tableware."
+      },
+      {
+        "country": "Brazil",
+        "city": "Recife, PE",
+        "location": "RioMar Recife",
+        "format": "Flagship",
+        "rationale": "Recife tem mercado regional suficientemente grande para operação própria importante."
+      },
+      {
+        "country": "Brazil",
+        "city": "Ribeirão Preto, SP",
+        "location": "Iguatemi Ribeirão Preto",
+        "format": "Boutique",
+        "rationale": "Polo affluent do interior paulista e categoria particularmente adequada a gifting e entertaining."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Ipanema — Garcia d'Ávila",
+        "format": "Flagship",
+        "rationale": "É o endereço carioca que melhor traduz brasilidade sofisticada e turismo internacional."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "VillageMall",
+        "format": "Boutique",
+        "rationale": "Importante operação comercial para Barra e mercado residencial de alto padrão."
+      },
+      {
+        "country": "Brazil",
+        "city": "Salvador, BA",
+        "location": "Salvador Shopping",
+        "format": "Flagship",
+        "rationale": "Forte fit com lifestyle brasileiro, casa, presente e turismo."
+      },
+      {
+        "country": "Brazil",
+        "city": "São José dos Campos, SP",
+        "location": "Colinas Shopping",
+        "format": "Boutique",
+        "rationale": "Excelente oportunidade de capilaridade no interior de São Paulo."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Alameda Gabriel Monteiro da Silva",
+        "format": "Global Flagship",
+        "rationale": "Deve ser a grande casa da marca no Brasil: mesa, perfumaria, flores, gastronomia e experiências integradas."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Shopping Cidade Jardim",
+        "format": "Flagship",
+        "rationale": "Melhor ponto institucional dentro do universo das grandes maisons internacionais."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Iguatemi São Paulo",
+        "format": "Boutique",
+        "rationale": "Forte operação comercial, gifting e recorrência."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "JK Iguatemi",
+        "format": "Boutique",
+        "rationale": "Captura público affluent mais contemporâneo e amplia conveniência sem diluir a marca."
+      },
+      {
+        "country": "Brazil",
+        "city": "Trancoso, BA",
+        "location": "Trancoso",
+        "format": "Boutique",
+        "rationale": "Pequena destination store com enorme valor de marca e forte brasilidade."
+      },
+      {
+        "country": "Brazil",
+        "city": "Vitória, ES",
+        "location": "Praia do Canto",
+        "format": "Flagship",
+        "rationale": "Vitória tem renda e concentração geográfica favoráveis a uma operação relevante."
+      },
+      {
+        "country": "Canada",
+        "city": "Toronto",
+        "location": "Yorkville",
+        "format": "Flagship",
+        "rationale": "Canadá merece presença própria na expansão norte-americana."
+      },
+      {
+        "country": "Chile",
+        "city": "Santiago",
+        "location": "Vitacura",
+        "format": "Boutique",
+        "rationale": "Mercado regional premium e boa afinidade com tableware e fragrance."
+      },
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "location": "Shanghai — Plaza 66",
+        "format": "Global Flagship",
+        "rationale": "Principal endereço da China continental e forte plataforma para tableware e fragrance."
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Rue du Faubourg Saint-Honoré",
+        "format": "Global Flagship",
+        "rationale": "A loja internacional mais simbólica para estabelecer a marca como maison e não como exportadora brasileira."
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Saint-Germain-des-Prés",
+        "format": "Maison",
+        "rationale": "Poderia ser um espaço de art de vivre completo, incluindo mesa, perfume, café/restaurante e hospitalidade."
+      },
+      {
+        "country": "Hong Kong",
+        "city": "Hong Kong",
+        "location": "LANDMARK / Central",
+        "format": "Flagship",
+        "rationale": "Hub asiático de luxury gifting e cliente internacional."
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Via Montenapoleone / Via della Spiga",
+        "format": "Flagship",
+        "rationale": "Para Tânia, ao contrário da Artefacto, o eixo fashion/luxury funciona porque existe forte componente de perfumes e acessórios para casa."
+      },
+      {
+        "country": "Italy",
+        "city": "Rome",
+        "location": "Rome — Via del Babuino / Condotti",
+        "format": "Boutique",
+        "rationale": "A linguagem de tableware e fragrance permite presença italiana sem necessidade de grande flagship."
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "location": "Ginza",
+        "format": "Flagship",
+        "rationale": "Tableware, craftsmanship e gifting encontram consumidor particularmente sofisticado."
+      },
+      {
+        "country": "Kuwait",
+        "city": "Kuwait City",
+        "location": "Kuwait — The Avenues",
+        "format": "Boutique",
+        "rationale": "Expande o cluster do Golfo; fragrâncias e presentes são particularmente adequados ao mercado."
+      },
+      {
+        "country": "Mexico",
+        "city": "Guadalajara",
+        "location": "Andares",
+        "format": "Boutique",
+        "rationale": "Terceiro polo natural da operação mexicana."
+      },
+      {
+        "country": "Mexico",
+        "city": "Mexico City",
+        "location": "Polanco — Presidente Masaryk",
+        "format": "Flagship",
+        "rationale": "Melhor mercado latino-americano internacional para expansão da marca depois do Brasil."
+      },
+      {
+        "country": "Mexico",
+        "city": "Monterrey",
+        "location": "San Pedro Garza García",
+        "format": "Boutique",
+        "rationale": "Poder aquisitivo e cultura de casa/entertaining tornam Monterrey excelente segundo mercado mexicano."
+      },
+      {
+        "country": "Monaco",
+        "city": "Monaco",
+        "location": "Monaco — Carré d'Or",
+        "format": "Boutique",
+        "rationale": "Forte afinidade com gifting, yachts, residences e entertaining."
+      },
+      {
+        "country": "Portugal",
+        "city": "Cascais",
+        "location": "Cascais",
+        "format": "Boutique",
+        "rationale": "Residência, turismo de luxo e público brasileiro/internacional."
+      },
+      {
+        "country": "Portugal",
+        "city": "Lisbon",
+        "location": "Lisbon — Avenida da Liberdade / Chiado",
+        "format": "Flagship",
+        "rationale": "Eu adicionaria Lisboa: porta natural para uma maison brasileira e excelente primeiro mercado europeu lusófono."
+      },
+      {
+        "country": "Portugal",
+        "city": "Porto",
+        "location": "Foz / Avenida da Boavista",
+        "format": "Boutique",
+        "rationale": "Segunda Portugal depois de Lisboa."
+      },
+      {
+        "country": "Qatar",
+        "city": "Doha / Lusail",
+        "location": "Place Vendôme",
+        "format": "Boutique",
+        "rationale": "Extensão seletiva da presença no Golfo."
+      },
+      {
+        "country": "Saudi Arabia",
+        "city": "Riyadh",
+        "location": "Riyadh — Via Riyadh / Olaya",
+        "format": "Flagship",
+        "rationale": "Mercado de entertaining, presentes e fragrâncias especialmente aderente."
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "location": "Marina Bay Sands",
+        "format": "Flagship",
+        "rationale": "Hub para Sudeste Asiático e turismo de luxo."
+      },
+      {
+        "country": "South Korea",
+        "city": "Seoul",
+        "location": "Seoul — Cheongdam",
+        "format": "Flagship",
+        "rationale": "Forte afinidade com beauty, fragrance, home e lifestyle."
+      },
+      {
+        "country": "Spain",
+        "city": "Barcelona",
+        "location": "Barcelona — Passeig de Gràcia",
+        "format": "Boutique",
+        "rationale": "Expansão ibérica natural depois de Madrid."
+      },
+      {
+        "country": "Spain",
+        "city": "Madrid",
+        "location": "Madrid — Barrio de Salamanca",
+        "format": "Boutique",
+        "rationale": "Mercado culturalmente próximo e forte destino de luxo latino-americano."
+      },
+      {
+        "country": "Spain",
+        "city": "Marbella",
+        "location": "Marbella — Golden Mile",
+        "format": "Boutique",
+        "rationale": "Excelente para summer entertaining, gifts e second homes."
+      },
+      {
+        "country": "Switzerland",
+        "city": "Geneva",
+        "location": "Geneva — Rue du Rhône",
+        "format": "Boutique",
+        "rationale": "Pequena loja de presentes, porcelana e perfumaria para cliente internacional HNW."
+      },
+      {
+        "country": "Thailand",
+        "city": "Bangkok",
+        "location": "Bangkok — Central Embassy",
+        "format": "Boutique",
+        "rationale": "Bom hub emergente de luxo do Sudeste Asiático."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Abu Dhabi",
+        "location": "Abu Dhabi — The Galleria Al Maryah Island",
+        "format": "Flagship",
+        "rationale": "Eu incluiria Abu Dhabi além de Dubai pela força do consumidor local e do gifting."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Dubai Mall — Fashion Avenue",
+        "format": "Global Flagship",
+        "rationale": "Fragrance, gifting, tableware e objetos funcionam extraordinariamente bem no modelo de consumo do Golfo."
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Mount Street / Mayfair",
+        "format": "Flagship",
+        "rationale": "Combina gifting, fragrance e home com cliente internacional de alta renda."
+      },
+      {
+        "country": "United States",
+        "city": "Bal Harbour, FL",
+        "location": "Bal Harbour Shops",
+        "format": "Flagship",
+        "rationale": "Excelente primeiro passo nos EUA: forte presença brasileira/latino-americana e luxury gifting."
+      },
+      {
+        "country": "United States",
+        "city": "Beverly Hills, CA",
+        "location": "Beverly Hills",
+        "format": "Boutique",
+        "rationale": "Boa presença de imagem na Costa Oeste, sem exigir grande showroom."
+      },
+      {
+        "country": "United States",
+        "city": "Boston, MA",
+        "location": "Boston — Back Bay",
+        "format": "Boutique",
+        "rationale": "Público sofisticado, internacional e forte mercado de gifts."
+      },
+      {
+        "country": "United States",
+        "city": "Chicago, IL",
+        "location": "Chicago — Oak Street / Gold Coast",
+        "format": "Boutique",
+        "rationale": "Dá densidade real à presença americana."
+      },
+      {
+        "country": "United States",
+        "city": "Dallas, TX",
+        "location": "Highland Park Village",
+        "format": "Boutique",
+        "rationale": "Luxury gifting e home permitem expansão americana mais ampla que a inicialmente proposta."
+      },
+      {
+        "country": "United States",
+        "city": "Hamptons, NY",
+        "location": "East Hampton",
+        "format": "Boutique",
+        "rationale": "Tableware, fragrância e entertaining têm excelente fit com casas de verão."
+      },
+      {
+        "country": "United States",
+        "city": "Houston, TX",
+        "location": "River Oaks District",
+        "format": "Boutique",
+        "rationale": "Grande base affluent e forte cultura de entertaining."
+      },
+      {
+        "country": "United States",
+        "city": "Miami, FL",
+        "location": "Brickell / Design District",
+        "format": "Boutique",
+        "rationale": "Eu teria uma segunda Miami além de Bal Harbour, voltada a cliente local e latino-americano recorrente."
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "Madison Avenue",
+        "format": "Global Flagship",
+        "rationale": "Posiciona a marca como verdadeira maison internacional de home, fragrance e gifting."
+      },
+      {
+        "country": "United States",
+        "city": "Palm Beach, FL",
+        "location": "Palm Beach — Worth Avenue",
+        "format": "Boutique",
+        "rationale": "Excelente combinação de entertaining, tableware, gifts e second homes."
+      },
+      {
+        "country": "Uruguay",
+        "city": "Montevideo",
+        "location": "Carrasco",
+        "format": "Boutique",
+        "rationale": "Operação pequena, sofisticada e residencial."
+      },
+      {
+        "country": "Uruguay",
+        "city": "Punta del Este",
+        "location": "Punta del Este",
+        "format": "Boutique",
+        "rationale": "Perfeita destination store de verão para gifts, mesa e fragrâncias."
+      }
+    ],
+    "artefacto": [
+      {
+        "country": "Australia",
+        "city": "Sydney, NSW",
+        "location": "Alexandria / Surry Hills design precinct",
+        "format": "Flagship",
+        "rationale": "Principal operação de Oceania, voltada a arquitetos, designers e projetos residenciais de alto padrão."
+      },
+      {
+        "country": "Brazil",
+        "city": "Balneário Camboriú, SC",
+        "location": "Praia Brava / Av. Brasil",
+        "format": "Flagship",
+        "rationale": "Mercado muito relevante pela concentração de apartamentos de altíssimo padrão, novos empreendimentos e second homes."
+      },
+      {
+        "country": "Brazil",
+        "city": "Belo Horizonte, MG",
+        "location": "Lourdes / Savassi",
+        "format": "Flagship",
+        "rationale": "Ausência importante na rede histórica. Belo Horizonte merece presença própria por renda, arquitetura e tradição de design mineiro."
+      },
+      {
+        "country": "Brazil",
+        "city": "Brasília, DF",
+        "location": "Lago Sul",
+        "format": "Flagship",
+        "rationale": "Mercado extremamente aderente a casas de grande metragem e projetos completos. A marca historicamente já opera no Lago Sul."
+      },
+      {
+        "country": "Brazil",
+        "city": "Curitiba, PR",
+        "location": "Batel / Comendador Araújo",
+        "format": "Flagship",
+        "rationale": "Mantém presença forte no Sul em um mercado consolidado de interiores e arquitetura residencial."
+      },
+      {
+        "country": "Brazil",
+        "city": "Florianópolis, SC",
+        "location": "Jurerê / SC-401",
+        "format": "Boutique",
+        "rationale": "Complementa Balneário Camboriú com público de second homes e residências de alto padrão."
+      },
+      {
+        "country": "Brazil",
+        "city": "Goiânia, GO",
+        "location": "Setor Marista",
+        "format": "Flagship",
+        "rationale": "Mercado brasileiro relevante para interiores de alto padrão e grandes residências; boa oportunidade de consolidar presença regional."
+      },
+      {
+        "country": "Brazil",
+        "city": "Recife, PE",
+        "location": "Boa Viagem",
+        "format": "Boutique",
+        "rationale": "Eu adicionaria Recife para completar o Nordeste de alta renda e o ecossistema de arquitetos locais."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "CasaShopping — Barra da Tijuca",
+        "format": "Flagship",
+        "rationale": "Faz sentido manter pela relevância do CasaShopping para arquitetura e decoração carioca e pelo histórico da Artefacto no local."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Ipanema — Garcia d'Ávila / Visconde de Pirajá",
+        "format": "Maison",
+        "rationale": "Eu adicionaria uma unidade menor, muito mais aspiracional, para aproximar a marca da clientela de Zona Sul e de arquitetos sem exigir deslocamento à Barra."
+      },
+      {
+        "country": "Brazil",
+        "city": "Salvador, BA",
+        "location": "Caminho das Árvores / Alameda das Espatódeas",
+        "format": "Flagship",
+        "rationale": "Principal presença no Nordeste; mercado com boa combinação entre residência, arquitetura, hospitality e second homes."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Alameda Gabriel Monteiro da Silva",
+        "format": "Global Flagship",
+        "rationale": "O endereço mais natural para a principal loja mundial da marca. A Alameda Gabriel concentra design, mobiliário, arquitetura e interiores de alto padrão e funciona como principal eixo especializado de São Paulo."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Haddock Lobo / Jardins",
+        "format": "Flagship",
+        "rationale": "Eu manteria a presença atual, mas como segunda grande loja paulistana, com caráter mais lifestyle e consumer-facing. A flagship existente na Haddock Lobo segue ativa no circuito oficial da DW! São Paulo."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Avenida Brasil / Jardim América",
+        "format": "Maison",
+        "rationale": "Ideal para uma experiência residencial completa, com indoor/outdoor, grandes ambientes e atendimento a arquitetos. A marca já construiu legitimidade histórica nesse eixo com Artefacto Beach & Country."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "D&D Shopping",
+        "format": "Boutique",
+        "rationale": "Manteria como unidade de alta conversão e relacionamento com especificadores; não precisa carregar o papel institucional da marca."
+      },
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "location": "West Bund / Xuhui",
+        "format": "Global Flagship",
+        "rationale": "Eu evitaria shopping de luxo tradicional. West Bund permite associar Artefacto a arquitetura, arte contemporânea e design em um showroom arquitetônico."
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Saint-Germain-des-Prés / Rue du Bac",
+        "format": "Flagship",
+        "rationale": "Mais coerente com interior design e collectible design do que Faubourg Saint-Honoré; coloca Artefacto no circuito cultural e residencial da margem esquerda."
+      },
+      {
+        "country": "Hong Kong",
+        "city": "Hong Kong",
+        "location": "Central / Wong Chuk Hang",
+        "format": "Flagship",
+        "rationale": "O formato deveria privilegiar designers e projetos residenciais em vez de luxury fashion footfall."
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Via Durini",
+        "format": "Global Flagship",
+        "rationale": "A principal entrada europeia deveria estar no coração do design, não da moda. O Durini Design District reúne cerca de 40 membros e flagships de Versace Home, Natuzzi, Porro e outros nomes globais."
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "location": "Aoyama / Minami-Aoyama",
+        "format": "Flagship",
+        "rationale": "Muito mais adequado que Ginza para Artefacto: arquitetura, furniture design e showrooms conceituais combinam melhor com o posicionamento."
+      },
+      {
+        "country": "Mexico",
+        "city": "Mexico City",
+        "location": "Presidente Masaryk / Polanco",
+        "format": "Flagship",
+        "rationale": "Principal entrada no México e América Latina hispânica, combinando luxo residencial, arquitetura e consumo de design."
+      },
+      {
+        "country": "Mexico",
+        "city": "Mexico City",
+        "location": "Santa Fe / Lomas de Chapultepec",
+        "format": "Maison",
+        "rationale": "Segunda operação voltada especificamente a projetos residenciais, mansões e relacionamento com arquitetos."
+      },
+      {
+        "country": "Saudi Arabia",
+        "city": "Riyadh",
+        "location": "King Abdullah Financial District / Olaya",
+        "format": "Flagship",
+        "rationale": "Mercado estratégico para grandes residências, hospitality e projetos institucionais; deveria estar entre as primeiras expansões fora do Ocidente."
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "location": "Dempsey Hill",
+        "format": "Maison",
+        "rationale": "Excelente para uma operação residencial, ampla e tropical, com menos restrições de espaço que Orchard Road."
+      },
+      {
+        "country": "South Korea",
+        "city": "Seoul",
+        "location": "Cheongdam / Nonhyeon Design Street",
+        "format": "Flagship",
+        "rationale": "Combina cliente affluent com forte cultura de interiores, arquitetura e mobiliário contemporâneo."
+      },
+      {
+        "country": "Spain",
+        "city": "Madrid",
+        "location": "Calle Claudio Coello / Barrio de Salamanca",
+        "format": "Flagship",
+        "rationale": "Espanha é mercado natural para a marca pela afinidade cultural, arquitetura residencial e conexão com América Latina."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Dubai Design District — d3",
+        "format": "Global Flagship",
+        "rationale": "Eu não colocaria Artefacto no Dubai Mall. Um showroom amplo em distrito de arquitetura/design permite relacionamento com architects, developers e hospitality, que são essenciais para o negócio."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Jumeirah / Al Wasl",
+        "format": "Maison",
+        "rationale": "Segunda Dubai voltada ao consumidor final, villas e projetos privados; funciona como casa completa Artefacto."
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Pimlico Road / Chelsea",
+        "format": "Flagship",
+        "rationale": "Melhor escolha londrina do que Bond Street: ambiente de decorators, antiques, furniture e grandes projetos residenciais."
+      },
+      {
+        "country": "United States",
+        "city": "Aventura, FL",
+        "location": "Aventura / Biscayne Boulevard",
+        "format": "Boutique",
+        "rationale": "Faz sentido como segunda camada comercial no sul da Flórida, onde a marca já teve presença e existe grande concentração de condomínios de luxo."
+      },
+      {
+        "country": "United States",
+        "city": "Coral Gables, FL",
+        "location": "Coral Gables — Ponce de Leon Boulevard",
+        "format": "Maison",
+        "rationale": "Eu manteria a presença histórica da marca, mas reposicionada como showroom residencial para designers, developers e grandes casas. A Artefacto já operava em Ponce de Leon."
+      },
+      {
+        "country": "United States",
+        "city": "Dallas, TX",
+        "location": "Dallas Design District",
+        "format": "Flagship",
+        "rationale": "Dallas deve entrar cedo: residências de grande metragem, forte mercado de interior design e boa base de developers e trade clients."
+      },
+      {
+        "country": "United States",
+        "city": "Houston, TX",
+        "location": "River Oaks / Upper Kirby",
+        "format": "Boutique",
+        "rationale": "Complementa Texas com clientela residencial de altíssima renda e projetos de grande escala."
+      },
+      {
+        "country": "United States",
+        "city": "Los Angeles, CA",
+        "location": "West Hollywood — Melrose Avenue / Beverly Boulevard",
+        "format": "Flagship",
+        "rationale": "Um dos mercados americanos mais importantes para interiores, decorators e grandes residências; mais aderente à Artefacto do que Rodeo Drive."
+      },
+      {
+        "country": "United States",
+        "city": "Miami, FL",
+        "location": "Miami Design District",
+        "format": "Global Flagship",
+        "rationale": "Eu transferiria o centro de gravidade americano para cá. O distrito combina grandes maisons, arte e showrooms de Poliform, Holly Hunt e outros players de interiors, sendo muito mais estratégico do que uma localização suburbana isolada."
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "A&D Building — East 58th Street",
+        "format": "Global Flagship",
+        "rationale": "Para Artefacto, eu prefiro este eixo a Madison Avenue. O A&D Building reúne 40 showrooms e marcas como B&B Italia, Maxalto, Poliform, Holly Hunt e Florense, sendo voltado justamente a arquitetos, designers e projetos residenciais."
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "Tribeca / Hudson Square",
+        "format": "Maison",
+        "rationale": "Uma segunda NY mais cenográfica, instalada em loft ou townhouse, para mostrar a marca como living environment e não apenas catálogo de mobiliário."
+      },
+      {
+        "country": "United States",
+        "city": "Palm Beach, FL",
+        "location": "Worth Avenue / West Palm Beach design corridor",
+        "format": "Boutique",
+        "rationale": "Muito aderente à marca por second homes, grandes residências e presença intensa de decorators."
+      }
+    ],
+    "etel": [
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Alameda Gabriel Monteiro da Silva",
+        "format": "Global Flagship",
+        "rationale": "Casa institucional e cultural da ETEL; deveria funcionar simultaneamente como galeria, arquivo e showroom."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Jardins — residência modernista / eixo residencial",
+        "format": "Maison",
+        "rationale": "Espaço excepcional para apresentar peças em arquitetura brasileira e receber colecionadores privadamente."
+      },
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "location": "Shanghai — West Bund",
+        "format": "Flagship",
+        "rationale": "Ecossistema de arte contemporânea e collectible design mais coerente que shopping de luxo."
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Saint-Germain-des-Prés",
+        "format": "Flagship",
+        "rationale": "Deve ser concebida quase como uma galeria de arte dedicada à história e à contemporaneidade do design brasileiro."
+      },
+      {
+        "country": "Hong Kong",
+        "city": "Hong Kong",
+        "location": "Central",
+        "format": "Boutique",
+        "rationale": "Pequena galeria para relacionamento com colecionadores asiáticos."
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Via Pietro Maroncelli / Brera",
+        "format": "Global Flagship",
+        "rationale": "Manter e elevar o endereço atual; Milão é essencial para legitimar ETEL como editora internacional de design."
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "location": "Aoyama",
+        "format": "Flagship",
+        "rationale": "Japão tem forte afinidade cultural com madeira, precisão construtiva e modernismo brasileiro."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Dubai — Alserkal Avenue",
+        "format": "Boutique",
+        "rationale": "Melhor associação cultural para ETEL do que Dubai Mall; atende collectors e private projects."
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Mayfair",
+        "format": "Flagship",
+        "rationale": "Mais próxima do mercado de arte e collectible design do que uma presença convencional de furniture."
+      },
+      {
+        "country": "United States",
+        "city": "Los Angeles, CA",
+        "location": "West Hollywood",
+        "format": "Flagship",
+        "rationale": "Mercado forte de architecture/design e importante clientela de collectible furniture."
+      },
+      {
+        "country": "United States",
+        "city": "Miami, FL",
+        "location": "Miami Design District",
+        "format": "Flagship",
+        "rationale": "Conecta Design Miami, Art Basel, Latin America e grande base de colecionadores."
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "Tribeca",
+        "format": "Global Flagship",
+        "rationale": "NY merece operação própria, em linguagem de galeria, pela relevância do mercado de collectible design e colecionadores."
+      }
+    ],
+    "by-kamy": [
+      {
+        "country": "Brazil",
+        "city": "Belo Horizonte, MG",
+        "location": "Lourdes",
+        "format": "Boutique",
+        "rationale": "Mercado relevante de arquitetura e design; também reforça conexão com artesanato e produção autoral brasileira."
+      },
+      {
+        "country": "Brazil",
+        "city": "Curitiba, PR",
+        "location": "Batel",
+        "format": "Boutique",
+        "rationale": "Expansão nacional seletiva, atendendo arquitetura residencial de padrão elevado."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Ipanema / Leblon",
+        "format": "Flagship",
+        "rationale": "Principal endereço carioca, aproximando a marca de residências de alto padrão e designers da Zona Sul."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "CasaShopping",
+        "format": "Boutique",
+        "rationale": "Canal diretamente ligado a interiores e especificação profissional."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Alameda Gabriel Monteiro da Silva",
+        "format": "Global Flagship",
+        "rationale": "Endereço natural da marca e epicentro do design paulistano; deve evoluir para seu grande manifesto mundial."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "D&D Shopping",
+        "format": "Boutique",
+        "rationale": "Preserva uma operação comercial e forte relacionamento com arquitetos e especificadores."
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Saint-Germain / Rue du Bac",
+        "format": "Flagship",
+        "rationale": "Excelente território para materiais, objetos, tapestries e uma apresentação mais artística da marca."
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Brera",
+        "format": "Global Flagship",
+        "rationale": "Mais apropriado que Via Montenapoleone; insere a marca diretamente no ecossistema global do design."
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "location": "Aoyama",
+        "format": "Flagship",
+        "rationale": "Afinidade com design autoral, materialidade e craftsmanship."
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "location": "Dempsey Hill",
+        "format": "Boutique",
+        "rationale": "Formato residencial e design-oriented, coerente com uma marca de tapetes e interiores."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Dubai Design District — d3",
+        "format": "Flagship",
+        "rationale": "Bom mercado para peças customizadas de grandes dimensões e projetos residenciais/hospitality."
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Chelsea / Pimlico Road",
+        "format": "Flagship",
+        "rationale": "Coloca a marca no circuito de interiors e decorators, e não de fashion retail."
+      },
+      {
+        "country": "United States",
+        "city": "Los Angeles, CA",
+        "location": "Los Angeles — West Hollywood",
+        "format": "Flagship",
+        "rationale": "Mercado central para interior designers, residências e hospitality de luxo."
+      },
+      {
+        "country": "United States",
+        "city": "Miami, FL",
+        "location": "Miami Design District",
+        "format": "Global Flagship",
+        "rationale": "Principal porta internacional; tapetes funcionam especialmente bem no ecossistema de arquitetura, furniture e collectible design de Miami."
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "Tribeca",
+        "format": "Flagship",
+        "rationale": "Mais coerente que Madison: loft, galerias, interiores e relacionamento com arquitetos."
+      },
+      {
+        "country": "United States",
+        "city": "Palm Beach, FL",
+        "location": "Palm Beach / West Palm Beach design district",
+        "format": "Boutique",
+        "rationale": "Forte combinação de decorators, residências de grande metragem e second homes."
+      }
+    ],
+    "trousseau": [
+      {
+        "country": "Argentina",
+        "city": "Buenos Aires",
+        "location": "Recoleta / Avenida Alvear",
+        "format": "Flagship",
+        "rationale": "Mercado culturalmente muito próximo e natural para a expansão sul-americana."
+      },
+      {
+        "country": "Brazil",
+        "city": "Angra dos Reis, RJ",
+        "location": "Angra dos Reis / Frade",
+        "format": "Boutique",
+        "rationale": "Relação direta com second homes, yachts e condomínios de luxo."
+      },
+      {
+        "country": "Brazil",
+        "city": "Armação dos Búzios, RJ",
+        "location": "Búzios",
+        "format": "Boutique",
+        "rationale": "Outra boutique de destino coerente com o caráter de lifestyle da marca."
+      },
+      {
+        "country": "Brazil",
+        "city": "Balneário Camboriú, SC",
+        "location": "Balneário Shopping",
+        "format": "Boutique",
+        "rationale": "Excelente mercado para enxovais de apartamentos e second homes."
+      },
+      {
+        "country": "Brazil",
+        "city": "Barueri, SP",
+        "location": "Iguatemi Alphaville",
+        "format": "Boutique",
+        "rationale": "Altíssima aderência a residências grandes, condomínios fechados e consumo recorrente."
+      },
+      {
+        "country": "Brazil",
+        "city": "Belo Horizonte, MG",
+        "location": "Lourdes",
+        "format": "Flagship",
+        "rationale": "Mercado histórico da Trousseau — sua primeira loja mineira abriu em Lourdes ainda em 1996. (Trousseau)"
+      },
+      {
+        "country": "Brazil",
+        "city": "Belém, PA",
+        "location": "Belém — Boulevard Shopping",
+        "format": "Boutique",
+        "rationale": "Permite presença própria no Norte em vez de tratar a região apenas via multimarcas."
+      },
+      {
+        "country": "Brazil",
+        "city": "Brasília, DF",
+        "location": "ParkShopping",
+        "format": "Flagship",
+        "rationale": "Presença histórica e mercado relevante de residência premium."
+      },
+      {
+        "country": "Brazil",
+        "city": "Campinas, SP",
+        "location": "Iguatemi Campinas",
+        "format": "Boutique",
+        "rationale": "Campinas tem escala e renda suficientes para operação própria; não faz sentido depender apenas de revenda em uma rede madura."
+      },
+      {
+        "country": "Brazil",
+        "city": "Curitiba, PR",
+        "location": "Pátio Batel",
+        "format": "Flagship",
+        "rationale": "Âncora para Paraná."
+      },
+      {
+        "country": "Brazil",
+        "city": "Florianópolis, SC",
+        "location": "Florianópolis / Jurerê",
+        "format": "Boutique",
+        "rationale": "Extensão natural para second homes e hospitalidade."
+      },
+      {
+        "country": "Brazil",
+        "city": "Fortaleza, CE",
+        "location": "Iguatemi Fortaleza",
+        "format": "Flagship",
+        "rationale": "Fortaleza merece operação relevante própria, atendendo tanto mercado local quanto second homes e hospitality no Ceará."
+      },
+      {
+        "country": "Brazil",
+        "city": "Goiânia, GO",
+        "location": "Flamboyant Shopping",
+        "format": "Flagship",
+        "rationale": "Região com forte mercado residencial e cliente de luxo."
+      },
+      {
+        "country": "Brazil",
+        "city": "Gramado, RS",
+        "location": "Gramado",
+        "format": "Boutique",
+        "rationale": "Excelente destination boutique: hotelaria, turismo de alto padrão e second homes."
+      },
+      {
+        "country": "Brazil",
+        "city": "João Pessoa, PB",
+        "location": "Manaíra / Altiplano",
+        "format": "Boutique",
+        "rationale": "Mercado residencial premium em crescimento e forte relação com second homes."
+      },
+      {
+        "country": "Brazil",
+        "city": "Maceió, AL",
+        "location": "Maceió Shopping / Ponta Verde",
+        "format": "Boutique",
+        "rationale": "Mercado de residência e second homes particularmente coerente com enxoval."
+      },
+      {
+        "country": "Brazil",
+        "city": "Manaus, AM",
+        "location": "Manaus — Ponta Negra",
+        "format": "Boutique",
+        "rationale": "Mercado regional isolado e com base affluent suficiente para justificar presença seletiva."
+      },
+      {
+        "country": "Brazil",
+        "city": "Natal, RN",
+        "location": "Ponta Negra",
+        "format": "Boutique",
+        "rationale": "Operação menor, apoiada em residência, turismo e hotelaria."
+      },
+      {
+        "country": "Brazil",
+        "city": "Porto Alegre, RS",
+        "location": "Iguatemi Porto Alegre",
+        "format": "Boutique",
+        "rationale": "Mercado regional relevante e alto potencial de recompra."
+      },
+      {
+        "country": "Brazil",
+        "city": "Porto Feliz, SP",
+        "location": "Fazenda Boa Vista",
+        "format": "Boutique",
+        "rationale": "Eu manteria explicitamente na rede futura. A própria marca abriu essa unidade em 2020; é um caso perfeito de boutique em comunidade de second homes e público HNW. (Trousseau)"
+      },
+      {
+        "country": "Brazil",
+        "city": "Recife, PE",
+        "location": "RioMar Recife",
+        "format": "Boutique",
+        "rationale": "Expansão coerente da rede premium nacional."
+      },
+      {
+        "country": "Brazil",
+        "city": "Ribeirão Preto, SP",
+        "location": "Iguatemi Ribeirão Preto",
+        "format": "Boutique",
+        "rationale": "Interior de São Paulo possui clientela de alta renda, grandes residências e consumo recorrente de cama e banho."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Ipanema",
+        "format": "Flagship",
+        "rationale": "Principal expressão da marca no Rio."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "VillageMall",
+        "format": "Boutique",
+        "rationale": "Importante para Barra e grandes condomínios residenciais."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Leblon",
+        "format": "Boutique",
+        "rationale": "Loja de vizinhança luxury-premium e alta recorrência."
+      },
+      {
+        "country": "Brazil",
+        "city": "Salvador, BA",
+        "location": "Shopping da Bahia / Salvador Shopping",
+        "format": "Flagship",
+        "rationale": "Hub para Nordeste e mercado local de alto padrão."
+      },
+      {
+        "country": "Brazil",
+        "city": "Sorocaba, SP",
+        "location": "Iguatemi Esplanada",
+        "format": "Boutique",
+        "rationale": "Expande capilaridade no interior paulista sem precisar de flagship."
+      },
+      {
+        "country": "Brazil",
+        "city": "São José dos Campos, SP",
+        "location": "Colinas Shopping / Jardim Aquarius",
+        "format": "Boutique",
+        "rationale": "Mercado affluent importante e com forte componente residencial."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Shopping Iguatemi São Paulo",
+        "format": "Global Flagship",
+        "rationale": "A marca já reconhece historicamente o Iguatemi como flagship; eu preservaria essa relação e elevaria a unidade. (Trousseau)"
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Shopping Cidade Jardim",
+        "format": "Flagship",
+        "rationale": "Importante presença no luxury retail, mas sem disputar a linguagem ultra-luxury da Mondepars."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Alameda Gabriel Monteiro da Silva",
+        "format": "Flagship",
+        "rationale": "Mantém autoridade no segmento home e ligação direta com arquitetos e decorators."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Vila Nova Conceição",
+        "format": "Boutique",
+        "rationale": "Loja de proximidade extremamente aderente à clientela residencial."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Pátio Higienópolis",
+        "format": "Boutique",
+        "rationale": "Mercado residencial consolidado e alto potencial de recompra."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Morumbi / Market Place",
+        "format": "Boutique",
+        "rationale": "Capilaridade comercial coerente com a estratégia de escala premium."
+      },
+      {
+        "country": "Brazil",
+        "city": "Trancoso, BA",
+        "location": "Trancoso — Quadrado / entorno",
+        "format": "Boutique",
+        "rationale": "Pequena operação sazonal com grande valor de imagem, além de hotelaria e casas de temporada."
+      },
+      {
+        "country": "Brazil",
+        "city": "Vitória, ES",
+        "location": "Praia do Canto",
+        "format": "Boutique",
+        "rationale": "Mercado regional de alta renda bastante adequado à categoria."
+      },
+      {
+        "country": "Canada",
+        "city": "Montreal, QC",
+        "location": "Westmount",
+        "format": "Boutique",
+        "rationale": "Segunda operação canadense, com caráter mais residencial."
+      },
+      {
+        "country": "Canada",
+        "city": "Toronto",
+        "location": "Yorkville",
+        "format": "Flagship",
+        "rationale": "Canadá deve ter pelo menos uma operação própria numa rede global dessa escala."
+      },
+      {
+        "country": "Chile",
+        "city": "Santiago",
+        "location": "Santiago — Vitacura",
+        "format": "Boutique",
+        "rationale": "Mercado regional lógico para expansão da América do Sul."
+      },
+      {
+        "country": "Chile",
+        "city": "Santiago",
+        "location": "Vitacura",
+        "format": "Flagship",
+        "rationale": "Eu elevaria Santiago de Boutique para Flagship regional."
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Passy / 16e arrondissement",
+        "format": "Boutique",
+        "rationale": "Para Trousseau eu escolheria Paris residencial, não o endereço de maison que reservamos à Mondepars."
+      },
+      {
+        "country": "Hong Kong",
+        "city": "Hong Kong",
+        "location": "Central",
+        "format": "Boutique",
+        "rationale": "Operação compacta para gifting, bath, bed e lifestyle."
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "location": "Ginza / Nihonbashi",
+        "format": "Flagship",
+        "rationale": "Japão tem enorme legitimidade na categoria bedding; pode funcionar para Trousseau sem invadir o território ultra-luxury da Mondepars."
+      },
+      {
+        "country": "Kuwait",
+        "city": "Kuwait City",
+        "location": "Kuwait City — The Avenues",
+        "format": "Boutique",
+        "rationale": "O Golfo suporta mais capilaridade do que Dubai/Riyadh apenas."
+      },
+      {
+        "country": "Mexico",
+        "city": "Guadalajara",
+        "location": "Andares / Puerta de Hierro",
+        "format": "Boutique",
+        "rationale": "Fecha o triângulo mexicano CDMX–Monterrey–Guadalajara."
+      },
+      {
+        "country": "Mexico",
+        "city": "Mexico City",
+        "location": "Mexico City — Polanco",
+        "format": "Flagship",
+        "rationale": "Passo natural para escala latino-americana fora do Brasil."
+      },
+      {
+        "country": "Mexico",
+        "city": "Monterrey",
+        "location": "San Pedro Garza García",
+        "format": "Flagship",
+        "rationale": "Talvez tão importante quanto CDMX para Trousseau, dado o perfil de residências de grande porte e alta renda."
+      },
+      {
+        "country": "Peru",
+        "city": "Lima",
+        "location": "San Isidro",
+        "format": "Boutique",
+        "rationale": "Mercado latino-americano relevante para bedding premium e hospitality."
+      },
+      {
+        "country": "Portugal",
+        "city": "Cascais",
+        "location": "Cascais",
+        "format": "Boutique",
+        "rationale": "Forte concentração residencial e second homes."
+      },
+      {
+        "country": "Portugal",
+        "city": "Cascais",
+        "location": "Cascais",
+        "format": "Boutique",
+        "rationale": "Second homes e público internacional justificam presença própria."
+      },
+      {
+        "country": "Portugal",
+        "city": "Lisbon",
+        "location": "Lisbon — Avenida da Liberdade / Amoreiras",
+        "format": "Flagship",
+        "rationale": "Eu usaria Portugal como primeiro mercado europeu de escala pela afinidade cultural e turística com brasileiros."
+      },
+      {
+        "country": "Portugal",
+        "city": "Lisbon",
+        "location": "Chiado / Avenida da Liberdade",
+        "format": "Global Flagship",
+        "rationale": "Eu elevaria Lisboa: pode se tornar a grande plataforma europeia da Trousseau, culturalmente mais natural que tentar começar por Paris."
+      },
+      {
+        "country": "Portugal",
+        "city": "Porto",
+        "location": "Foz do Douro / Avenida da Boavista",
+        "format": "Boutique",
+        "rationale": "Natural para uma estratégia portuguesa mais profunda."
+      },
+      {
+        "country": "Qatar",
+        "city": "Doha / Lusail",
+        "location": "Place Vendôme",
+        "format": "Boutique",
+        "rationale": "Mercado pequeno, mas de enorme consumo per capita de produtos para residência."
+      },
+      {
+        "country": "Saudi Arabia",
+        "city": "Riyadh",
+        "location": "Riyadh",
+        "format": "Boutique",
+        "rationale": "Presença seletiva no Golfo, especialmente apoiada por hospitality e residential projects."
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "location": "Orchard Road",
+        "format": "Flagship",
+        "rationale": "Hub regional natural para uma marca premium internacional."
+      },
+      {
+        "country": "South Korea",
+        "city": "Seoul",
+        "location": "Gangnam / Cheongdam",
+        "format": "Flagship",
+        "rationale": "Mercado sofisticado de lifestyle e casa, com grande potencial de recorrência."
+      },
+      {
+        "country": "Spain",
+        "city": "Barcelona",
+        "location": "Barcelona — Passeig de Gràcia / Sarrià",
+        "format": "Boutique",
+        "rationale": "Segunda grande cidade espanhola, com forte componente de arquitetura e hotelaria."
+      },
+      {
+        "country": "Spain",
+        "city": "Madrid",
+        "location": "Madrid — Barrio de Salamanca",
+        "format": "Flagship",
+        "rationale": "Expansão europeia seletiva, com perfil comercial adequado à faixa premium."
+      },
+      {
+        "country": "Spain",
+        "city": "Marbella",
+        "location": "Marbella — Golden Mile / Puerto Banús",
+        "format": "Boutique",
+        "rationale": "Excelente destination market para enxoval e second homes."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Dubai Mall",
+        "format": "Flagship",
+        "rationale": "Um mercado em que bedding, bath, gifts e hospitality têm grande potencial."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Jumeirah / Dubai Hills",
+        "format": "Boutique",
+        "rationale": "Segunda Dubai dedicada a villas e clientela local recorrente."
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Chelsea / South Kensington",
+        "format": "Flagship",
+        "rationale": "Faz sentido numa segunda etapa europeia, privilegiando bairro residencial sobre Bond Street."
+      },
+      {
+        "country": "United States",
+        "city": "Aspen, CO",
+        "location": "Aspen",
+        "format": "Boutique",
+        "rationale": "Second homes, hospitality e enxoval sazonal."
+      },
+      {
+        "country": "United States",
+        "city": "Beverly Hills, CA",
+        "location": "Beverly Hills",
+        "format": "Flagship",
+        "rationale": "Expansão natural da rede americana premium."
+      },
+      {
+        "country": "United States",
+        "city": "Boston, MA",
+        "location": "Boston — Back Bay",
+        "format": "Boutique",
+        "rationale": "Mercado residencial de alta renda e boa afinidade com uma proposta clássica e sofisticada de bedding."
+      },
+      {
+        "country": "United States",
+        "city": "Chicago, IL",
+        "location": "Chicago — Gold Coast",
+        "format": "Flagship",
+        "rationale": "Uma rede americana madura não deveria depender somente de NY, Flórida e Califórnia."
+      },
+      {
+        "country": "United States",
+        "city": "Dallas, TX",
+        "location": "Dallas — Highland Park Village",
+        "format": "Flagship",
+        "rationale": "Excelente combinação de grande metragem residencial e consumidor de luxo."
+      },
+      {
+        "country": "United States",
+        "city": "Greenwich, CT",
+        "location": "Greenwich",
+        "format": "Boutique",
+        "rationale": "Mercado residencial muito aderente à marca."
+      },
+      {
+        "country": "United States",
+        "city": "Greenwich, CT",
+        "location": "Greenwich Avenue",
+        "format": "Boutique",
+        "rationale": "Reforça o cluster affluent em torno de Nova York."
+      },
+      {
+        "country": "United States",
+        "city": "Hamptons, NY",
+        "location": "East Hampton / Southampton",
+        "format": "Boutique",
+        "rationale": "Quase um mercado natural para bedding premium: second homes, hospitalidade e enorme concentração de HNW durante o verão."
+      },
+      {
+        "country": "United States",
+        "city": "Houston, TX",
+        "location": "Houston — River Oaks District",
+        "format": "Boutique",
+        "rationale": "Mercado de casas grandes e alta renda especialmente adequado a cama, banho e lifestyle."
+      },
+      {
+        "country": "United States",
+        "city": "Miami, FL",
+        "location": "Bal Harbour / Miami",
+        "format": "Global Flagship",
+        "rationale": "Eu concentraria a grande expressão internacional atual da Trousseau na Flórida, onde já existe legitimidade da marca."
+      },
+      {
+        "country": "United States",
+        "city": "Miami, FL",
+        "location": "Brickell",
+        "format": "Boutique",
+        "rationale": "Loja urbana de conveniência para clientela residencial e latino-americana."
+      },
+      {
+        "country": "United States",
+        "city": "Naples, FL",
+        "location": "Naples — Fifth Avenue South / Waterside Shops",
+        "format": "Boutique",
+        "rationale": "Na Flórida, eu iria além de Miami e Palm Beach. Naples é extremamente aderente ao perfil residencial da marca."
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "Upper East Side",
+        "format": "Flagship",
+        "rationale": "Entraria em NY, mas com uma loja comercial de luxury bedding — não com a grandiosidade da Mondepars Madison Avenue."
+      },
+      {
+        "country": "United States",
+        "city": "Orlando, FL",
+        "location": "Orlando — Mall at Millenia",
+        "format": "Boutique",
+        "rationale": "Não pelo turismo de massa, mas pela enorme comunidade brasileira e latino-americana affluent e por residência secundária."
+      },
+      {
+        "country": "United States",
+        "city": "Palm Beach, FL",
+        "location": "Palm Beach",
+        "format": "Boutique",
+        "rationale": "Excelente fit para enxovais de second homes."
+      },
+      {
+        "country": "United States",
+        "city": "Scottsdale, AZ",
+        "location": "Scottsdale",
+        "format": "Boutique",
+        "rationale": "Resort market e segunda residência; boa extensão do modelo Aspen/Palm Beach."
+      },
+      {
+        "country": "Uruguay",
+        "city": "Montevideo",
+        "location": "Carrasco",
+        "format": "Boutique",
+        "rationale": "Complementa Punta del Este com demanda urbana recorrente."
+      },
+      {
+        "country": "Uruguay",
+        "city": "Punta del Este",
+        "location": "Punta del Este",
+        "format": "Boutique",
+        "rationale": "Excelente mercado sazonal e de segunda residência; forte afinidade com público brasileiro e argentino."
+      }
+    ],
+    "mondepars-maison": [
+      {
+        "country": "Australia",
+        "city": "Sydney, NSW",
+        "location": "Castlereagh Street / King Street",
+        "format": "Flagship",
+        "rationale": "Faz sentido como principal unidade Austrália/Oceania."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Ipanema — Garcia d'Ávila / Visconde de Pirajá",
+        "format": "Flagship",
+        "rationale": "Melhor combinação de turismo de luxo, público local affluent e identidade brasileira."
+      },
+      {
+        "country": "Brazil",
+        "city": "Rio de Janeiro, RJ",
+        "location": "Leblon — Dias Ferreira / entorno",
+        "format": "Boutique",
+        "rationale": "Segunda unidade carioca futura, mais residencial e voltada a clientela local de alto patrimônio."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Shopping Cidade Jardim",
+        "format": "Global Flagship",
+        "rationale": "Principal endereço institucional no Brasil; associação direta a grandes maisons e consumidor de altíssima renda."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Alameda Gabriel Monteiro da Silva",
+        "format": "Maison",
+        "rationale": "Para mim, é quase obrigatória. A própria associação local a define como o principal endereço de decoração do Brasil, com mais de 120 estabelecimentos de arquitetura e interiores; Trousseau, Trussardi e outras marcas ligadas ao quarto já estão no eixo."
+      },
+      {
+        "country": "Brazil",
+        "city": "São Paulo, SP",
+        "location": "Iguatemi São Paulo / Faria Lima",
+        "format": "Boutique",
+        "rationale": "Terceira unidade possível numa fase madura; mais comercial e conveniente para o cliente recorrente."
+      },
+      {
+        "country": "Canada",
+        "city": "Toronto",
+        "location": "Hazelton Avenue / Yorkville",
+        "format": "Boutique",
+        "rationale": "Continuaria exatamente nessa região, que tem caráter mais residencial que outros clusters comerciais."
+      },
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "location": "Plaza 66 — Nanjing West Road",
+        "format": "Global Flagship",
+        "rationale": "Principal unidade comercial da China continental."
+      },
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "location": "West Jianguo Road / Former French Concession",
+        "format": "Maison",
+        "rationale": "Eu manteria fortemente. É quase o equivalente chinês da ideia de residência/showroom: a loja mais importante para construir desejo e imagem."
+      },
+      {
+        "country": "China",
+        "city": "Shenzhen",
+        "location": "Shenzhen MixC — Luohu",
+        "format": "Boutique",
+        "rationale": "Mantém para clientela affluent do Greater Bay Area."
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Rue du Faubourg Saint-Honoré",
+        "format": "Global Flagship",
+        "rationale": "Mantém o componente institucional e de maison francesa de referência."
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "location": "Rue du Bac / Saint-Germain-des-Prés",
+        "format": "Maison",
+        "rationale": "A segunda Paris que eu considero muito importante: mais residência, decoração e art de vivre; provavelmente ainda mais natural para Mondepars Maison que Avenue Montaigne."
+      },
+      {
+        "country": "Hong Kong",
+        "city": "Hong Kong",
+        "location": "LANDMARK / Central",
+        "format": "Flagship",
+        "rationale": "Mantém a função de principal boutique comercial para Hong Kong."
+      },
+      {
+        "country": "Italy",
+        "city": "Florence",
+        "location": "Via de' Tornabuoni",
+        "format": "Boutique",
+        "rationale": "Mantém pela associação a artesanato, heritage e residência histórica."
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Via Durini",
+        "format": "Global Flagship",
+        "rationale": "Mudança importante: para Maison, eu escolheria Via Durini em vez de Via Montenapoleone. É um design district formal, com dezenas de showrooms e marcas como Versace Home."
+      },
+      {
+        "country": "Italy",
+        "city": "Milan",
+        "location": "Via Montenapoleone / Via Sant'Andrea",
+        "format": "Boutique",
+        "rationale": "Pode existir como segunda unidade mais institucional, pequena e focada em brand presence."
+      },
+      {
+        "country": "Italy",
+        "city": "Rome",
+        "location": "Via Condotti / Piazza di Spagna",
+        "format": "Boutique",
+        "rationale": "Mantém presença institucional italiana; menos prioritária que Milan."
+      },
+      {
+        "country": "Italy",
+        "city": "Venice",
+        "location": "Calle Larga XXII Marzo",
+        "format": "Boutique",
+        "rationale": "Loja pequena e altamente cenográfica; mais destination store que operação de volume."
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "location": "Ginza",
+        "format": "Global Flagship",
+        "rationale": "Fundamental. Ginza tem forte oferta especializada em bedding e bedroom products, além da legitimidade global de luxo."
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "location": "Aoyama / Minami-Aoyama",
+        "format": "Maison",
+        "rationale": "Eu teria uma segunda Tokyo, menor, mais arquitetônica e ligada ao universo de interiores."
+      },
+      {
+        "country": "Mexico",
+        "city": "Mexico City",
+        "location": "Presidente Masaryk — Polanco",
+        "format": "Flagship",
+        "rationale": "Eu manteria como entrada principal na América Latina hispânica. O próprio Armani Residences está sendo desenvolvido sobre Masaryk, reforçando o encontro entre luxury brand e residential lifestyle."
+      },
+      {
+        "country": "Monaco",
+        "city": "Monaco",
+        "location": "Carré d'Or / One Monte-Carlo",
+        "format": "Boutique",
+        "rationale": "Mercado pequeno, mas extremamente aderente ao perfil de second homes, yachts e UHNW."
+      },
+      {
+        "country": "Morocco",
+        "city": "Casablanca",
+        "location": "Rue d'Isli / Triangle d'Or",
+        "format": "Boutique",
+        "rationale": "Manteria, mas como mercado de segunda onda, não como prioridade global."
+      },
+      {
+        "country": "Qatar",
+        "city": "Lusail / Doha",
+        "location": "Place Vendôme",
+        "format": "Boutique",
+        "rationale": "Altíssima compatibilidade com o consumidor do Golfo e projetos residenciais."
+      },
+      {
+        "country": "Saudi Arabia",
+        "city": "Riyadh",
+        "location": "Centria / Olaya",
+        "format": "Flagship",
+        "rationale": "Mercado extremamente importante para bedding e private residences."
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "location": "The Shoppes at Marina Bay Sands",
+        "format": "Flagship",
+        "rationale": "Mantém como hub do Sudeste Asiático."
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "location": "Orchard / Tanglin",
+        "format": "Maison",
+        "rationale": "Segunda unidade eventual, mais ligada ao consumidor residencial local."
+      },
+      {
+        "country": "South Korea",
+        "city": "Seoul",
+        "location": "Cheongdam-dong",
+        "format": "Flagship",
+        "rationale": "Muito boa escolha, sobretudo em formato arquitetônico independente."
+      },
+      {
+        "country": "Switzerland",
+        "city": "Geneva",
+        "location": "Rue du Rhône",
+        "format": "Boutique",
+        "rationale": "Excelente combinação de private wealth, residência internacional e luxo discreto."
+      },
+      {
+        "country": "Taiwan",
+        "city": "Taipei",
+        "location": "Songren Road / Xinyi District",
+        "format": "Boutique",
+        "rationale": "Mantém; boa combinação de luxo, residências e público de design."
+      },
+      {
+        "country": "Turkey",
+        "city": "Istanbul",
+        "location": "Abdi İpekçi Caddesi — Nişantaşı",
+        "format": "Flagship",
+        "rationale": "Mantém; combina residências de alto padrão, luxo internacional e público local relevante."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Dubai Mall — Fashion Avenue",
+        "format": "Global Flagship",
+        "rationale": "O formato shopping faz sentido aqui pela concentração excepcional de luxo internacional e clientes regionais."
+      },
+      {
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "location": "Jumeirah / Al Wasl",
+        "format": "Maison",
+        "rationale": "Eu adicionaria uma segunda Dubai mais residencial, voltada a villas, decorators e projetos bespoke."
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Mount Street, Mayfair",
+        "format": "Flagship",
+        "rationale": "Continua funcionando muito bem pelo perfil discreto, residencial e UHNW de Mayfair."
+      },
+      {
+        "country": "United Kingdom",
+        "city": "London",
+        "location": "Pimlico Road / Chelsea",
+        "format": "Maison",
+        "rationale": "Eu adicionaria como segunda Londres. Mais ligada a interiores, antiquários, designers e projetos residenciais do que às grandes bandeiras de moda."
+      },
+      {
+        "country": "United States",
+        "city": "Aspen, CO",
+        "location": "S. Mill Street / Galena Street",
+        "format": "Boutique",
+        "rationale": "Excelente para second homes, chalets e atendimento de projetos residenciais completos."
+      },
+      {
+        "country": "United States",
+        "city": "Bal Harbour, FL",
+        "location": "Bal Harbour Shops",
+        "format": "Boutique",
+        "rationale": "Mantém presença Miami, mas em um ambiente de luxo muito mais controlado que Collins Avenue genericamente."
+      },
+      {
+        "country": "United States",
+        "city": "Beverly Hills, CA",
+        "location": "Rodeo Drive / Two Rodeo",
+        "format": "Boutique",
+        "rationale": "Continua relevante pela densidade de UHNW e pela força institucional da localização."
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "Madison Avenue — Upper East Side",
+        "format": "Global Flagship",
+        "rationale": "Talvez o melhor endereço internacional da marca. Madison tem Frette, Hästens, Yves Delorme, Matouk, L'Objet e Armani/Casa, ou seja, já existe um verdadeiro ecossistema de luxury home e bedding."
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "Upper East Side — side street off Madison, ~E 60th–75th",
+        "format": "Maison",
+        "rationale": "Eu criaria uma segunda unidade em formato townhouse/residence, com suites completas, atendimento por appointment e serviço para arquitetos e decorators."
+      },
+      {
+        "country": "United States",
+        "city": "New York, NY",
+        "location": "SoHo — Mercer / Greene Street",
+        "format": "Boutique",
+        "rationale": "Terceira NY possível. Aqui não pela moda em si, mas para captar cliente mais jovem, internacional e design-oriented."
+      },
+      {
+        "country": "United States",
+        "city": "Palm Beach, FL",
+        "location": "Worth Avenue",
+        "format": "Flagship",
+        "rationale": "Para bedding ultra-luxury, eu colocaria Palm Beach na frente de vários destinos americanos: concentração residencial e second homes extremamente aderente ao produto."
+      }
+    ]
+  }
+}
