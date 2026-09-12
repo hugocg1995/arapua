@@ -50,7 +50,7 @@ td input{min-width:140px}
 .status{padding:10px 12px;border-radius:8px;background:#ece9e1;color:var(--muted);font-size:13px}
 .hidden{display:none!important}
 @media(max-width:800px){.grid,.lang-grid,.preview-grid{grid-template-columns:1fr}.header-inner{align-items:flex-start;flex-direction:column}main{padding:18px}.stats{grid-template-columns:1fr}}
-fieldset{border:0;padding:0;margin:0;min-width:0}button:disabled{opacity:.5;cursor:wait}.connection{margin-bottom:22px}.connection input{max-width:440px}.connection .actions{align-items:center}#connectionStatus{white-space:pre-wrap}#editor:disabled{opacity:.6}.retail-tools{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.retail-tools .search{flex:1;min-width:220px}.retail-tools label{margin-top:0}.retail-tools select{min-width:100px}.retail-table{min-width:1050px;table-layout:fixed}.retail-table th:nth-child(1),.retail-table th:nth-child(2){width:15%}.retail-table th:nth-child(3){width:24%}.retail-table th:nth-child(4){width:15%}.retail-table th:nth-child(5){width:21%}.retail-table th:nth-child(6){width:100px}.retail-table input{min-width:0;border-color:transparent;background:transparent;font-size:13px;padding:9px 5px}.retail-table input:focus{background:white;border-color:var(--green)}.retail-table tbody tr:nth-child(even){background:#f5f3ed}.retail-table tbody tr:hover{background:#ecefe8}.retail-table th button{background:none;border:0;padding:4px 0;font-size:12px;font-weight:600;white-space:nowrap}.retail-table thead input{background:white;border:1px solid var(--line);margin-top:8px}.pager{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px 0}.empty-table{text-align:center;padding:35px;color:var(--muted)}dialog{border:1px solid var(--line);border-radius:16px;padding:26px;max-width:520px;width:calc(100% - 36px);background:var(--paper);color:var(--ink)}dialog::backdrop{background:#17251db0}dialog h2{font:26px Georgia,serif;margin:0 0 18px}.dialog-error{color:var(--danger);white-space:pre-wrap}.danger.primary{background:var(--danger);border-color:var(--danger);color:white}.manage-bar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:22px;flex-wrap:wrap}.manage-bar p{margin:0}.table-wrap{max-height:660px}.retail-table thead{position:sticky;top:0;z-index:1;background:#f8f6f1}</style>
+fieldset{border:0;padding:0;margin:0;min-width:0}button:disabled{opacity:.5;cursor:wait}.connection{margin-bottom:22px}.connection input{max-width:440px}.connection .actions{align-items:center}#connectionStatus{white-space:pre-wrap}#editor:disabled{opacity:.6}.retail-tools{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.retail-tools .search{flex:1;min-width:220px}.retail-tools label{margin-top:0}.retail-tools select{min-width:100px}.retail-table{min-width:1050px;table-layout:fixed}.retail-table th:nth-child(1),.retail-table th:nth-child(2){width:20%}.retail-table th:nth-child(3){width:35%}.retail-table th:nth-child(4){width:25%}.retail-table th:nth-child(5){width:100px}.retail-table input{min-width:0;border-color:transparent;background:transparent;font-size:13px;padding:9px 5px}.retail-table input:focus{background:white;border-color:var(--green)}.retail-table tbody tr:nth-child(even){background:#f5f3ed}.retail-table tbody tr:hover{background:#ecefe8}.retail-table th button{background:none;border:0;padding:4px 0;font-size:12px;font-weight:600;white-space:nowrap}.retail-table thead input{background:white;border:1px solid var(--line);margin-top:8px}.pager{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px 0}.empty-table{text-align:center;padding:35px;color:var(--muted)}dialog{border:1px solid var(--line);border-radius:16px;padding:26px;max-width:520px;width:calc(100% - 36px);background:var(--paper);color:var(--ink)}dialog::backdrop{background:#17251db0}dialog h2{font:26px Georgia,serif;margin:0 0 18px}.dialog-error{color:var(--danger);white-space:pre-wrap}.danger.primary{background:var(--danger);border-color:var(--danger);color:white}.manage-bar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:22px;flex-wrap:wrap}.manage-bar p{margin:0}.table-wrap{max-height:660px}.retail-table thead{position:sticky;top:0;z-index:1;background:#f8f6f1}</style>
 </head>
 <body>
 <header>
@@ -158,11 +158,11 @@ fieldset{border:0;padding:0;margin:0;min-width:0}button:disabled{opacity:.5;curs
     <div class="card" style="margin-bottom:18px">
       <h2>Retail Network</h2>
       <p class="note">Cada linha vira uma loja em <code>data/locations.json</code>. Stores, Countries e Cities são recalculados automaticamente.</p>
-      <div class="retail-tools"><div class="search"><label for="retailSearch">Buscar na rede de lojas</label><input id="retailSearch" type="search" placeholder="País, cidade, endereço, formato ou rationale"></div><div><label for="retailSize">Linhas por página</label><select id="retailSize"><option>25</option><option>50</option><option>100</option></select></div><button type="button" id="clearRetailFilters">Limpar filtros</button><button type="button" id="importCSV">Importar CSV</button><button type="button" id="addStore">+ Adicionar loja</button></div><p class="note">Clique nos títulos para alternar A–Z e Z–A. Filtros e ordenação mudam apenas a visualização; todas as lojas são preservadas ao salvar.</p>
+      <div class="retail-tools"><div class="search"><label for="retailSearch">Buscar na rede de lojas</label><input id="retailSearch" type="search" placeholder="País, cidade, endereço ou formato"></div><div><label for="retailSize">Linhas por página</label><select id="retailSize"><option>25</option><option>50</option><option>100</option></select></div><button type="button" id="clearRetailFilters">Limpar filtros</button><button type="button" id="importCSV">Importar CSV</button><button type="button" id="addStore">+ Adicionar loja</button></div><p class="note">Clique nos títulos para alternar A–Z e Z–A. Filtros e ordenação mudam apenas a visualização; todas as lojas são preservadas ao salvar.</p>
     </div>
     <div class="table-wrap">
       <table class="retail-table" aria-label="Lojas da Maison">
-        <thead><tr><th scope="col" aria-sort="none"><button type="button" data-sort="country" title="Ordenar Country">Country<span> ↕</span></button><input id="filter-country" type="search" placeholder="Filtrar…" aria-label="Filtrar Country"></th><th scope="col" aria-sort="none"><button type="button" data-sort="city" title="Ordenar City">City<span> ↕</span></button><input id="filter-city" type="search" placeholder="Filtrar…" aria-label="Filtrar City"></th><th scope="col" aria-sort="none"><button type="button" data-sort="location" title="Ordenar Location / address">Location / address<span> ↕</span></button><input id="filter-location" type="search" placeholder="Filtrar…" aria-label="Filtrar Location / address"></th><th scope="col" aria-sort="none"><button type="button" data-sort="format" title="Ordenar Format">Format<span> ↕</span></button><input id="filter-format" type="search" placeholder="Filtrar…" aria-label="Filtrar Format"></th><th scope="col">Rationale</th><th scope="col">Ações</th></tr></thead>
+        <thead><tr><th scope="col" aria-sort="none"><button type="button" data-sort="country" title="Ordenar Country">Country<span> ↕</span></button><input id="filter-country" type="search" placeholder="Filtrar…" aria-label="Filtrar Country"></th><th scope="col" aria-sort="none"><button type="button" data-sort="city" title="Ordenar City">City<span> ↕</span></button><input id="filter-city" type="search" placeholder="Filtrar…" aria-label="Filtrar City"></th><th scope="col" aria-sort="none"><button type="button" data-sort="location" title="Ordenar Location / address">Location / address<span> ↕</span></button><input id="filter-location" type="search" placeholder="Filtrar…" aria-label="Filtrar Location / address"></th><th scope="col" aria-sort="none"><button type="button" data-sort="format" title="Ordenar Format">Format<span> ↕</span></button><input id="filter-format" type="search" placeholder="Filtrar…" aria-label="Filtrar Format"></th><th scope="col">Ações</th></tr></thead>
         <tbody id="retailBody"></tbody>
       </table>
     </div>
@@ -176,7 +176,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}button:disabled{opacity:.5;curs
 
 <dialog id="createDialog" aria-labelledby="createTitle"><form id="createMaisonForm"><h2 id="createTitle">Nova Maison</h2><label for="newMaisonName">Nome</label><input id="newMaisonName" maxlength="120" required><label for="newMaisonSlug">Identificador no endereço</label><input id="newMaisonSlug" required maxlength="80" pattern="[a-z0-9]+([-_][a-z0-9]+)*"><p class="note">Gerado a partir do nome. Use letras sem acentos, números e hífens.</p><label for="newMaisonCat">Categoria</label><select id="newMaisonCat" required></select><p class="note">A Maison será criada no site. Depois, preencha o editorial e as informações. As imagens são adicionadas pelo GitHub.</p><p id="createError" class="dialog-error" role="alert"></p><div class="actions"><button type="button" data-close-dialog="createDialog">Cancelar</button><button class="primary" type="submit">Criar Maison</button></div></form></dialog>
 <dialog id="deleteDialog" aria-labelledby="deleteTitle"><form id="deleteMaisonForm"><h2 id="deleteTitle">Excluir Maison</h2><p id="deleteDetails"></p><label for="confirmMaisonName">Para confirmar, digite: <strong id="deleteName"></strong></label><input id="confirmMaisonName" required autocomplete="off"><p id="deleteError" class="dialog-error" role="alert"></p><div class="actions"><button type="button" data-close-dialog="deleteDialog">Cancelar</button><button class="danger primary" type="submit">Excluir definitivamente do cadastro</button></div></form></dialog>
-<dialog id="csvDialog" aria-labelledby="csvTitle" style="max-width:900px"><h2 id="csvTitle">Importar boutiques</h2><p>Maison selecionada: <strong id="csvMaison"></strong></p><label for="csvFile">Arquivo CSV</label><input type="file" id="csvFile" accept=".csv,text/csv"><p class="note">Colunas: Country, City, Address / Location, Format e Rationale. Brand é opcional; se existir, deve corresponder à Maison selecionada. Aceita ponto e vírgula, vírgula ou tabulação.</p><label for="csvMode">Como aplicar</label><select id="csvMode"><option value="append">Adicionar às boutiques existentes</option><option value="replace">Substituir todas as boutiques desta Maison</option></select><p id="csvError" class="dialog-error" role="alert"></p><p id="csvSummary" class="note" role="status"></p><div class="table-wrap" style="max-height:300px"><table aria-label="Prévia do CSV" style="min-width:650px"><thead><tr><th>Country</th><th>City</th><th>Location</th><th>Format</th></tr></thead><tbody id="csvPreview"></tbody></table></div><p class="note">Prévia das primeiras 8 linhas. Nenhuma alteração será publicada até você clicar em Salvar lojas.</p><div class="actions"><button type="button" data-close-dialog="csvDialog">Cancelar</button><button type="button" class="primary" id="csvApply" disabled>Aplicar à tabela</button></div></dialog><script>
+<dialog id="csvDialog" aria-labelledby="csvTitle" style="max-width:900px"><h2 id="csvTitle">Importar boutiques</h2><p>Maison selecionada: <strong id="csvMaison"></strong></p><label for="csvFile">Arquivo CSV</label><input type="file" id="csvFile" accept=".csv,text/csv"><p class="note">Colunas: Country, City, Address / Location e Format. Brand é opcional; se existir, deve corresponder à Maison selecionada. Aceita ponto e vírgula, vírgula ou tabulação.</p><label for="csvMode">Como aplicar</label><select id="csvMode"><option value="append">Adicionar às boutiques existentes</option><option value="replace">Substituir todas as boutiques desta Maison</option></select><p id="csvError" class="dialog-error" role="alert"></p><p id="csvSummary" class="note" role="status"></p><div class="table-wrap" style="max-height:300px"><table aria-label="Prévia do CSV" style="min-width:650px"><thead><tr><th>Country</th><th>City</th><th>Location</th><th>Format</th></tr></thead><tbody id="csvPreview"></tbody></table></div><p class="note">Prévia das primeiras 8 linhas. Nenhuma alteração será publicada até você clicar em Salvar lojas.</p><div class="actions"><button type="button" data-close-dialog="csvDialog">Cancelar</button><button type="button" class="primary" id="csvApply" disabled>Aplicar à tabela</button></div></dialog><script>
 const LANGS = ['pt','en','es','fr'];
 let MAISONS_PAYLOAD = null;
 let LOCATIONS_PAYLOAD = null;
@@ -392,7 +392,7 @@ function filteredStores(){
   const query=normalize($('retailSearch').value);
   const filters=Object.fromEntries(retailKeys.map(k=>[k,normalize($('filter-'+k).value)]));
   const rows=currentStores().map((store,index)=>({store,index})).filter(({store})=>
-    (!query||[...retailKeys,'rationale'].some(k=>normalize(store[k]).includes(query)))&&
+    (!query||retailKeys.some(k=>normalize(store[k]).includes(query)))&&
     retailKeys.every(k=>normalize(store[k]).includes(filters[k])));
   if(retailView.sort)rows.sort((a,b)=>String(a.store[retailView.sort]??'').localeCompare(String(b.store[retailView.sort]??''),'pt-BR',{sensitivity:'base',numeric:true})*retailView.direction||a.index-b.index);
   return rows;
@@ -404,7 +404,7 @@ function fillRetail(){
   const start=(retailView.page-1)*retailView.size;
   for(const {store,index} of rows.slice(start,start+retailView.size)){
     const tr=document.createElement('tr');tr.dataset.index=index;
-    for(const k of [...retailKeys,'rationale']){
+    for(const k of retailKeys){
       const td=document.createElement('td'),input=document.createElement('input');
       input.value=store[k]??'';input.dataset.k=k;input.setAttribute('aria-label',k+' — loja '+(index+1));
       input.addEventListener('input',()=>{store[k]=input.value;dirty.add('retail');updateStats();});
@@ -420,7 +420,7 @@ function fillRetail(){
     };
     td.append(button);tr.append(td);body.append(tr);
   }
-  if(!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=6;td.className='empty-table';td.textContent='Nenhuma loja encontrada. Ajuste os filtros ou adicione uma loja.';tr.append(td);body.append(tr);}
+  if(!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=5;td.className='empty-table';td.textContent='Nenhuma loja encontrada. Ajuste os filtros ou adicione uma loja.';tr.append(td);body.append(tr);}
   $('retailCount').textContent=rows.length?`${start+1}–${Math.min(start+retailView.size,rows.length)} de ${rows.length} lojas filtradas · ${currentStores().length} no total`:`0 lojas filtradas · ${currentStores().length} no total`;
   $('retailPage').textContent=`Página ${retailView.page} de ${pages}`;
   $('retailPrev').disabled=retailView.page===1;$('retailNext').disabled=retailView.page===pages;
@@ -431,13 +431,13 @@ function fillRetail(){
   });
   updateStats();
 }
-function readRetail(){return currentStores();}
+function readRetail(){const stores=currentStores();stores.forEach(store=>{delete store.rationale;});return stores;}
 function clearRetailFilters(render=true){
   $('retailSearch').value='';retailKeys.forEach(k=>$('filter-'+k).value='');retailView.page=1;
   if(render&&currentSlug)fillRetail();
 }
 function addStoreRow(){
-  clearRetailFilters(false);retailView.sort='';currentStores().push({country:'',city:'',location:'',format:'',rationale:''});
+  clearRetailFilters(false);retailView.sort='';currentStores().push({country:'',city:'',location:'',format:''});
   dirty.add('retail');retailView.page=Math.ceil(currentStores().length/retailView.size);fillRetail();
   $('retailBody').lastElementChild?.querySelector('input')?.focus();
 }
@@ -470,7 +470,7 @@ function parseBoutiquesCSV(text,maison){
   finishRow();if(records.length<2)throw Error('O CSV deve conter um cabeçalho e pelo menos uma boutique.');
   const aliases={brand:'brand',marca:'brand',maison:'brand',country:'country',pais:'country',city:'city',cidade:'city',
     'addresslocation':'location',location:'location',locations:'location',address:'location',endereco:'location',local:'location',
-    format:'format',formato:'format',rationale:'rationale',justificativa:'rationale'};
+    format:'format',formato:'format'};
   const fields=records[0].cells.map(s=>aliases[normalize(s).replace(/[^a-z0-9]/g,'')]);
   for(const k of ['country','city','location'])if(!fields.includes(k))throw Error('Coluna obrigatória ausente: '+k+'.');
   for(const k of fields.filter(Boolean))if(fields.filter(x=>x===k).length>1)throw Error('Coluna repetida: '+k+'.');
@@ -482,12 +482,12 @@ function parseBoutiquesCSV(text,maison){
     if(fields.includes('brand')&&(!mapped.brand||![maison.name,maison.slug].some(x=>normalize(x).trim()===normalize(mapped.brand).trim()))){errors.push('Linha '+rec.line+': marca "'+(mapped.brand||'vazia')+'" não corresponde a '+maison.name+'.');continue;}
     const missing=['country','city','location'].filter(k=>!mapped[k]);
     if(missing.length){errors.push('Linha '+rec.line+': preencha '+missing.join(', ')+'.');continue;}
-    rows.push(Object.fromEntries(['country','city','location','format','rationale'].map(k=>[k,mapped[k]||''])));
+    rows.push(Object.fromEntries(['country','city','location','format'].map(k=>[k,mapped[k]||''])));
   }
   if(errors.length)throw Error(errors.slice(0,8).join('\n')+(errors.length>8?'\n… e mais '+(errors.length-8)+' linhas inválidas.':'')+'\nCorrija o arquivo e tente novamente. Nenhuma linha foi importada.');
   return {rows,ignored};
 }
-const csvIdentity=store=>JSON.stringify(['country','city','location','format','rationale'].map(k=>String(store[k]??'').trim()));
+const csvIdentity=store=>JSON.stringify(['country','city','location','format'].map(k=>String(store[k]??'').trim()));
 function planCSVImport(incoming,existing,replace){
   const seen=new Set((replace?[]:existing).map(csvIdentity)),added=[];let duplicates=0;
   for(const store of incoming){const id=csvIdentity(store);if(seen.has(id)){duplicates++;continue;}seen.add(id);added.push({...store});}
