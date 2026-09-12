@@ -1,1299 +1,568 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="arapua-cms" content="github-json-v1">
-<title>ARAPUÃ — The Brazilian Art of Making</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARAPUÃ Admin</title>
 <style>
-:root{--paper:#f7f4ed;--white:#fff;--ink:#151814;--forest:#142e24;--deep:#0c1d17;--earth:#8b5035;--sand:#d9cbae;--muted:#6c726c;--line:rgba(21,24,20,.16)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}button{font:inherit}
-h1,h2,h3{font-family:"Playfair Display",serif;font-weight:500;line-height:1.05;margin:0}
-.nav{position:fixed;inset:0 0 auto;height:86px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;color:#fff;background:transparent;transition:.28s ease;border-bottom:1px solid transparent}
-.nav.scrolled{background:rgba(12,29,23,.60);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:rgba(255,255,255,.08)}
-body.light-header .nav{background:rgba(247,244,237,.94)!important;color:var(--ink);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
-.logo{font-family:"Playfair Display",serif;font-size:1.55rem;letter-spacing:.13em}.logo small{display:block;font-family:"DM Sans",sans-serif;font-size:.43rem;letter-spacing:.20em;font-weight:400;opacity:.68;margin-top:-3px}
-.navright{display:flex;align-items:center;gap:22px}.navlinks{display:flex;gap:25px;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase}.navlinks a{opacity:.82}.navlinks a:hover{opacity:1}
-.lang{position:relative}.langbtn{width:48px;height:34px;border-radius:18px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.06);color:inherit;cursor:pointer;font-size:.67rem;letter-spacing:.12em}
-body.light-header .langbtn{border-color:var(--line);background:rgba(0,0,0,.025)}
-.langmenu{display:none;position:absolute;right:0;top:42px;background:rgba(12,29,23,.97);border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:6px;min-width:74px;box-shadow:0 16px 35px rgba(0,0,0,.16)}.lang.open .langmenu{display:block}
-.langmenu button{display:block;width:100%;border:0;background:transparent;color:#fff;padding:8px 10px;text-align:left;cursor:pointer;border-radius:4px;font-size:.67rem;letter-spacing:.1em}.langmenu button:hover,.langmenu button.active{background:rgba(255,255,255,.1)}
-body.light-header .langmenu{background:rgba(247,244,237,.98);border-color:var(--line)}body.light-header .langmenu button{color:var(--ink)}body.light-header .langmenu button:hover,body.light-header .langmenu button.active{background:rgba(0,0,0,.06)}
-.page{display:none}.page.active{display:block}.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:17px;opacity:.72}.section{padding:110px 5vw}.title{font-size:clamp(2.8rem,5vw,5.7rem)}
-.hero{min-height:100vh;display:flex;align-items:flex-end;padding:0 5vw 8vh;color:#fff;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(5,16,12,.12),rgba(5,16,12,.32) 48%,rgba(5,16,12,.82)),url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=2200&q=90") center/cover}
-.hero:after{content:"";position:absolute;width:60vw;height:60vw;border:1px solid rgba(255,255,255,.17);border-radius:50%;right:-20vw;bottom:-34vw}.hero-inner{position:relative;z-index:2;max-width:1000px}.hero h1{font-size:clamp(3.8rem,8.2vw,8.5rem);max-width:1000px}.hero p{font-size:1.1rem;font-weight:300;max-width:730px;color:rgba(255,255,255,.82);margin:24px 0 0}.text-link{display:inline-block;margin-top:28px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:4px}
-.about{background:#fff}.split{display:grid;grid-template-columns:1fr 1.15fr;gap:9vw}.lead{font-size:1.14rem;color:#343a34;margin-top:0}.lead+.lead{margin-top:24px}.quote{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,3vw,3rem);color:var(--earth);margin-top:48px}
-.divisions{background:#eee8dc}.section-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:52px}.section-head p{max-width:530px;color:var(--muted)}
-.division-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.division{position:relative;min-height:430px;color:#fff;overflow:hidden;background:#333;isolation:isolate;grid-column:span 4}.division:nth-child(1),.division:nth-child(6){grid-column:span 6}.division:nth-child(7){grid-column:span 6}
-.division-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease}.division:hover .division-img{transform:scale(1.035)}.division:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.67));z-index:1}.division-copy{position:absolute;z-index:2;inset:auto 0 0;padding:31px}.division h3{font-size:1.9rem}.division p{font-size:.88rem;max-width:430px;color:rgba(255,255,255,.74);margin:10px 0 0}.division .text-link{margin-top:19px}
-.metiers{background:var(--deep);color:#f5f0e6}.metiers .lead{color:rgba(255,255,255,.68)}.material-band{display:grid;grid-template-columns:repeat(7,1fr);margin-top:60px;border-top:1px solid rgba(255,255,255,.16);border-left:1px solid rgba(255,255,255,.16)}.material{min-height:210px;padding:24px;border-right:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)}.material span{font-size:.65rem;opacity:.44}.material h3{font-size:1.15rem;margin-top:68px}
-.culture{display:grid;grid-template-columns:1fr 1fr;min-height:720px}.culture-img{background:url("https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1600&q=86") center/cover}.culture-copy{background:var(--earth);color:#fff7ec;padding:7vw 6vw;display:flex;flex-direction:column;justify-content:center}.culture-copy h2{font-size:clamp(3rem,5vw,5.5rem)}.culture-copy p{max-width:580px;color:rgba(255,255,255,.75)}
-.twin{display:grid;grid-template-columns:1fr 1fr;margin-top:40px;border-top:1px solid rgba(255,255,255,.2)}.twin div{padding:22px 20px 0 0}.twin strong{font-family:"Playfair Display",serif;font-size:1.3rem}.twin p{font-size:.85rem}
-.experience{background:#fff}.global{background:#e7decf}.manifesto{padding:105px 7vw;text-align:center;background:var(--paper)}.manifesto p{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(1.35rem,2.1vw,2.15rem);line-height:1.45;max-width:820px;margin:auto;color:#3f463f}
-.footer{background:#09100c;color:#eee8dc;padding:65px 5vw 28px}.footergrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:45px;padding-bottom:55px;border-bottom:1px solid rgba(255,255,255,.13)}.footerbrand{font-family:"Playfair Display",serif;font-size:1.6rem;letter-spacing:.12em}.footer p,.footer a{font-size:.84rem;color:rgba(255,255,255,.55)}.footer a{display:block;margin:7px 0}.footbottom{padding-top:20px;font-size:.75rem;color:rgba(255,255,255,.36);display:flex;justify-content:space-between}
-
-/* category page — deliberately LVMH-like editorial architecture */
-.category{padding:145px 4.5vw 115px;background:#fff;min-height:100vh}.crumb{border:0;background:transparent;padding:0;cursor:pointer;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase}.cat-head{text-align:center;max-width:850px;margin:45px auto 75px}.cat-head .script{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(2.8rem,5vw,5.2rem)}.cat-head h1{font-family:"DM Sans",sans-serif;text-transform:uppercase;font-size:clamp(2rem,3.4vw,3.5rem);font-weight:500;letter-spacing:.03em;margin-top:10px}.cat-head p{color:var(--muted);max-width:680px;margin:18px auto 0}
-.brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:62px 42px}.brand-card{height:430px;position:relative;overflow:hidden;background:linear-gradient(135deg,#cfc2aa,#87785f);color:#fff;cursor:pointer}.brand-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.43))}.brand-card .brandbg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.72;transition:.55s ease}.brand-card:hover .brandbg{transform:scale(1.035)}.brand-center{position:absolute;z-index:2;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px}.brand-center h2{font-family:"DM Sans",sans-serif;text-transform:uppercase;font-weight:500;font-size:1.65rem;letter-spacing:.015em}.brand-center span{display:block;font-family:"Playfair Display",serif;font-style:italic;font-size:.9rem;margin-top:8px}
-
-/* maison page */
-.maison-page{background:#fff;min-height:100vh}.maison-hero{min-height:78vh;display:grid;grid-template-columns:1fr 1fr;padding-top:86px}.maison-hero-copy{padding:7vw 6vw;display:flex;flex-direction:column;justify-content:center}.maison-hero-copy h1{font-size:clamp(3.5rem,6vw,6.8rem)}.maison-hero-copy p{max-width:560px;color:var(--muted);font-size:1.05rem}.maison-hero-img{background-size:cover;background-position:center;min-height:600px;position:relative}.maison-hero-img:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.18))}
-.identity{padding:110px 6vw}.identity-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:9vw}.identity-text h2{font-size:clamp(2.8rem,5vw,5rem)}.identity-copy{font-family:"Playfair Display",serif;font-size:clamp(1.55rem,2.5vw,2.4rem);line-height:1.35;margin:0}.signature-strip{display:grid;grid-template-columns:1fr 1fr;background:var(--paper)}.signature{padding:80px 6vw;min-height:370px}.signature:first-child{border-right:1px solid var(--line)}.signature h3{font-size:2.5rem;margin-top:15px}.signature p{font-size:1.05rem;color:var(--muted);max-width:500px}
-.group-role{background:var(--forest);color:#f5f0e6;padding:105px 6vw}.group-role .split p{color:rgba(255,255,255,.7)}.other{padding:95px 5vw;background:#fff}.other h2{font-size:2.8rem}.other-row{display:flex;gap:16px;overflow:auto;padding-top:35px}.other-card{min-width:260px;height:190px;background:#eee8dc;padding:22px;display:flex;align-items:flex-end;cursor:pointer}.other-card h3{font-family:"DM Sans",sans-serif;font-size:1.1rem;text-transform:uppercase}
-.metiers-page{padding-top:86px;background:var(--deep);color:#f5f0e6}.metiers-hero{padding:110px 6vw 80px;max-width:1080px}.metiers-hero h1{font-size:clamp(3.5rem,6vw,6.5rem)}.metiers-hero p{color:rgba(255,255,255,.68);font-size:1.1rem;max-width:720px}.poles{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid rgba(255,255,255,.15);border-left:1px solid rgba(255,255,255,.15);margin:0 5vw 95px}.pole{padding:25px;min-height:250px;border-right:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)}.pole span{opacity:.42;font-size:.66rem}.pole h3{font-size:1.25rem;margin-top:70px}.knowledge{background:#f1eadf;color:var(--ink);padding:105px 6vw}.knowledge .lead{max-width:700px}
-@media(max-width:1000px){.division{grid-column:span 6!important}.brand-grid{grid-template-columns:1fr 1fr}.material-band,.poles{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:760px){.navlinks{display:none}.navright{gap:8px}.section{padding:80px 6vw}.split,.identity-grid,.maison-hero,.signature-strip,.culture{grid-template-columns:1fr}.section-head{display:block}.division{grid-column:span 12!important}.brand-grid{grid-template-columns:1fr;gap:20px}.category{padding:125px 5vw 70px}.maison-hero-img{min-height:480px}.signature:first-child{border-right:0;border-bottom:1px solid var(--line)}.material-band,.poles{grid-template-columns:1fr}.footergrid{grid-template-columns:1fr}.footbottom{flex-direction:column;gap:8px}}
-
-.principles-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  margin-top:72px;border-top:1px solid var(--line);border-left:1px solid var(--line)
-}
-.principle-card{
-  min-height:280px;padding:34px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)
-}
-.principle-card .eyebrow{color:var(--earth);opacity:1}
-.principle-card h3{font-size:1.8rem;margin-top:44px}
-.principle-card p{color:var(--muted);font-size:.95rem;max-width:280px}
-
-.experience-rich{display:grid;grid-template-columns:1fr 1fr;min-height:760px}
-.experience-image{
-  background:url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=88") center/cover
-}
-.experience-copy-rich{
-  background:var(--earth);color:#fff7ec;padding:7vw 6vw;display:flex;flex-direction:column;justify-content:center
-}
-.experience-copy-rich h2{font-size:clamp(3rem,5vw,5.5rem)}
-.experience-copy-rich>p{color:rgba(255,255,255,.76);max-width:610px;font-size:1.03rem}
-.ecosystem-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 38px;margin-top:36px}
-.ecosystem-grid div{
-  display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-top:1px solid rgba(255,255,255,.22);font-size:.84rem
-}
-.ecosystem-grid span{font-weight:500}.ecosystem-grid strong{font-weight:400;color:rgba(255,255,255,.7)}
-
-.global-intro{align-items:start}
-.city-platforms{
-  display:grid;grid-template-columns:repeat(4,1fr);margin-top:62px;border-top:1px solid var(--line);border-left:1px solid var(--line)
-}
-.city-card{padding:28px;min-height:180px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.city-card span{font-family:"Playfair Display",serif;font-size:1.55rem}
-.city-card p{font-size:.88rem;color:var(--muted);margin-top:16px}
-
-.institutional{background:var(--deep);color:#f3eee5}
-.institutional-inner{padding-top:110px;padding-bottom:110px}
-.institutional-lead{color:rgba(255,255,255,.68)}
-.institutional-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);margin-top:62px;border-top:1px solid rgba(255,255,255,.17)
-}
-.institutional-grid article{padding:30px 28px 20px;border-right:1px solid rgba(255,255,255,.17)}
-.institutional-grid article:last-child{border-right:0}
-.institutional-grid h3{font-size:1.9rem;margin-top:18px}
-.institutional-grid p{color:rgba(255,255,255,.68);font-size:.92rem;max-width:420px}
-.institutional-grid ul{padding-left:17px;color:rgba(255,255,255,.72);font-size:.86rem}
-
-@media(max-width:1000px){
-  .principles-grid{grid-template-columns:1fr 1fr}
-  .city-platforms{grid-template-columns:1fr 1fr}
-}
-@media(max-width:760px){
-  .principles-grid,.city-platforms,.institutional-grid{grid-template-columns:1fr}
-  .experience-rich{grid-template-columns:1fr}
-  .experience-image{min-height:520px}
-  .ecosystem-grid{grid-template-columns:1fr}
-  .institutional-grid article{border-right:0;border-bottom:1px solid rgba(255,255,255,.17)}
-}
-
-
-/* Maison detail — LVMH-inspired editorial skeleton */
-.maison-shell{background:#f7f4ed;min-height:100vh}
-.maison-cover{
-  min-height:100vh;padding-top:86px;position:relative;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;color:#fff;text-align:center;overflow:hidden;background:#767874
-}
-.maison-cover-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.88)}
-.maison-cover-bg::after{content:"";position:absolute;inset:0;background:rgba(12,17,14,.43)}
-.maison-cover-inner{position:relative;z-index:2;width:min(1080px,90vw);display:flex;flex-direction:column;align-items:center}
-.maison-cover h1{
-  font-family:"DM Sans",sans-serif;font-size:clamp(3.3rem,7vw,7.2rem);
-  text-transform:uppercase;font-weight:400;letter-spacing:.025em;margin:0
-}
-.maison-site-link{margin-top:28px;font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;font-weight:600}
-.maison-facts{
-  position:absolute;z-index:3;left:50%;transform:translateX(-50%);bottom:8vh;
-  width:min(1000px,86vw);background:rgba(255,255,255,.97);color:var(--ink);
-  display:grid;grid-template-columns:repeat(3,1fr);padding:28px 35px
-}
-.maison-fact{padding:0 22px;text-align:center;border-right:1px solid var(--line)}
-.maison-fact:last-child{border-right:0}
-.maison-fact span{display:block;font-family:"Playfair Display",serif;color:#6d6f74;font-size:.88rem}
-.maison-fact strong{display:block;font-size:1.02rem;font-weight:400;margin-top:8px}
-
-.maison-identity-wrap{
-  padding:110px 5vw;background:
-    linear-gradient(135deg,rgba(218,204,177,.28) 1px,transparent 1px),
-    linear-gradient(45deg,rgba(218,204,177,.22) 1px,transparent 1px),#f7f4ed;
-  background-size:170px 170px
-}
-.maison-identity-stage{
-  width:min(1450px,100%);margin:auto;min-height:720px;position:relative;
-  background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;padding:7vw
-}
-.maison-identity-stage::after{content:"";position:absolute;inset:0;background:rgba(10,14,12,.22)}
-.maison-identity-card{
-  position:relative;z-index:2;background:#fff;width:min(900px,86%);padding:70px 68px;text-align:center
-}
-.maison-identity-card .eyebrow{color:#6a6d70}
-.maison-identity-card h2{
-  font-family:"DM Sans",sans-serif;text-transform:uppercase;font-size:2rem;font-weight:400;letter-spacing:.02em
-}
-.maison-identity-card p{max-width:720px;margin:38px auto 0;font-size:1.02rem;line-height:1.75;color:#282d29}
-
-.maison-pillars{background:#fff;padding:110px 5vw}
-.maison-pillars-head{max-width:850px;margin:0 auto 58px;text-align:center}
-.maison-pillars-head h2{font-size:clamp(2.6rem,4vw,4rem)}
-.maison-pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.maison-pillar{min-height:275px;padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.maison-pillar .eyebrow{color:var(--earth);opacity:1}
-.maison-pillar h3{font-size:1.55rem;margin-top:44px}
-.maison-context{
-  display:grid;grid-template-columns:1fr 1fr;background:var(--forest);color:#f5f0e6;min-height:460px
-}
-.maison-context>div{padding:85px 6vw}.maison-context>div:first-child{border-right:1px solid rgba(255,255,255,.16)}
-.maison-context p{color:rgba(255,255,255,.7);font-size:1.02rem;max-width:620px}
-.maison-next{padding:75px 5vw;background:#fff;border-top:1px solid var(--line)}
-.maison-next-row{display:flex;gap:14px;overflow:auto;margin-top:30px}
-.maison-next-card{min-width:250px;height:170px;background:#eee8dc;padding:22px;display:flex;align-items:flex-end}
-.maison-next-card h3{font-family:"DM Sans",sans-serif;font-size:1rem;text-transform:uppercase}
-
-@media(max-width:760px){
-  .maison-facts{grid-template-columns:1fr;bottom:4vh;padding:18px 25px}
-  .maison-fact{padding:8px 0;border-right:0;border-bottom:1px solid var(--line)}
-  .maison-fact:last-child{border-bottom:0}
-  .maison-cover{min-height:900px}
-  .maison-identity-card{padding:48px 28px;width:94%}
-  .maison-pillars-grid{grid-template-columns:1fr}
-  .maison-context{grid-template-columns:1fr}
-  .maison-context>div:first-child{border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}
-}
-
-
-/* Institutional narrative replacing the strategic four-box grid */
-.maison-story{background:#fff;padding:110px 6vw 120px}
-.maison-story-head{max-width:900px;margin:0 auto 72px;text-align:center}
-.maison-story-head h2{font-size:clamp(2.8rem,4.5vw,4.8rem)}
-.maison-story-body{
-  max-width:1040px;margin:0 auto;display:grid;grid-template-columns:.8fr 1.2fr;
-  gap:8vw;align-items:start;border-top:1px solid var(--line);padding-top:58px
-}
-.maison-story-lead{
-  font-family:"Playfair Display",serif;font-size:clamp(1.55rem,2.6vw,2.45rem);
-  line-height:1.35;margin:0
-}
-.maison-story-copy p{margin:0 0 24px;font-size:1.04rem;line-height:1.8;color:#353a35}
-.maison-story-copy p:last-child{
-  margin-top:34px;padding-top:28px;border-top:1px solid var(--line);
-  font-family:"Playfair Display",serif;font-style:italic;font-size:1.12rem;color:#5c625d
-}
-@media(max-width:760px){.maison-story-body{grid-template-columns:1fr;gap:34px}}
-
-
-.maison-positioning{
-  background:#f0eadf;padding:95px 6vw 100px;
-}
-.maison-positioning-head{
-  max-width:860px;margin:0 auto 52px;text-align:center
-}
-.maison-positioning-head h2{
-  font-size:clamp(2.5rem,4vw,4.2rem)
-}
-.maison-positioning-grid{
-  max-width:1000px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;
-  border-top:1px solid var(--line);border-left:1px solid var(--line)
-}
-.maison-positioning-grid article{
-  min-height:190px;padding:32px;
-  border-right:1px solid var(--line);border-bottom:1px solid var(--line)
-}
-.maison-positioning-grid span{
-  display:block;font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--earth)
-}
-.maison-positioning-grid strong{
-  display:block;font-family:"Playfair Display",serif;font-size:clamp(1.8rem,3vw,3rem);
-  line-height:1.15;font-weight:500;margin-top:42px
-}
-.maison-positioning-note{
-  max-width:760px;margin:36px auto 0;text-align:center;
-  font-size:1rem;line-height:1.75;color:#555c56
-}
-@media(max-width:760px){
-  .maison-positioning-grid{grid-template-columns:1fr}
-}
-
-
-/* Maison retail presence */
-.maison-stores{
-  background:#fff;padding:110px 5vw 120px
-}
-.maison-stores-head{
-  display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:end;
-  max-width:1200px;margin:0 auto 58px
-}
-.maison-stores-head h2{
-  font-size:clamp(2.7rem,4.4vw,4.7rem)
-}
-.maison-stores-head p{
-  margin:0;color:var(--muted);font-size:1.02rem;line-height:1.75;max-width:580px
-}
-.maison-stores-layout{
-  max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.35fr .65fr;gap:26px
-}
-.maison-store-image{
-  min-height:560px;background:#e8e1d6 center/cover no-repeat;position:relative;overflow:hidden
-}
-.maison-store-image.empty{
-  display:flex;align-items:center;justify-content:center;padding:30px;
-  background:linear-gradient(135deg,#ece6dc,#d5c7b1)
-}
-.maison-store-image.empty span{
-  font-family:"Playfair Display",serif;font-style:italic;color:#6c706b;font-size:1.1rem
-}
-.maison-store-panel{
-  border:1px solid var(--line);padding:34px;display:flex;flex-direction:column;justify-content:space-between
-}
-.maison-store-stats{
-  display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line)
-}
-.maison-store-stat{
-  min-height:160px;padding:24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)
-}
-.maison-store-stat span{
-  display:block;font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--earth)
-}
-.maison-store-stat strong{
-  display:block;font-family:"Playfair Display",serif;font-size:clamp(2rem,3.4vw,3.4rem);
-  font-weight:500;margin-top:28px
-}
-.store-cities-toggle{
-  margin-top:28px;align-self:flex-start;background:transparent;border:0;border-bottom:1px solid currentColor;
-  padding:0 0 4px;cursor:pointer;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink)
-}
-.store-cities{
-  display:none;margin-top:26px;border-top:1px solid var(--line)
-}
-.store-cities.open{display:block}
-.store-city{
-  display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--line);
-  font-size:.9rem
-}
-.store-city span:last-child{color:var(--muted)}
-@media(max-width:900px){
-  .maison-stores-head,.maison-stores-layout{grid-template-columns:1fr}
-  .maison-store-image{min-height:430px}
-}
-@media(max-width:520px){
-  .maison-store-stats{grid-template-columns:1fr}
-}
-
-
-.store-city{
-  display:block;padding:0;border-bottom:1px solid var(--line)
-}
-.store-city-button{
-  width:100%;border:0;background:transparent;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;gap:20px;
-  padding:15px 0;text-align:left;color:var(--ink)
-}
-.store-city-button:hover .store-city-name{opacity:.68}
-.store-city-button::after{
-  content:"+";font-family:"DM Sans",sans-serif;font-size:1.15rem;font-weight:300;color:var(--muted);
-  transition:transform .2s ease
-}
-.store-city.open .store-city-button::after{content:"−"}
-.store-city-name{font-weight:500}
-.store-city-country{color:var(--muted);font-size:.88rem;margin-left:auto;margin-right:12px}
-.store-city-detail{
-  display:none;padding:2px 0 18px;
-}
-.store-city.open .store-city-detail{display:block}
-.store-city-detail-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:18px;
-  padding-top:15px;border-top:1px solid rgba(21,24,20,.09)
-}
-.store-city-detail-item span{
-  display:block;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--earth)
-}
-.store-city-detail-item strong{
-  display:block;margin-top:6px;font-size:.9rem;font-weight:400;line-height:1.5
-}
-@media(max-width:520px){
-  .store-city-detail-grid{grid-template-columns:1fr}
-}
-
-
-/* Maison logos */
-.brand-logo-card{
-  max-width:72%;max-height:105px;object-fit:contain;display:block;
-  filter:brightness(0) invert(1);
-}
-.maison-cover-logo{
-  max-width:min(620px,72vw);max-height:190px;object-fit:contain;display:block;
-  filter:brightness(0) invert(1);
-}
-.maison-identity-logo{
-  max-width:330px;max-height:105px;object-fit:contain;display:block;margin:0 auto 24px;
-}
-@media(max-width:760px){
-  .maison-cover-logo{max-width:78vw;max-height:130px}
-  .maison-identity-logo{max-width:240px}
-}
-
-
-.store-location-detail{
-  padding:16px 0;border-top:1px solid rgba(21,24,20,.09)
-}
-.store-location-detail:first-child{border-top:0;padding-top:2px}
-.store-location-number{
-  font-size:.61rem;letter-spacing:.16em;color:var(--earth);margin-bottom:9px
-}
-
-
-/* Keep the physical-presence image fixed when the city list expands */
-.maison-stores-layout{
-  align-items:start;
-}
-.maison-store-image{
-  height:560px;
-  min-height:560px;
-  max-height:560px;
-  position:sticky;
-  top:110px;
-}
-@media(max-width:900px){
-  .maison-store-image{
-    position:relative;
-    top:auto;
-    height:430px;
-    min-height:430px;
-    max-height:430px;
-  }
-}
-
-
-.store-country{
-  border-bottom:1px solid var(--line)
-}
-.store-country-button{
-  width:100%;border:0;background:transparent;cursor:pointer;
-  display:flex;align-items:center;justify-content:space-between;gap:18px;
-  padding:17px 0;text-align:left;color:var(--ink)
-}
-.store-country-button::after{
-  content:"+";font-size:1.15rem;font-weight:300;color:var(--muted)
-}
-.store-country.open .store-country-button::after{content:"−"}
-.store-country-name{
-  font-family:"Playfair Display",serif;font-size:1.12rem
-}
-.store-country-count{
-  margin-left:auto;margin-right:12px;color:var(--muted);font-size:.78rem
-}
-.store-country-cities{
-  display:none;padding:0 0 10px 18px
-}
-.store-country.open .store-country-cities{display:block}
-.store-country .store-city{
-  border-bottom:1px solid rgba(21,24,20,.09)
-}
-.store-country .store-city:last-child{border-bottom:0}
-
-
-.maison-store-figure{
-  margin:0;position:sticky;top:110px;align-self:start
-}
-.maison-store-figure .maison-store-image{
-  position:relative;top:auto;
-  height:560px;min-height:560px;max-height:560px
-}
-.maison-store-caption{
-  border:1px solid var(--line);border-top:0;background:#fff;
-  display:flex;justify-content:space-between;gap:22px;align-items:center;
-  padding:15px 18px;font-size:.78rem
-}
-.maison-store-caption span{
-  text-transform:uppercase;letter-spacing:.12em;color:var(--earth);font-size:.62rem
-}
-.maison-store-caption strong{
-  font-weight:400;text-align:right;color:#4f554f
-}
-@media(max-width:900px){
-  .maison-store-figure{position:relative;top:auto}
-  .maison-store-figure .maison-store-image{
-    height:430px;min-height:430px;max-height:430px
-  }
-}
-@media(max-width:560px){
-  .maison-store-caption{display:block}
-  .maison-store-caption strong{display:block;text-align:left;margin-top:6px}
-}
-
-
-/* MAISONS MEGA MENU */
-.maisons-menu{
-  position:fixed;inset:0;z-index:1200;background:rgba(20,25,21,.96);color:#f4f1e9;
-  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .28s ease,visibility .28s ease;
-  overflow:auto
-}
-.maisons-menu.open{opacity:1;visibility:visible;pointer-events:auto}
-.maisons-menu-inner{max-width:1420px;margin:0 auto;padding:118px 54px 70px;min-height:100vh}
-.maisons-menu-head{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.18)}
-.maisons-menu-kicker{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#c8bda8;margin-bottom:12px}
-.maisons-menu-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,4.6rem);font-weight:400;line-height:1;margin:0}
-.maisons-menu-close{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;width:44px;height:44px;border-radius:50%;font-size:23px;cursor:pointer;transition:.2s}
-.maisons-menu-close:hover{background:#fff;color:#24342c}
-.maisons-menu-body{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:0;margin-top:22px;border-top:1px solid rgba(255,255,255,.14)}
-.maisons-menu-grid{display:grid;grid-template-columns:1fr;padding-right:42px;border-right:1px solid rgba(255,255,255,.14)}
-.maisons-menu-item{display:flex;justify-content:space-between;align-items:center;gap:25px;padding:25px 16px;border-bottom:1px solid rgba(255,255,255,.14);color:inherit;text-decoration:none;transition:padding .2s ease,background .2s ease}
-.maisons-menu-item:hover,.maisons-menu-item.active{padding-left:22px;padding-right:12px;background:rgba(255,255,255,.06)}
-.maisons-menu-item h3{font-family:'Playfair Display',serif;font-weight:400;font-size:1.55rem;margin:0 0 6px}
-.maisons-menu-item small{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#bfb7a7}
-.maisons-menu-arrow{font-size:1.3rem;opacity:.7}
-.maisons-menu-brands{padding:22px 0 22px 42px;min-height:520px}
-.maisons-menu-brands-kicker{font-size:.64rem;letter-spacing:.17em;text-transform:uppercase;color:#a9a394;margin-bottom:8px}
-.maisons-menu-brands-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:400;margin:0 0 22px}
-.maisons-menu-brands-list{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
-.maisons-menu-brand{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 2px;border-bottom:1px solid rgba(255,255,255,.09);font-size:.91rem;color:#f4f1e9;transition:opacity .18s ease,padding .18s ease}
-.maisons-menu-brand:hover{padding-left:7px;opacity:.72}
-.maisons-menu-brand span:last-child{opacity:.45}
-.maisons-menu-brands-empty{color:#9f9b91;font-family:'Playfair Display',serif;font-style:italic;padding-top:10px}
-.maisons-menu-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:30px;color:#c9c4b8;font-size:.8rem}
-.maisons-menu-all{color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px}
-body.maisons-menu-open{overflow:hidden}
-@media(max-width:900px){
-  .maisons-menu-body{grid-template-columns:1fr}
-  .maisons-menu-grid{padding-right:0;border-right:0}
-  .maisons-menu-brands{padding:28px 0 0;min-height:0}
-}
-@media(max-width:760px){
-  .maisons-menu-inner{padding:100px 24px 40px}
-  .maisons-menu-footer{align-items:flex-start;flex-direction:column}
-  .maisons-menu-brands-list{grid-template-columns:1fr}
-}
-</style>
+:root{
+  --bg:#f4f1ea; --paper:#fffdf8; --ink:#1b1d19; --muted:#70736c;
+  --line:#d8d4ca; --green:#263a31; --green2:#385244; --danger:#8f352f;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:5;background:rgba(244,241,234,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.header-inner{max-width:1400px;margin:auto;padding:18px 28px;display:flex;gap:22px;align-items:center;justify-content:space-between}
+.brand{font-family:Georgia,serif;font-size:25px;letter-spacing:.16em}
+.sub{font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+select,input,textarea{font:inherit;color:inherit;background:white;border:1px solid var(--line);border-radius:8px;padding:10px 11px}
+select{min-width:220px}
+button{font:inherit;border:1px solid var(--line);background:white;border-radius:8px;padding:10px 14px;cursor:pointer}
+button.primary{background:var(--green);color:white;border-color:var(--green)}
+button.danger{color:var(--danger)}
+main{max-width:1400px;margin:auto;padding:28px}
+.tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.tab{background:transparent}
+.tab.active{background:var(--green);color:white;border-color:var(--green)}
+.panel{display:none}.panel.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h2{margin:0 0 18px;font:600 18px Georgia,serif}
+label{display:block;font-size:12px;color:var(--muted);margin:14px 0 6px}
+input,textarea{width:100%}
+textarea{min-height:92px;resize:vertical}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{padding:16px;background:#f8f6f1;border:1px solid var(--line);border-radius:10px;text-align:center}
+.stat strong{display:block;font-size:26px;font-family:Georgia,serif}
+.lang-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.preview{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#eee}
+.preview img{display:block;width:100%;height:180px;object-fit:cover}
+.preview .cap{padding:8px 10px;font-size:12px;color:var(--muted);background:white}
+.note{font-size:13px;color:var(--muted);line-height:1.5}
+.table-wrap{overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;min-width:900px}
+th,td{border-bottom:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:#f8f6f1}
+td input{min-width:140px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.status{padding:10px 12px;border-radius:8px;background:#ece9e1;color:var(--muted);font-size:13px}
+.hidden{display:none!important}
+@media(max-width:800px){.grid,.lang-grid,.preview-grid{grid-template-columns:1fr}.header-inner{align-items:flex-start;flex-direction:column}main{padding:18px}.stats{grid-template-columns:1fr}}
+fieldset{border:0;padding:0;margin:0;min-width:0}button:disabled{opacity:.5;cursor:wait}.connection{margin-bottom:22px}.connection input{max-width:440px}.connection .actions{align-items:center}#connectionStatus{white-space:pre-wrap}#editor:disabled{opacity:.6}.retail-tools{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.retail-tools .search{flex:1;min-width:220px}.retail-tools label{margin-top:0}.retail-tools select{min-width:100px}.retail-table{min-width:1050px;table-layout:fixed}.retail-table th:nth-child(1),.retail-table th:nth-child(2){width:20%}.retail-table th:nth-child(3){width:35%}.retail-table th:nth-child(4){width:25%}.retail-table th:nth-child(5){width:100px}.retail-table input{min-width:0;border-color:transparent;background:transparent;font-size:13px;padding:9px 5px}.retail-table input:focus{background:white;border-color:var(--green)}.retail-table tbody tr:nth-child(even){background:#f5f3ed}.retail-table tbody tr:hover{background:#ecefe8}.retail-table th button{background:none;border:0;padding:4px 0;font-size:12px;font-weight:600;white-space:nowrap}.retail-table thead input{background:white;border:1px solid var(--line);margin-top:8px}.pager{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px 0}.empty-table{text-align:center;padding:35px;color:var(--muted)}dialog{border:1px solid var(--line);border-radius:16px;padding:26px;max-width:520px;width:calc(100% - 36px);background:var(--paper);color:var(--ink)}dialog::backdrop{background:#17251db0}dialog h2{font:26px Georgia,serif;margin:0 0 18px}.dialog-error{color:var(--danger);white-space:pre-wrap}.danger.primary{background:var(--danger);border-color:var(--danger);color:white}.manage-bar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:22px;flex-wrap:wrap}.manage-bar p{margin:0}.table-wrap{max-height:660px}.retail-table thead{position:sticky;top:0;z-index:1;background:#f8f6f1}.photo-frame{height:220px;background-color:#e2ded5}.frame-controls{padding:12px;background:white}.frame-controls label{margin:8px 0 3px}.frame-controls input{width:75%;padding:0;vertical-align:middle}.frame-controls output{margin-left:10px;font-size:12px}.frame-controls button{margin-top:8px}</style>
 </head>
 <body>
-<header class="nav" id="nav">
-  <a class="logo" href="#home" data-home>ARAPUÃ<small id="logoTag">The Brazilian Art of Making</small></a>
-  <div class="navright">
-    <nav class="navlinks" id="navLinks">
-      <a href="#about" data-home-target="about"></a>
-      <a href="#maisons" id="maisonsMenuTrigger"></a>
-      <a href="#metiers" data-metiers></a>
-      <a href="#institutional" data-home-target="institutional"></a>
-    </nav>
-    <div class="lang" id="lang"><button class="langbtn" id="langBtn">EN</button><div class="langmenu" id="langMenu"><button data-lang="pt">PT</button><button data-lang="en">EN</button><button data-lang="es">ES</button><button data-lang="fr">FR</button></div></div>
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand">ARAPUÃ</div>
+      <div class="sub">Content Administration</div>
+    </div>
+    <div class="controls">
+      <select id="maisonSelect"><option>Carregando...</option></select>
+      <span id="status" class="status">Inicializando</span>
+    </div>
   </div>
 </header>
 
-<div class="maisons-menu" id="maisonsMenu" aria-hidden="true">
-  <div class="maisons-menu-inner">
-    <div class="maisons-menu-head">
-      <div>
-        <div class="maisons-menu-kicker" id="maisonsMenuKicker">Our Maisons</div>
-        <h2 class="maisons-menu-title" id="maisonsMenuTitle">Discover by division</h2>
-      </div>
-      <button class="maisons-menu-close" id="maisonsMenuClose" aria-label="Close">×</button>
-    </div>
-    <div class="maisons-menu-body">
-      <div class="maisons-menu-grid" id="maisonsMenuGrid"></div>
-      <aside class="maisons-menu-brands" id="maisonsMenuBrands">
-        <div class="maisons-menu-brands-kicker" id="maisonsMenuBrandsKicker">Maisons</div>
-        <h3 class="maisons-menu-brands-title" id="maisonsMenuBrandsTitle"></h3>
-        <div class="maisons-menu-brands-list" id="maisonsMenuBrandsList"></div>
-      </aside>
-    </div>
-    <div class="maisons-menu-footer">
-      <span id="maisonsMenuCount"></span>
-      <a class="maisons-menu-all" id="maisonsMenuAll" href="#maisons">View all divisions</a>
-    </div>
-  </div>
-</div>
-
 <main>
-<section class="page active" id="homePage">
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow" data-k="hero_kicker"></div>
-      <h1 data-k="hero_title"></h1>
-      <p data-k="hero_desc"></p>
-      <a class="text-link" href="#about" data-home-target="about" data-k="discover_group"></a>
-    </div>
-  </section>
-
-  
-  <section class="section about" id="about">
-    <div class="split">
-      <div>
-        <div class="eyebrow" data-k="about_kicker"></div>
-        <h2 class="title" data-k="about_title"></h2>
+  <section class="card connection" aria-labelledby="connectionTitle">
+    <h2 id="connectionTitle">Salvar alterações no site</h2>
+    <form id="connectForm">
+      <label for="adminKey">Chave de acesso do admin</label>
+      <input id="adminKey" type="password" autocomplete="off" spellcheck="false" placeholder="Digite sua chave do admin">
+      <div class="actions">
+        <button class="primary" id="connectButton" type="submit">Conectar</button>
+        <button id="reloadButton" type="button" disabled>Recarregar dados</button>
+        <button id="logoutButton" type="button" disabled>Desconectar</button>
       </div>
-      <div>
-        <p class="lead" data-k="about_p1"></p>
-        <p class="lead" data-k="about_p2"></p>
-        <div class="quote" data-k="quote"></div>
+    </form>
+    <p class="note" id="connectionStatus" role="status" aria-live="polite">Use a chave que você guardou como ADMIN_TOKEN. Ela permanece apenas nesta aba enquanto estiver conectada. O token do GitHub não deve ser inserido aqui.</p>
+    <p class="note">Salve cada seção após editar. A publicação do site pode levar alguns minutos. As imagens continuam sendo atualizadas pelo GitHub.</p>
+  </section>
+  <div class="manage-bar"><p class="note">Selecione uma Maison no topo para editar seu cadastro.</p><div class="actions" style="margin:0"><button type="button" id="createMaison" disabled>+ Nova Maison</button><button type="button" id="deleteMaison" class="danger" disabled>Excluir Maison</button></div></div><fieldset id="editor" disabled>
+  <div class="tabs">
+    <button class="tab active" data-tab="info">Brand Info</button>
+    <button class="tab" data-tab="editorial">Editorial &amp; Media</button>
+    <button class="tab" data-tab="retail">Retail Network</button>
+  </div>
+
+  <section id="info" class="panel active">
+    <div class="grid">
+      <div class="card">
+        <h2>Informações principais</h2>
+        <label>Key position</label><input id="key_position">
+        <label>Key position name</label><input id="key_position_name">
+        <label>Creation date</label><input id="founded">
+        <label>Headquarters</label><input id="hq">
+        <label>Website</label><input id="website">
+        <label>Boutique address</label><input id="boutique_address">
       </div>
-    </div>
-
-    <div class="principles-grid">
-      <article class="principle-card">
-        <div class="eyebrow" data-k="p1_eyebrow"></div>
-        <h3 data-k="p1_title"></h3>
-        <p data-k="p1_desc"></p>
-      </article>
-      <article class="principle-card">
-        <div class="eyebrow" data-k="p2_eyebrow"></div>
-        <h3 data-k="p2_title"></h3>
-        <p data-k="p2_desc"></p>
-      </article>
-      <article class="principle-card">
-        <div class="eyebrow" data-k="p3_eyebrow"></div>
-        <h3 data-k="p3_title"></h3>
-        <p data-k="p3_desc"></p>
-      </article>
-      <article class="principle-card">
-        <div class="eyebrow" data-k="p4_eyebrow"></div>
-        <h3 data-k="p4_title"></h3>
-        <p data-k="p4_desc"></p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section divisions" id="maisons">
-    <div class="section-head">
-      <div><div class="eyebrow" data-k="portfolio_kicker"></div><h2 class="title" data-k="portfolio_title"></h2></div>
-      <p data-k="portfolio_desc"></p>
-    </div>
-    <div class="division-grid" id="divisionGrid"></div>
-  </section>
-
-  <section class="section metiers" id="metiers-home">
-    <div class="split">
-      <div><div class="eyebrow" data-k="metiers_kicker"></div><h2 class="title" data-k="metiers_title"></h2></div>
-      <div><p class="lead" data-k="metiers_p1"></p><p class="lead" data-k="metiers_p2"></p><a class="text-link" href="#metiers" data-metiers data-k="metiers_cta"></a></div>
-    </div>
-    <div class="material-band">
-      <div class="material"><span>01</span><h3>Textile Arts</h3></div><div class="material"><span>02</span><h3>Leather Arts</h3></div><div class="material"><span>03</span><h3>Wood & Natural Materials</h3></div><div class="material"><span>04</span><h3>Precious Arts</h3></div><div class="material"><span>05</span><h3>Earth & Fire</h3></div><div class="material"><span>06</span><h3>Metal Arts</h3></div><div class="material"><span>07</span><h3>Future Materials Lab</h3></div>
-    </div>
-  </section>
-<section class="experience-rich">
-    <div class="experience-image"></div>
-    <div class="experience-copy-rich">
-      <div class="eyebrow" data-k="place_kicker"></div>
-      <h2 data-k="place_title"></h2>
-      <p data-k="place_desc"></p>
-
-      <div class="ecosystem-grid">
-        <div><span>ETEL</span><strong>Furniture</strong></div>
-        <div><span>Amyi / ByNomads</span><strong>Fragrance</strong></div>
-        <div><span>Artefacto</span><strong>Interiors</strong></div>
-        <div><span>Orfeu</span><strong>Coffee</strong></div>
-        <div><span>By Kamy</span><strong>Rugs & textiles</strong></div>
-        <div><span>Dengo</span><strong>Chocolate</strong></div>
-        <div><span>Tânia Bulhões</span><strong>Tableware</strong></div>
-        <div><span>Cave Geisse</span><strong>Sparkling wine</strong></div>
-        <div><span>Granado</span><strong>Amenities</strong></div>
-        <div><span>Pizzato & Era dos Ventos</span><strong>Wines</strong></div>
-      </div>
-    </div>
-  </section>
-  
-  <section class="section global">
-    <div class="split global-intro">
-      <div>
-        <div class="eyebrow" data-k="global_kicker"></div>
-        <h2 class="title" data-k="global_title"></h2>
-      </div>
-      <div>
-        <p class="lead" data-k="global_desc"></p>
-      </div>
-    </div>
-
-    <div class="city-platforms">
-      <article class="city-card"><span>São Paulo</span><p data-k="city_sp"></p></article>
-      <article class="city-card"><span>Rio de Janeiro</span><p data-k="city_rio"></p></article>
-      <article class="city-card"><span>Paris</span><p data-k="city_paris"></p></article>
-      <article class="city-card"><span>New York</span><p data-k="city_ny"></p></article>
-      <article class="city-card"><span>London</span><p data-k="city_london"></p></article>
-      <article class="city-card"><span>Miami</span><p data-k="city_miami"></p></article>
-      <article class="city-card"><span>Milan</span><p data-k="city_milan"></p></article>
-      <article class="city-card"><span>Tokyo</span><p data-k="city_tokyo"></p></article>
-    </div>
-  </section>
-  
-  <section class="institutional" id="institutional">
-    <div class="section institutional-inner">
-      <div class="split">
-        <div>
-          <div class="eyebrow" data-k="inst_kicker"></div>
-          <h2 class="title" data-k="inst_title"></h2>
+      <div class="card">
+        <h2>Presença física</h2>
+        <div class="stats">
+          <div class="stat"><strong id="statStores">0</strong><span>Stores</span></div>
+          <div class="stat"><strong id="statCountries">0</strong><span>Countries</span></div>
+          <div class="stat"><strong id="statCities">0</strong><span>Cities</span></div>
         </div>
-        <div>
-          <p class="lead institutional-lead" data-k="inst_desc"></p>
-        </div>
+        <p class="note">Esses números não são editáveis. Eles são calculados automaticamente a partir de <code>data/locations.json</code>.</p>
       </div>
-
-      <div class="institutional-grid">
-        <article>
-          <div class="eyebrow">FUNDAÇÃO ARAPUÃ</div>
-          <h3 data-k="foundation_title"></h3>
-          <p data-k="foundation_desc"></p>
-          <ul>
-            <li data-k="foundation_li1"></li>
-            <li data-k="foundation_li2"></li>
-            <li data-k="foundation_li3"></li>
-            <li data-k="foundation_li4"></li>
-            <li data-k="foundation_li5"></li>
-          </ul>
-        </article>
-        <article>
-          <div class="eyebrow">CASA ARAPUÃ</div>
-          <h3 data-k="casa_title"></h3>
-          <p data-k="casa_desc"></p>
-          <ul>
-            <li data-k="casa_li1"></li>
-            <li data-k="casa_li2"></li>
-            <li data-k="casa_li3"></li>
-            <li data-k="casa_li4"></li>
-            <li data-k="casa_li5"></li>
-          </ul>
-        </article>
-        <article>
-          <div class="eyebrow">ARAPUÃ PRIVATE CLIENT</div>
-          <h3 data-k="private_title"></h3>
-          <p data-k="private_desc"></p>
-          <ul>
-            <li data-k="private_li1"></li>
-            <li data-k="private_li2"></li>
-            <li data-k="private_li3"></li>
-            <li data-k="private_li4"></li>
-            <li data-k="private_li5"></li>
-          </ul>
-        </article>
-      </div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="saveInfo" type="button">Salvar informações</button>
+      <button id="downloadInfo" type="button">Baixar info.json desta Maison</button>
     </div>
   </section>
 
-<section class="manifesto"><p data-k="manifesto"></p></section>
-</section>
+  <section id="editorial" class="panel">
+    <div class="grid">
+      <div class="card">
+        <h2>Estrutura</h2>
+        <label>Name</label><input id="name">
+        <label>Category</label><input id="cat">
+        <label>Positioning — reach</label><input id="reach">
+        <label>Positioning — model</label><input id="model">
+      </div>
+      <div class="card">
+        <h2>Media</h2>
+        <div class="preview-grid">
+          <div class="preview"><img id="prevLogo"><div class="cap">logo.png</div></div>
+          <div class="preview"><div class="photo-frame" id="frame-cover" role="img" aria-label="Prévia Capa"></div><div class="cap">Capa — miniatura da imagem</div><div style="padding:12px;background:white"><button class="primary" type="button" id="openLiveCover">Ajustar na página real</button><p class="note">Use a página real para conferir o recorte, o logo e os textos sobre a foto.</p></div><div class="frame-controls"><label for="frame-cover-x">Horizontal</label><input id="frame-cover-x" data-frame-kind="cover" data-frame-key="x" type="range" min="0" max="100" value="50"><output>50%</output><label for="frame-cover-y">Vertical</label><input id="frame-cover-y" data-frame-kind="cover" data-frame-key="y" type="range" min="0" max="100" value="50"><output>50%</output><label for="frame-cover-zoom">Zoom</label><input id="frame-cover-zoom" data-frame-kind="cover" data-frame-key="zoom" type="range" min="50" max="300" value="100"><output>100%</output><button type="button" data-frame-reset="cover">Restaurar enquadramento</button></div></div>
+          <div class="preview"><div class="photo-frame" id="frame-identity" role="img" aria-label="Prévia Identidade"></div><div class="cap">Identidade</div><div class="frame-controls"><label for="frame-identity-x">Horizontal</label><input id="frame-identity-x" data-frame-kind="identity" data-frame-key="x" type="range" min="0" max="100" value="50"><output>50%</output><label for="frame-identity-y">Vertical</label><input id="frame-identity-y" data-frame-kind="identity" data-frame-key="y" type="range" min="0" max="100" value="50"><output>50%</output><label for="frame-identity-zoom">Zoom</label><input id="frame-identity-zoom" data-frame-kind="identity" data-frame-key="zoom" type="range" min="50" max="300" value="100"><output>100%</output><button type="button" data-frame-reset="identity">Restaurar enquadramento</button></div></div>
+          <div class="preview"><div class="photo-frame" id="frame-boutique" role="img" aria-label="Prévia Boutique"></div><div class="cap">Boutique</div><div class="frame-controls"><label for="frame-boutique-x">Horizontal</label><input id="frame-boutique-x" data-frame-kind="boutique" data-frame-key="x" type="range" min="0" max="100" value="50"><output>50%</output><label for="frame-boutique-y">Vertical</label><input id="frame-boutique-y" data-frame-kind="boutique" data-frame-key="y" type="range" min="0" max="100" value="50"><output>50%</output><label for="frame-boutique-zoom">Zoom</label><input id="frame-boutique-zoom" data-frame-kind="boutique" data-frame-key="zoom" type="range" min="50" max="300" value="100"><output>100%</output><button type="button" data-frame-reset="boutique">Restaurar enquadramento</button></div></div>
+        </div>
+        <p class="note">Ajuste a posição e o zoom das fotos existentes. Zoom abaixo de 100% pode deixar margens. O recorte se adapta ao espaço da foto em cada tela; esta prévia é uma referência. Para trocar o arquivo, use o GitHub.</p>
+      </div>
+    </div>
 
-<section class="page category" id="categoryPage">
-  <button class="crumb" data-home-target="maisons" data-k="cat_back"></button>
-  <div class="cat-head"><div class="script" id="catName"></div><h1 data-k="cat_title"></h1><p id="catIntro"></p></div>
-  <div class="brand-grid" id="brandGrid"></div>
-</section>
+    <div class="actions"><button type="button" class="primary" id="savePhotoFrames">Salvar enquadramentos</button></div><div class="card" style="margin-top:18px">
+      <h2>Right to exist</h2>
+      <div id="rightFields" class="lang-grid"></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h2>Code / métier</h2>
+      <div id="metierFields" class="lang-grid"></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h2>Hero / signature</h2>
+      <div id="iconFields" class="lang-grid"></div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="saveMaisons" type="button">Salvar editorial</button>
+      <button id="downloadMaisons" type="button">Baixar maisons.json atualizado</button>
+    </div>
+  </section>
 
-<section class="page maison-page" id="maisonPage">
-  <div id="maisonContent"></div>
-</section>
-
-<section class="page metiers-page" id="metiersPage">
-  <div class="metiers-hero"><button class="crumb" style="color:inherit" data-home-target="metiers-home" data-k="cat_back"></button><div class="eyebrow" style="margin-top:55px" data-k="metiers_page_kicker"></div><h1 data-k="metiers_page_title"></h1><p data-k="metiers_page_desc"></p></div>
-  <div class="poles"><div class="pole"><span>01</span><h3>Textile Arts</h3></div><div class="pole"><span>02</span><h3>Leather Arts</h3></div><div class="pole"><span>03</span><h3>Wood & Natural Materials</h3></div><div class="pole"><span>04</span><h3>Precious Arts</h3></div><div class="pole"><span>05</span><h3>Earth & Fire</h3></div><div class="pole"><span>06</span><h3>Metal Arts</h3></div><div class="pole"><span>07</span><h3>Future Materials Lab</h3></div></div>
-  <section class="knowledge"><div class="split"><div><div class="eyebrow" data-k="knowledge_title"></div><h2 class="title" data-k="knowledge_title"></h2></div><div><p class="lead" data-k="knowledge_desc"></p><h3 style="font-size:2rem;margin-top:50px" data-k="ethics_title"></h3><p class="lead" data-k="ethics_desc"></p></div></div></section>
-</section>
+  <section id="retail" class="panel">
+    <div class="card" style="margin-bottom:18px">
+      <h2>Retail Network</h2>
+      <p class="note">Cada linha vira uma loja em <code>data/locations.json</code>. Stores, Countries e Cities são recalculados automaticamente.</p>
+      <div class="retail-tools"><div class="search"><label for="retailSearch">Buscar na rede de lojas</label><input id="retailSearch" type="search" placeholder="País, cidade, endereço ou formato"></div><div><label for="retailSize">Linhas por página</label><select id="retailSize"><option>25</option><option>50</option><option>100</option></select></div><button type="button" id="clearRetailFilters">Limpar filtros</button><button type="button" id="importCSV">Importar CSV desta Maison</button><button type="button" id="importAllCSV">Importar CSV de várias marcas</button><button type="button" id="addStore">+ Adicionar loja</button></div><p class="note">Clique nos títulos para alternar A–Z e Z–A. Filtros e ordenação mudam apenas a visualização; todas as lojas são preservadas ao salvar.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="retail-table" aria-label="Lojas da Maison">
+        <thead><tr><th scope="col" aria-sort="none"><button type="button" data-sort="country" title="Ordenar Country">Country<span> ↕</span></button><input id="filter-country" type="search" placeholder="Filtrar…" aria-label="Filtrar Country"></th><th scope="col" aria-sort="none"><button type="button" data-sort="city" title="Ordenar City">City<span> ↕</span></button><input id="filter-city" type="search" placeholder="Filtrar…" aria-label="Filtrar City"></th><th scope="col" aria-sort="none"><button type="button" data-sort="location" title="Ordenar Location / address">Location / address<span> ↕</span></button><input id="filter-location" type="search" placeholder="Filtrar…" aria-label="Filtrar Location / address"></th><th scope="col" aria-sort="none"><button type="button" data-sort="format" title="Ordenar Format">Format<span> ↕</span></button><input id="filter-format" type="search" placeholder="Filtrar…" aria-label="Filtrar Format"></th><th scope="col">Ações</th></tr></thead>
+        <tbody id="retailBody"></tbody>
+      </table>
+    </div>
+    <div class="actions">
+      <span id="retailCount" class="note" role="status"></span></div><div class="pager"><span id="retailPage"></span><div><button type="button" id="retailPrev">Anterior</button> <button type="button" id="retailNext">Próxima</button></div></div><div class="actions"><button class="primary" id="saveLocations" type="button">Salvar lojas</button>
+      <button id="downloadLocations" type="button">Baixar locations.json atualizado</button>
+    </div>
+  </section>
+  </fieldset>
 </main>
 
-<footer class="footer" id="footer">
-  <div class="footergrid"><div><div class="footerbrand">ARAPUÃ</div><p data-k="footer_about" style="max-width:500px"></p></div><div><a href="#about" data-home-target="about" data-k="nav_about"></a><a href="#maisons" data-home-target="maisons" data-k="nav_maisons"></a><a href="#metiers" data-metiers data-k="nav_metiers"></a><a href="#institutional" data-home-target="institutional" data-k="nav_culture"></a></div><div><p>São Paulo<br>Rio de Janeiro<br>Paris<br>New York</p></div></div>
-  <div class="footbottom"><span>© 2026 ARAPUÃ</span><span>The Brazilian Art of Making</span></div>
-</footer>
+<dialog id="createDialog" aria-labelledby="createTitle"><form id="createMaisonForm"><h2 id="createTitle">Nova Maison</h2><label for="newMaisonName">Nome</label><input id="newMaisonName" maxlength="120" required><label for="newMaisonSlug">Identificador no endereço</label><input id="newMaisonSlug" required maxlength="80" pattern="[a-z0-9]+([-_][a-z0-9]+)*"><p class="note">Gerado a partir do nome. Use letras sem acentos, números e hífens.</p><label for="newMaisonCat">Categoria</label><select id="newMaisonCat" required></select><p class="note">A Maison será criada no site. Depois, preencha o editorial e as informações. As imagens são adicionadas pelo GitHub.</p><p id="createError" class="dialog-error" role="alert"></p><div class="actions"><button type="button" data-close-dialog="createDialog">Cancelar</button><button class="primary" type="submit">Criar Maison</button></div></form></dialog>
+<dialog id="deleteDialog" aria-labelledby="deleteTitle"><form id="deleteMaisonForm"><h2 id="deleteTitle">Excluir Maison</h2><p id="deleteDetails"></p><label for="confirmMaisonName">Para confirmar, digite: <strong id="deleteName"></strong></label><input id="confirmMaisonName" required autocomplete="off"><p id="deleteError" class="dialog-error" role="alert"></p><div class="actions"><button type="button" data-close-dialog="deleteDialog">Cancelar</button><button class="danger primary" type="submit">Excluir definitivamente do cadastro</button></div></form></dialog>
+<dialog id="csvDialog" aria-labelledby="csvTitle" style="max-width:900px"><h2 id="csvTitle">Importar boutiques</h2><p>Destino: <strong id="csvMaison"></strong></p><label for="csvFile">Arquivo CSV</label><input type="file" id="csvFile" accept=".csv,text/csv"><p class="note">Colunas: Country, City, Address / Location e Format. Para várias marcas, Brand é obrigatória e deve conter o nome ou identificador de uma Maison cadastrada. Na importação individual, é opcional. Aceita ponto e vírgula, vírgula ou tabulação.</p><label for="csvMode">Como aplicar</label><select id="csvMode"><option value="append">Adicionar às boutiques existentes</option><option value="replace">Substituir todas as boutiques desta Maison</option></select><p id="csvError" class="dialog-error" role="alert"></p><p id="csvSummary" class="note" role="status"></p><div id="csvBrandSummary" class="note" style="white-space:pre-wrap;max-height:180px;overflow:auto"></div><div class="table-wrap" style="max-height:300px"><table aria-label="Prévia do CSV" style="min-width:650px"><thead><tr><th>Maison</th><th>Country</th><th>City</th><th>Location</th><th>Format</th></tr></thead><tbody id="csvPreview"></tbody></table></div><p class="note">Prévia das primeiras 8 linhas. Nenhuma alteração será publicada até você clicar em Salvar lojas.</p><div class="actions"><button type="button" data-close-dialog="csvDialog">Cancelar</button><button type="button" class="primary" id="csvApply" disabled>Aplicar à tabela</button></div></dialog><dialog id="coverLiveDialog" style="max-width:1500px;width:calc(100vw - 32px);max-height:calc(100vh - 24px);padding:20px" aria-labelledby="coverLiveTitle"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><h2 id="coverLiveTitle">Enquadrar a capa na página real</h2><button type="button" id="closeLiveCover">Fechar</button></div><div class="controls"><label for="coverViewport">Tamanho da tela</label><select id="coverViewport"><option value="current">Mesmo tamanho desta janela</option><option value="1920x1080">Desktop amplo · 1920 × 1080</option><option value="1440x900">Notebook · 1440 × 900</option><option value="390x844">Celular · 390 × 844</option></select><span class="note" id="coverViewportSize"></span></div><div id="coverLiveStage" style="position:relative;overflow:hidden;margin:12px auto;background:#ddd"><iframe id="coverLiveFrame" title="Prévia real da capa" style="border:0;transform-origin:top left;pointer-events:none;position:absolute;left:0;top:0" sandbox="allow-scripts allow-same-origin"></iframe></div><div style="display:flex;gap:20px;flex-wrap:wrap"><div style="flex:1;min-width:140px"><label for="live-cover-x">Horizontal</label><input id="live-cover-x" type="range" min="0" max="100"><output></output></div><div style="flex:1;min-width:140px"><label for="live-cover-y">Vertical</label><input id="live-cover-y" type="range" min="0" max="100"><output></output></div><div style="flex:1;min-width:140px"><label for="live-cover-zoom">Zoom</label><input id="live-cover-zoom" type="range" min="50" max="300"><output></output></div></div><p id="coverLiveStatus" class="note" role="status"></p><div class="actions"><button type="button" id="coverLiveReset">Restaurar</button><button type="button" class="primary" id="coverLiveSave">Salvar enquadramento</button></div></dialog><script>
+const LANGS = ['pt','en','es','fr'];
+let MAISONS_PAYLOAD = null;
+let LOCATIONS_PAYLOAD = null;
+let currentSlug = null;
+let currentInfo = {};
 
-<script>
-const CATEGORIES = {"fashion": {"name": {"en": "Fashion & Leather Goods", "pt": "Moda & Artigos de Couro", "es": "Moda & Artículos de Cuero", "fr": "Mode & Maroquinerie"}, "count": 13, "image": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1800&q=88", "intro": {"en": "Distinct expressions of Brazilian fashion — from handwork and architectural tailoring to leather craft, footwear, resortwear and material innovation.", "pt": "Expressões distintas da moda brasileira — do trabalho manual e da alfaiataria arquitetônica à marroquinaria, calçados, resortwear e inovação de materiais.", "es": "Expresiones distintas de la moda brasileña — del trabajo manual y la sastrería arquitectónica a la marroquinería, el calzado, el resortwear y la innovación de materiales.", "fr": "Des expressions distinctes de la mode brésilienne — du geste artisanal et du tailoring architectural à la maroquinerie, la chaussure, le resortwear et l’innovation matière."}}, "jewelry": {"name": {"en": "Jewelry & High Jewelry", "pt": "Joalheria & Alta Joalheria", "es": "Joyería & Alta Joyería", "fr": "Joaillerie & Haute Joaillerie"}, "count": 6, "image": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1800&q=88", "intro": {"en": "Brazilian gemstones, metal, movement and exceptional craft, expressed from global fine jewelry to deliberately rare high-jewelry creations.", "pt": "Gemas brasileiras, metal, movimento e ofício excepcional, da joalheria de alcance global às criações de alta joalheria deliberadamente raras.", "es": "Gemas brasileñas, metal, movimiento y oficio excepcional, desde la joyería de alcance global hasta creaciones de alta joyería deliberadamente escasas.", "fr": "Pierres brésiliennes, métal, mouvement et métiers d’exception, de la joaillerie internationale aux créations de haute joaillerie volontairement rares."}}, "home": {"name": {"en": "Home & Art de Vivre", "pt": "Casa & Art de Vivre", "es": "Hogar & Art de Vivre", "fr": "Maison & Art de Vivre"}, "count": 6, "image": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=88", "intro": {"en": "A complete language of Brazilian living, from objects and rituals to collectible design, textile surfaces and entire interiors.", "pt": "Uma linguagem completa do viver brasileiro, do objeto e do ritual ao design colecionável, superfícies têxteis e espaços inteiros.", "es": "Un lenguaje completo del vivir brasileño, del objeto y el ritual al diseño coleccionable, las superficies textiles y los espacios completos.", "fr": "Un langage complet de l’art de vivre brésilien, de l’objet et du rituel au design de collection, aux surfaces textiles et aux espaces entiers."}}, "beauty": {"name": {"en": "Beauty & Olfactory Arts", "pt": "Beleza & Artes Olfativas", "es": "Belleza & Artes Olfativas", "fr": "Beauté & Arts Olfactifs"}, "count": 3, "image": "https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=1800&q=88", "intro": {"en": "Botanical heritage, haute parfumerie and olfactory ritual form three complementary expressions of Brazilian beauty.", "pt": "Herança botânica, alta perfumaria e ritual olfativo formam três expressões complementares da beleza brasileira.", "es": "Herencia botánica, alta perfumería y ritual olfativo forman tres expresiones complementarias de la belleza brasileña.", "fr": "Héritage botanique, haute parfumerie et rituel olfactif composent trois expressions complémentaires de la beauté brésilienne."}}, "terroir": {"name": {"en": "Gastronomy & Brazilian Terroir", "pt": "Gastronomia & Terroir Brasileiro", "es": "Gastronomía & Terroir Brasileño", "fr": "Gastronomie & Terroir Brésilien"}, "count": 2, "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=88", "intro": {"en": "Cocoa and coffee are treated as great terroir materials — with origin, producers, processing and taste at the center.", "pt": "Cacau e café são tratados como grandes matérias de terroir — com origem, produtor, processamento e sabor no centro.", "es": "Cacao y café se tratan como grandes materias de terroir — con el origen, el productor, el proceso y el sabor en el centro.", "fr": "Le cacao et le café sont traités comme de grandes matières de terroir — avec l’origine, le producteur, le processus et le goût au centre."}}, "hospitality": {"name": {"en": "Hospitality & Gastronomy", "pt": "Hospitalidade & Gastronomia", "es": "Hospitalidad & Gastronomía", "fr": "Hospitalité & Gastronomie"}, "count": 3, "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=88", "intro": {"en": "Three distinct ways to experience Brazilian hospitality: cosmopolitan grandeur, intimate service and a profound sense of place.", "pt": "Três formas distintas de viver a hospitalidade brasileira: grandeza cosmopolita, serviço íntimo e profundo senso de lugar.", "es": "Tres formas distintas de vivir la hospitalidad brasileña: grandeza cosmopolita, servicio íntimo y un profundo sentido de lugar.", "fr": "Trois manières distinctes de vivre l’hospitalité brésilienne : grandeur cosmopolite, service intime et profond sens du lieu."}}, "wines": {"name": {"en": "Wines & Terroirs", "pt": "Vinhos & Terroirs", "es": "Vinos & Terroirs", "fr": "Vins & Terroirs"}, "count": 3, "image": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1800&q=88", "intro": {"en": "Sparkling wine, vineyard specificity and ancestral winemaking reveal three complementary expressions of Brazilian wine culture.", "pt": "Espumante, especificidade de vinhedo e vinificação ancestral revelam três expressões complementares da cultura brasileira do vinho.", "es": "Espumante, especificidad de viñedo y vinificación ancestral revelan tres expresiones complementarias de la cultura brasileña del vino.", "fr": "Effervescence, précision parcellaire et vinification ancestrale révèlent trois expressions complémentaires de la culture viticole brésilienne."}}};
-let BRANDS = [];
-const I18N = {"en": {"tagline": "The Brazilian Art of Making", "nav_about": "About", "nav_maisons": "Maisons", "nav_metiers": "Métiers d’Art", "nav_culture": "Culture", "hero_kicker": "A Brazilian luxury group", "hero_title": "The Brazilian Art of Making", "hero_desc": "Exceptional maisons. Singular identities. A shared belief in the global significance of Brazilian creativity, materials, craftsmanship, terroirs and experiences.", "discover_group": "Discover Arapuã", "about_kicker": "About Arapuã", "about_title": "A Brazilian luxury group built around what can only be made here.", "about_p1": "Arapuã brings together exceptional Brazilian maisons across fashion, jewelry, beauty, design, gastronomy, wine and hospitality — each with its own identity, creative language and heritage.", "about_p2": "The group does not seek to make them look alike. It gives each Maison the scale, knowledge, craftsmanship and international reach to become a stronger expression of itself.", "quote": "From the land, through knowledge, by hand, together.", "portfolio_kicker": "Our Maisons", "portfolio_title": "Different houses. One ecosystem.", "portfolio_desc": "Thirty-six maisons across seven divisions, connected by a shared commitment to exceptional making.", "view_division": "Discover the division", "metiers_kicker": "Craftsmanship & materials", "metiers_title": "Knowledge is part of the heritage.", "metiers_p1": "Arapuã Métiers d’Art preserves and advances specialized skills in textiles, leather, wood, natural materials, precious arts, ceramics, glass, metalwork and future materials.", "metiers_p2": "Its role is not to make every maison look alike, but to ensure that techniques, materials and expertise can travel — while authorship and the identity of each house remain protected.", "metiers_cta": "Discover Métiers d’Art", "culture_kicker": "Culture & legacy", "culture_title": "Luxury has a cultural responsibility.", "culture_desc": "Through Fundação Arapuã, the group supports archives, research, training, exhibitions, creative residencies and the preservation of Brazilian making. Cultural legitimacy is built over generations.", "foundation": "Fundação Arapuã", "living": "Living Knowledge", "living_desc": "Masters, apprentices, material libraries and documented processes keep knowledge alive and evolving.", "place_kicker": "Experiences", "place_title": "The Arapuã universe is meant to be lived.", "place_desc": "In hospitality, the group’s ecosystem becomes tangible. A guest may encounter Brazilian design, tableware, fragrance, coffee, chocolate, wine and service in a single experience — without ever feeling inside a showroom. The connection is subtle; the coherence is unmistakable.", "global_kicker": "A Brazilian group, globally minded", "global_title": "Brazilian maisons, in the world’s most relevant luxury cities.", "global_desc": "Arapuã expands through places where culture, luxury and influence meet. Each city is a platform for discovery: some build credibility, others create demand, relationships or cultural relevance. The objective is not ubiquity, but presence with meaning.", "manifesto": "Arapuã does not seek to make Brazilian versions of European luxury. It exists to reveal forms of excellence that could only have been born here.", "footer_about": "A Brazilian luxury group built around exceptional maisons, craftsmanship, materials, terroirs and experiences.", "cat_kicker": "Our Maisons", "cat_title": "Maisons", "cat_back": "Back to all divisions", "maison_identity": "Identity", "maison_singular": "What makes the Maison singular", "maison_metier": "Savoir-faire", "maison_icon": "Signature territory", "maison_group": "Within Arapuã", "maison_group_desc": "The Maison remains independently led and creatively distinct. Arapuã supports its long-term development while connecting it, selectively, to shared knowledge, materials, craftsmanship and international capabilities.", "back_division": "Back to the division", "other_maisons": "Other Maisons in this division", "discover": "Discover", "metiers_page_kicker": "Arapuã Métiers d’Art", "metiers_page_title": "Preserving the hands, techniques and materials behind exceptional making.", "metiers_page_desc": "A shared infrastructure for craft, manufacturing and material knowledge — designed to strengthen distinct maisons, never standardize them.", "knowledge_title": "Living Knowledge", "knowledge_desc": "Workshops are only one part of the system. Arapuã invests in masters, apprentices, curricula, archives, material libraries, documented processes, training and long-term partnerships.", "ethics_title": "Knowledge with authorship", "ethics_desc": "Traditional knowledge is approached with clear principles of authorship, remuneration, shared benefit and consent, particularly when working with traditional communities or culturally sensitive practices.", "p1_eyebrow": "01 · Independence", "p1_title": "Distinct Maisons", "p1_desc": "Creative identity, heritage and leadership remain protected. The value of the group begins with the singularity of each house.", "p2_eyebrow": "02 · Connection", "p2_title": "Shared savoir-faire", "p2_desc": "Materials, artisans, techniques and knowledge move through the ecosystem, creating possibilities no Maison would access alone.", "p3_eyebrow": "03 · Elevation", "p3_title": "Excellence before breadth", "p3_desc": "Arapuã grows by making its Maisons more relevant, more desirable and more enduring — not simply by adding more brands.", "p4_eyebrow": "04 · Brazil", "p4_title": "Origin as advantage", "p4_desc": "Brazil is not a visual theme. It is the source of materials, cultures, terroirs and ways of making that give the group its distinction.", "city_sp": "The creative and commercial heart of the group — where the ecosystem begins.", "city_rio": "A cultural expression of Brazilian jewelry, resort, hospitality and art de vivre.", "city_paris": "A stage for fashion, jewelry, fragrance and the international legitimacy of Brazilian luxury.", "city_ny": "A market for scale, collectors, culture and global visibility.", "city_london": "A gateway to international luxury clients, culture and UHNW relationships.", "city_miami": "A natural bridge between Brazil, the United States and Latin America.", "city_milan": "A platform for design, furniture, fashion and material culture.", "city_tokyo": "A city where craft, precision, design and cultural luxury naturally resonate.", "inst_kicker": "Beyond product", "inst_title": "Institutions that make the group more than a portfolio of brands.", "inst_desc": "Arapuã also invests in the cultural, experiential and relationship infrastructure that allows Brazilian luxury to accumulate meaning over time.", "foundation_title": "Cultural legitimacy", "foundation_desc": "A long-term institution dedicated to preserving and expanding Brazilian creative knowledge.", "foundation_li1": "archives & digitization", "foundation_li2": "craft training", "foundation_li3": "design research", "foundation_li4": "exhibitions & residencies", "foundation_li5": "material research", "casa_title": "The ecosystem made physical", "casa_desc": "A small number of institutional houses where culture, craft, gastronomy and private client experiences meet.", "casa_li1": "exhibitions", "casa_li2": "atelier demonstrations", "casa_li3": "private salons", "casa_li4": "gastronomy", "casa_li5": "creative residencies", "private_title": "Access, never discount", "private_desc": "A transversal relationship for the group’s most important clients, built around exceptional access rather than loyalty mechanics.", "private_li1": "atelier visits", "private_li2": "high jewelry previews", "private_li3": "library wines", "private_li4": "private hospitality experiences", "private_li5": "couture & commissions", "no_info": "no information", "ceo": "CEO", "creation_date": "Creation date", "headquarters": "Headquarters", "visit_website": "Visit the website ↗", "identity": "Identity", "maison_summary_label": "The Maison", "right_to_exist": "Right to exist", "code_metier": "Code / métier", "hero_label": "Hero", "scale_label": "Scale", "back_to_division": "Back to the division", "in_arapua": "Within Arapuã", "maison_short_intro": "A singular Maison whose identity is defined by its own creative territory and savoir-faire.", "maison_story_kicker": "The Maison", "maison_story_title": "A distinct expression of its craft.", "story_exist_intro": "Its purpose is to", "story_metier_intro": "At the heart of the Maison is", "story_hero_intro": "Its most emblematic expression is found in", "story_scale_intro": "Its growth is conceived as", "scale_global": "global", "scale_selective": "selective international growth", "scale_scarce": "deliberately scarce", "scale_medium": "a focused international presence", "scale_high_global": "an established global presence", "scale_global_flagship": "a global flagship presence", "scale_very_scarce": "extremely limited by design", "scale_medium_atelier": "a selective scale, with rare atelier work", "story_close": "Together, these elements define a Maison that grows without diluting what makes it singular.", "positioning_kicker": "Positioning", "positioning_title": "How the Maison is designed to grow", "reach_label": "Geographic reach", "model_label": "Scale model", "reach_global": "Global", "reach_global_prestige": "Global prestige", "reach_international_selective": "Selective international", "model_broad_luxury": "Broad-scale luxury", "model_specialist_growth": "Global specialist growth", "model_specialist": "Specialist", "model_specialist_rare": "Specialist with scarce atelier production", "model_rare": "Deliberately rare", "model_ultra_rare": "Ultra-rare by design", "positioning_note_global_broad": "Built to become a large international luxury business, with broad category relevance and controlled distribution.", "positioning_note_global_specialist": "Built for meaningful international scale while remaining strongly identified with a specific category or métier.", "positioning_note_selective_specialist": "Built to grow internationally through selective distribution and a clearly defined specialist territory.", "positioning_note_rare": "Prestige depends on scarcity. Growth is selective and must never compromise rarity, authorship or creative integrity.", "positioning_note_ultra": "The Maison is not designed for volume. Its strategic value comes from exceptional rarity, cultural capital and prestige.", "operating_model_label": "Operating model", "stores_kicker": "Retail presence", "stores_title": "Spaces that bring the Maison to life.", "stores_desc": "Boutiques and physical spaces are part of how each Maison expresses its world — through architecture, service, materials and atmosphere.", "stores_label": "Stores", "countries_label": "Countries", "cities_label": "Cities", "see_cities": "View cities", "hide_cities": "Hide cities", "no_store_data": "No retail information available", "store_image_alt": "Store of the Maison", "address_label": "Address", "store_type_label": "Store type", "city_details": "Store details", "click_city": "Select a city to view store details", "key_position_default": "Key position", "brand_logo_alt": "Maison logo", "countries_list_label": "Countries & cities", "store_singular": "store", "store_plural": "stores", "boutique_photo_caption": "Boutique shown"}, "pt": {"tagline": "A Arte Brasileira de Fazer", "nav_about": "Sobre", "nav_maisons": "Maisons", "nav_metiers": "Métiers d’Art", "nav_culture": "Cultura", "hero_kicker": "Um grupo brasileiro de luxo", "hero_title": "A Arte Brasileira de Fazer", "hero_desc": "Maisons excepcionais. Identidades singulares. Uma crença compartilhada na relevância global da criatividade, das matérias, dos ofícios, dos terroirs e das experiências brasileiras.", "discover_group": "Conheça a Arapuã", "about_kicker": "Sobre a Arapuã", "about_title": "Um grupo brasileiro de luxo construído em torno daquilo que só poderia ser feito aqui.", "about_p1": "A Arapuã reúne maisons brasileiras excepcionais em moda, joalheria, beleza, design, gastronomia, vinhos e hospitalidade — cada uma com identidade, linguagem criativa e patrimônio próprios.", "about_p2": "O grupo não existe para fazê-las parecer iguais. Existe para dar a cada Maison escala, conhecimento, ofício e alcance internacional para se tornar uma expressão ainda mais forte de si mesma.", "quote": "Da terra, pelo conhecimento, pelas mãos, juntos.", "portfolio_kicker": "Nossas Maisons", "portfolio_title": "Casas diferentes. Um ecossistema.", "portfolio_desc": "Trinta e seis maisons em sete divisões, conectadas por um compromisso comum com o fazer excepcional.", "view_division": "Conhecer a divisão", "metiers_kicker": "Ofícios & materiais", "metiers_title": "Conhecimento também é patrimônio.", "metiers_p1": "A Arapuã Métiers d’Art preserva e desenvolve competências especializadas em têxteis, couro, madeira, materiais naturais, artes preciosas, cerâmica, vidro, metal e materiais do futuro.", "metiers_p2": "Seu papel não é fazer todas as maisons parecerem iguais, mas garantir que técnicas, matérias e expertise possam circular — preservando autoria e a identidade de cada casa.", "metiers_cta": "Conhecer Métiers d’Art", "culture_kicker": "Cultura & legado", "culture_title": "O luxo tem uma responsabilidade cultural.", "culture_desc": "Por meio da Fundação Arapuã, o grupo apoia arquivos, pesquisa, formação, exposições, residências criativas e a preservação do fazer brasileiro. Legitimidade cultural se constrói por gerações.", "foundation": "Fundação Arapuã", "living": "Conhecimento Vivo", "living_desc": "Mestres, aprendizes, bibliotecas de materiais e processos documentados mantêm o conhecimento vivo e em evolução.", "place_kicker": "Experiências", "place_title": "O universo Arapuã foi feito para ser vivido.", "place_desc": "Na hospitalidade, o ecossistema do grupo se torna tangível. Um hóspede pode encontrar design brasileiro, mesa, fragrância, café, chocolate, vinho e serviço dentro de uma única experiência — sem jamais sentir que está em um showroom. A conexão é sutil; a coerência é evidente.", "global_kicker": "Um grupo brasileiro, de vocação global", "global_title": "Maisons brasileiras nas cidades mais relevantes do luxo mundial.", "global_desc": "A Arapuã se expande por lugares onde cultura, luxo e influência se encontram. Cada cidade funciona como uma plataforma de descoberta: algumas constroem legitimidade, outras geram desejo, relacionamento ou relevância cultural. O objetivo não é estar em todos os lugares, mas estar onde faz sentido.", "manifesto": "A Arapuã não busca criar versões brasileiras do luxo europeu. Existe para revelar formas de excelência que só poderiam ter nascido aqui.", "footer_about": "Um grupo brasileiro de luxo construído em torno de maisons excepcionais, artesanato, matérias, terroirs e experiências.", "cat_kicker": "Nossas Maisons", "cat_title": "Maisons", "cat_back": "Voltar a todas as divisões", "maison_identity": "Identidade", "maison_singular": "O que torna a Maison singular", "maison_metier": "Savoir-faire", "maison_icon": "Território de assinatura", "maison_group": "Na Arapuã", "maison_group_desc": "A Maison permanece liderada de forma independente e criativamente distinta. A Arapuã apoia seu desenvolvimento de longo prazo e a conecta, de forma seletiva, a conhecimento, materiais, ofícios e capacidades internacionais compartilhadas.", "back_division": "Voltar à divisão", "other_maisons": "Outras Maisons desta divisão", "discover": "Conhecer", "metiers_page_kicker": "Arapuã Métiers d’Art", "metiers_page_title": "Preservando as mãos, técnicas e matérias por trás do fazer excepcional.", "metiers_page_desc": "Uma infraestrutura compartilhada de ofício, produção e conhecimento material — criada para fortalecer maisons distintas, nunca padronizá-las.", "knowledge_title": "Conhecimento Vivo", "knowledge_desc": "As oficinas são apenas uma parte do sistema. A Arapuã investe em mestres, aprendizes, currículos, arquivos, bibliotecas de materiais, processos documentados, formação e parcerias de longo prazo.", "ethics_title": "Conhecimento com autoria", "ethics_desc": "O conhecimento tradicional é tratado com princípios claros de autoria, remuneração, benefício compartilhado e consentimento, especialmente no trabalho com comunidades tradicionais ou práticas culturalmente sensíveis.", "p1_eyebrow": "01 · Independência", "p1_title": "Maisons distintas", "p1_desc": "Identidade criativa, patrimônio e liderança permanecem protegidos. O valor do grupo começa na singularidade de cada casa.", "p2_eyebrow": "02 · Conexão", "p2_title": "Savoir-faire compartilhado", "p2_desc": "Materiais, artesãos, técnicas e conhecimento circulam pelo ecossistema, criando possibilidades que nenhuma Maison acessaria sozinha.", "p3_eyebrow": "03 · Elevação", "p3_title": "Excelência antes de amplitude", "p3_desc": "A Arapuã cresce tornando suas Maisons mais relevantes, desejadas e duradouras — não simplesmente adicionando novas marcas.", "p4_eyebrow": "04 · Brasil", "p4_title": "Origem como vantagem", "p4_desc": "Brasil não é um tema visual. É a fonte de materiais, culturas, terroirs e formas de fazer que dão distinção ao grupo.", "city_sp": "O coração criativo e comercial do grupo — onde o ecossistema começa.", "city_rio": "Uma expressão cultural de joalheria, resort, hospitalidade e art de vivre brasileiro.", "city_paris": "Um palco para moda, joalheria, fragrância e a legitimidade internacional do luxo brasileiro.", "city_ny": "Um mercado de escala, colecionadores, cultura e visibilidade global.", "city_london": "Uma porta para clientes internacionais de luxo, cultura e relações UHNW.", "city_miami": "Uma ponte natural entre Brasil, Estados Unidos e América Latina.", "city_milan": "Uma plataforma para design, mobiliário, moda e cultura material.", "city_tokyo": "Uma cidade onde ofício, precisão, design e luxo cultural encontram ressonância natural.", "inst_kicker": "Além do produto", "inst_title": "Instituições que fazem do grupo mais do que um portfólio de marcas.", "inst_desc": "A Arapuã também investe na infraestrutura cultural, experiencial e relacional que permite ao luxo brasileiro acumular significado ao longo do tempo.", "foundation_title": "Legitimidade cultural", "foundation_desc": "Uma instituição de longo prazo dedicada a preservar e expandir o conhecimento criativo brasileiro.", "foundation_li1": "arquivos & digitalização", "foundation_li2": "formação de artesãos", "foundation_li3": "pesquisa em design", "foundation_li4": "exposições & residências", "foundation_li5": "pesquisa de materiais", "casa_title": "O ecossistema materializado", "casa_desc": "Pouquíssimas casas institucionais onde cultura, ofício, gastronomia e experiências de private client se encontram.", "casa_li1": "exposições", "casa_li2": "demonstrações de atelier", "casa_li3": "salões privados", "casa_li4": "gastronomia", "casa_li5": "residências criativas", "private_title": "Acesso, nunca desconto", "private_desc": "Uma relação transversal com os clientes mais importantes do grupo, construída em torno de acesso excepcional e não de mecânicas de fidelidade.", "private_li1": "visitas a ateliers", "private_li2": "previews de alta joalheria", "private_li3": "vinhos de biblioteca", "private_li4": "experiências privadas de hospitalidade", "private_li5": "couture & encomendas", "no_info": "sem informação", "ceo": "CEO", "creation_date": "Data de criação", "headquarters": "Sede", "visit_website": "Visitar o site ↗", "identity": "Identidade", "maison_summary_label": "A Maison", "right_to_exist": "Direito de existir", "code_metier": "Código / métier", "hero_label": "Hero", "scale_label": "Escala", "back_to_division": "Voltar à divisão", "in_arapua": "Na Arapuã", "maison_short_intro": "Uma Maison singular, cuja identidade é definida por território criativo e savoir-faire próprios.", "maison_story_kicker": "A Maison", "maison_story_title": "Uma expressão singular de seu ofício.", "story_exist_intro": "Seu propósito é", "story_metier_intro": "No centro da Maison está", "story_hero_intro": "Sua expressão mais emblemática está em", "story_scale_intro": "Seu crescimento é pensado de forma", "scale_global": "global", "scale_selective": "internacional e seletiva", "scale_scarce": "deliberadamente escassa", "scale_medium": "internacional, com presença focada", "scale_high_global": "global, com presença consolidada", "scale_global_flagship": "global, com papel de flagship", "scale_very_scarce": "extremamente escassa por escolha", "scale_medium_atelier": "seletiva, combinando escala média e trabalho raro de atelier", "story_close": "Juntos, esses elementos definem uma Maison capaz de crescer sem diluir aquilo que a torna singular.", "positioning_kicker": "Posicionamento", "positioning_title": "Como a Maison foi pensada para crescer", "reach_label": "Alcance geográfico", "model_label": "Modelo de escala", "reach_global": "Global", "reach_global_prestige": "Prestígio global", "reach_international_selective": "Internacional seletiva", "model_broad_luxury": "Luxo de ampla escala", "model_specialist_growth": "Especialista de crescimento global", "model_specialist": "Especialista", "model_specialist_rare": "Especialista com produção rara de atelier", "model_rare": "Deliberadamente rara", "model_ultra_rare": "Ultrarrara por escolha", "positioning_note_global_broad": "Pensada para se tornar um grande negócio internacional de luxo, com relevância ampla de categoria e distribuição controlada.", "positioning_note_global_specialist": "Pensada para ganhar escala internacional relevante sem perder a associação clara a uma categoria ou métier específico.", "positioning_note_selective_specialist": "Pensada para crescer internacionalmente por distribuição seletiva e um território especialista claramente definido.", "positioning_note_rare": "Seu prestígio depende da escassez. O crescimento deve ser seletivo e jamais comprometer raridade, autoria ou integridade criativa.", "positioning_note_ultra": "A Maison não foi desenhada para volume. Seu valor estratégico está na raridade excepcional, no capital cultural e no prestígio.", "operating_model_label": "Modelo operacional", "stores_kicker": "Presença física", "stores_title": "Espaços que dão vida ao universo da Maison.", "stores_desc": "Boutiques e espaços físicos são parte da forma como cada Maison expressa seu universo — por meio de arquitetura, serviço, materiais e atmosfera.", "stores_label": "Lojas", "countries_label": "Países", "cities_label": "Cidades", "see_cities": "Ver cidades", "hide_cities": "Ocultar cidades", "no_store_data": "Sem informações de presença física", "store_image_alt": "Loja da Maison", "address_label": "Endereço", "store_type_label": "Tipo de loja", "city_details": "Detalhes da loja", "click_city": "Selecione uma cidade para ver os detalhes da loja", "key_position_default": "Posição-chave", "brand_logo_alt": "Logo da Maison", "countries_list_label": "Países & cidades", "store_singular": "loja", "store_plural": "lojas", "boutique_photo_caption": "Loja da imagem"}, "es": {"tagline": "El Arte Brasileño de Hacer", "nav_about": "Acerca de", "nav_maisons": "Maisons", "nav_metiers": "Métiers d’Art", "nav_culture": "Cultura", "hero_kicker": "Un grupo brasileño de lujo", "hero_title": "El Arte Brasileño de Hacer", "hero_desc": "Maisons excepcionales. Identidades singulares. Una convicción compartida en la relevancia global de la creatividad, los materiales, los oficios, los terroirs y las experiencias brasileñas.", "discover_group": "Conocer Arapuã", "about_kicker": "Acerca de Arapuã", "about_title": "Un grupo brasileño de lujo construido alrededor de aquello que solo podría hacerse aquí.", "about_p1": "Arapuã reúne maisons brasileñas excepcionales en moda, joyería, belleza, diseño, gastronomía, vinos y hospitalidad — cada una con identidad, lenguaje creativo y patrimonio propios.", "about_p2": "El grupo no existe para hacerlas parecer iguales. Existe para dar a cada Maison escala, conocimiento, oficio y alcance internacional para convertirse en una expresión aún más fuerte de sí misma.", "quote": "Desde la tierra, a través del conocimiento, por la mano, juntos.", "portfolio_kicker": "Nuestras Maisons", "portfolio_title": "Casas diferentes. Un ecosistema.", "portfolio_desc": "Treinta y seis maisons en siete divisiones, conectadas por un compromiso común con el hacer excepcional.", "view_division": "Conocer la división", "metiers_kicker": "Oficios & materiales", "metiers_title": "El conocimiento también es patrimonio.", "metiers_p1": "Arapuã Métiers d’Art preserva y desarrolla competencias especializadas en textiles, cuero, madera, materiales naturales, artes preciosas, cerámica, vidrio, metal y materiales del futuro.", "metiers_p2": "Su función no es hacer que todas las maisons se parezcan, sino permitir que técnicas, materiales y conocimiento circulen, protegiendo la autoría y la identidad de cada casa.", "metiers_cta": "Conocer Métiers d’Art", "culture_kicker": "Cultura & legado", "culture_title": "El lujo tiene una responsabilidad cultural.", "culture_desc": "A través de Fundação Arapuã, el grupo apoya archivos, investigación, formación, exposiciones, residencias creativas y la preservación del hacer brasileño. La legitimidad cultural se construye durante generaciones.", "foundation": "Fundação Arapuã", "living": "Conocimiento Vivo", "living_desc": "Maestros, aprendices, bibliotecas de materiales y procesos documentados mantienen el conocimiento vivo y en evolución.", "place_kicker": "Experiencias", "place_title": "El universo Arapuã está hecho para vivirse.", "place_desc": "En la hospitalidad, el ecosistema del grupo se vuelve tangible. Un huésped puede encontrar diseño brasileño, mesa, fragancia, café, chocolate, vino y servicio en una sola experiencia — sin sentir nunca que está en un showroom. La conexión es sutil; la coherencia, inconfundible.", "global_kicker": "Un grupo brasileño de vocación global", "global_title": "Maisons brasileñas en las ciudades más relevantes del lujo mundial.", "global_desc": "Arapuã se expande por lugares donde cultura, lujo e influencia se encuentran. Cada ciudad funciona como plataforma de descubrimiento: algunas construyen legitimidad, otras generan deseo, relaciones o relevancia cultural. El objetivo no es la ubicuidad, sino una presencia con sentido.", "manifesto": "Arapuã no busca crear versiones brasileñas del lujo europeo. Existe para revelar formas de excelencia que solo podrían haber nacido aquí.", "footer_about": "Un grupo brasileño de lujo construido alrededor de maisons excepcionales, artesanía, materiales, terroirs y experiencias.", "cat_kicker": "Nuestras Maisons", "cat_title": "Maisons", "cat_back": "Volver a todas las divisiones", "maison_identity": "Identidad", "maison_singular": "Lo que hace singular a la Maison", "maison_metier": "Savoir-faire", "maison_icon": "Territorio de firma", "maison_group": "En Arapuã", "maison_group_desc": "La Maison permanece dirigida de forma independiente y creativamente distinta. Arapuã apoya su desarrollo a largo plazo y la conecta, selectivamente, con conocimiento, materiales, oficios y capacidades internacionales compartidas.", "back_division": "Volver a la división", "other_maisons": "Otras Maisons de esta división", "discover": "Conocer", "metiers_page_kicker": "Arapuã Métiers d’Art", "metiers_page_title": "Preservando las manos, técnicas y materias detrás del hacer excepcional.", "metiers_page_desc": "Una infraestructura compartida de oficio, producción y conocimiento material — diseñada para fortalecer maisons distintas, nunca estandarizarlas.", "knowledge_title": "Conocimiento Vivo", "knowledge_desc": "Los talleres son solo una parte del sistema. Arapuã invierte en maestros, aprendices, currículos, archivos, bibliotecas de materiales, procesos documentados, formación y alianzas de largo plazo.", "ethics_title": "Conocimiento con autoría", "ethics_desc": "El conocimiento tradicional se aborda con principios claros de autoría, remuneración, beneficio compartido y consentimiento, especialmente al trabajar con comunidades tradicionales o prácticas culturalmente sensibles.", "p1_eyebrow": "01 · Independencia", "p1_title": "Maisons distintas", "p1_desc": "Identidad creativa, patrimonio y liderazgo permanecen protegidos. El valor del grupo comienza en la singularidad de cada casa.", "p2_eyebrow": "02 · Conexión", "p2_title": "Savoir-faire compartido", "p2_desc": "Materiales, artesanos, técnicas y conocimiento circulan por el ecosistema, creando posibilidades que ninguna Maison alcanzaría sola.", "p3_eyebrow": "03 · Elevación", "p3_title": "Excelencia antes que amplitud", "p3_desc": "Arapuã crece haciendo sus Maisons más relevantes, deseables y duraderas — no simplemente sumando nuevas marcas.", "p4_eyebrow": "04 · Brasil", "p4_title": "El origen como ventaja", "p4_desc": "Brasil no es un tema visual. Es la fuente de materiales, culturas, terroirs y formas de hacer que distinguen al grupo.", "city_sp": "El corazón creativo y comercial del grupo — donde comienza el ecosistema.", "city_rio": "Una expresión cultural de joyería, resort, hospitalidad y art de vivre brasileño.", "city_paris": "Un escenario para moda, joyería, fragancia y la legitimidad internacional del lujo brasileño.", "city_ny": "Un mercado de escala, coleccionistas, cultura y visibilidad global.", "city_london": "Una puerta a clientes internacionales de lujo, cultura y relaciones UHNW.", "city_miami": "Un puente natural entre Brasil, Estados Unidos y América Latina.", "city_milan": "Una plataforma para diseño, mobiliario, moda y cultura material.", "city_tokyo": "Una ciudad donde oficio, precisión, diseño y lujo cultural encuentran resonancia natural.", "inst_kicker": "Más allá del producto", "inst_title": "Instituciones que hacen del grupo algo más que un portafolio de marcas.", "inst_desc": "Arapuã también invierte en la infraestructura cultural, experiencial y relacional que permite al lujo brasileño acumular significado con el tiempo.", "foundation_title": "Legitimidad cultural", "foundation_desc": "Una institución de largo plazo dedicada a preservar y ampliar el conocimiento creativo brasileño.", "foundation_li1": "archivos & digitalización", "foundation_li2": "formación de artesanos", "foundation_li3": "investigación en diseño", "foundation_li4": "exposiciones & residencias", "foundation_li5": "investigación de materiales", "casa_title": "El ecosistema hecho físico", "casa_desc": "Muy pocas casas institucionales donde cultura, oficio, gastronomía y experiencias private client se encuentran.", "casa_li1": "exposiciones", "casa_li2": "demostraciones de atelier", "casa_li3": "salones privados", "casa_li4": "gastronomía", "casa_li5": "residencias creativas", "private_title": "Acceso, nunca descuento", "private_desc": "Una relación transversal con los clientes más importantes del grupo, construida alrededor de acceso excepcional y no de mecánicas de fidelidad.", "private_li1": "visitas a ateliers", "private_li2": "previews de alta joyería", "private_li3": "vinos de biblioteca", "private_li4": "experiencias privadas de hospitalidad", "private_li5": "couture & encargos", "no_info": "sin información", "ceo": "CEO", "creation_date": "Fecha de creación", "headquarters": "Sede", "visit_website": "Visitar el sitio ↗", "identity": "Identidad", "maison_summary_label": "La Maison", "right_to_exist": "Derecho a existir", "code_metier": "Código / métier", "hero_label": "Hero", "scale_label": "Escala", "back_to_division": "Volver a la división", "in_arapua": "En Arapuã", "maison_short_intro": "Una Maison singular, cuya identidad se define por su propio territorio creativo y savoir-faire.", "maison_story_kicker": "La Maison", "maison_story_title": "Una expresión singular de su oficio.", "story_exist_intro": "Su propósito es", "story_metier_intro": "En el centro de la Maison está", "story_hero_intro": "Su expresión más emblemática se encuentra en", "story_scale_intro": "Su crecimiento está concebido de forma", "scale_global": "global", "scale_selective": "internacional y selectiva", "scale_scarce": "deliberadamente escasa", "scale_medium": "internacional, con presencia focalizada", "scale_high_global": "global, con presencia consolidada", "scale_global_flagship": "global, con papel de flagship", "scale_very_scarce": "extremadamente escasa por elección", "scale_medium_atelier": "selectiva, combinando escala media y trabajo raro de atelier", "story_close": "Juntos, estos elementos definen una Maison capaz de crecer sin diluir aquello que la hace singular.", "positioning_kicker": "Posicionamiento", "positioning_title": "Cómo está pensada la Maison para crecer", "reach_label": "Alcance geográfico", "model_label": "Modelo de escala", "reach_global": "Global", "reach_global_prestige": "Prestigio global", "reach_international_selective": "Internacional selectiva", "model_broad_luxury": "Lujo de amplia escala", "model_specialist_growth": "Especialista de crecimiento global", "model_specialist": "Especialista", "model_specialist_rare": "Especialista con producción rara de atelier", "model_rare": "Deliberadamente escasa", "model_ultra_rare": "Ultrarrara por elección", "positioning_note_global_broad": "Pensada para convertirse en un gran negocio internacional de lujo, con amplia relevancia de categoría y distribución controlada.", "positioning_note_global_specialist": "Pensada para alcanzar una escala internacional relevante sin perder su clara asociación con una categoría o métier específico.", "positioning_note_selective_specialist": "Pensada para crecer internacionalmente mediante distribución selectiva y un territorio especialista claramente definido.", "positioning_note_rare": "Su prestigio depende de la escasez. El crecimiento debe ser selectivo y nunca comprometer rareza, autoría o integridad creativa.", "positioning_note_ultra": "La Maison no está diseñada para volumen. Su valor estratégico reside en la rareza excepcional, el capital cultural y el prestigio.", "operating_model_label": "Modelo operativo", "stores_kicker": "Presencia física", "stores_title": "Espacios que dan vida al universo de la Maison.", "stores_desc": "Boutiques y espacios físicos forman parte de cómo cada Maison expresa su universo — a través de arquitectura, servicio, materiales y atmósfera.", "stores_label": "Tiendas", "countries_label": "Países", "cities_label": "Ciudades", "see_cities": "Ver ciudades", "hide_cities": "Ocultar ciudades", "no_store_data": "Sin información de presencia física", "store_image_alt": "Tienda de la Maison", "address_label": "Dirección", "store_type_label": "Tipo de tienda", "city_details": "Detalles de la tienda", "click_city": "Seleccione una ciudad para ver los detalles de la tienda", "key_position_default": "Posición clave", "brand_logo_alt": "Logo de la Maison", "countries_list_label": "Países & ciudades", "store_singular": "tienda", "store_plural": "tiendas", "boutique_photo_caption": "Tienda de la imagen"}, "fr": {"tagline": "L’Art Brésilien de Faire", "nav_about": "À propos", "nav_maisons": "Maisons", "nav_metiers": "Métiers d’Art", "nav_culture": "Culture", "hero_kicker": "Un groupe brésilien de luxe", "hero_title": "L’Art Brésilien de Faire", "hero_desc": "Des maisons exceptionnelles. Des identités singulières. Une conviction commune dans la portée mondiale de la créativité, des matières, des métiers, des terroirs et des expériences du Brésil.", "discover_group": "Découvrir Arapuã", "about_kicker": "À propos d’Arapuã", "about_title": "Un groupe brésilien de luxe construit autour de ce qui ne pourrait être créé qu’ici.", "about_p1": "Arapuã réunit des maisons brésiliennes d’exception dans la mode, la joaillerie, la beauté, le design, la gastronomie, le vin et l’hospitalité — chacune avec sa propre identité, son langage créatif et son patrimoine.", "about_p2": "Le groupe n’existe pas pour les uniformiser. Il donne à chaque Maison l’échelle, le savoir, les métiers et le rayonnement international nécessaires pour devenir une expression encore plus forte d’elle-même.", "quote": "De la terre, par le savoir, par la main, ensemble.", "portfolio_kicker": "Nos Maisons", "portfolio_title": "Des maisons différentes. Un écosystème.", "portfolio_desc": "Trente-six maisons réparties en sept divisions, reliées par un même engagement envers l’excellence du faire.", "view_division": "Découvrir la division", "metiers_kicker": "Métiers & matières", "metiers_title": "Le savoir fait aussi partie du patrimoine.", "metiers_p1": "Arapuã Métiers d’Art préserve et développe des compétences spécialisées dans le textile, le cuir, le bois, les matières naturelles, les arts précieux, la céramique, le verre, le métal et les matières du futur.", "metiers_p2": "Son rôle n’est pas d’uniformiser les maisons, mais de permettre aux techniques, aux matières et au savoir de circuler, tout en protégeant l’auteur et l’identité de chaque maison.", "metiers_cta": "Découvrir Métiers d’Art", "culture_kicker": "Culture & héritage", "culture_title": "Le luxe a une responsabilité culturelle.", "culture_desc": "À travers la Fundação Arapuã, le groupe soutient les archives, la recherche, la formation, les expositions, les résidences créatives et la préservation du faire brésilien. La légitimité culturelle se construit sur plusieurs générations.", "foundation": "Fundação Arapuã", "living": "Savoir Vivant", "living_desc": "Maîtres, apprentis, bibliothèques de matières et processus documentés maintiennent le savoir vivant et en évolution.", "place_kicker": "Expériences", "place_title": "L’univers Arapuã est fait pour être vécu.", "place_desc": "Dans l’hospitalité, l’écosystème du groupe devient tangible. Un hôte peut découvrir design brésilien, arts de la table, parfum, café, chocolat, vin et service dans une même expérience — sans jamais avoir l’impression d’être dans un showroom. La connexion est subtile ; la cohérence est évidente.", "global_kicker": "Un groupe brésilien, à vocation mondiale", "global_title": "Des Maisons brésiliennes dans les villes les plus influentes du luxe mondial.", "global_desc": "Arapuã se développe dans les lieux où culture, luxe et influence se rencontrent. Chaque ville devient une plateforme de découverte : certaines construisent la légitimité, d’autres le désir, la relation ou la pertinence culturelle. L’objectif n’est pas l’ubiquité, mais une présence qui a du sens.", "manifesto": "Arapuã ne cherche pas à créer des versions brésiliennes du luxe européen. Le groupe existe pour révéler des formes d’excellence qui n’auraient pu naître qu’ici.", "footer_about": "Un groupe brésilien de luxe construit autour de maisons exceptionnelles, de savoir-faire, de matières, de terroirs et d’expériences.", "cat_kicker": "Nos Maisons", "cat_title": "Maisons", "cat_back": "Retour à toutes les divisions", "maison_identity": "Identité", "maison_singular": "Ce qui rend la Maison singulière", "maison_metier": "Savoir-faire", "maison_icon": "Territoire signature", "maison_group": "Au sein d’Arapuã", "maison_group_desc": "La Maison demeure dirigée de façon indépendante et créativement distincte. Arapuã accompagne son développement à long terme et la relie, de manière sélective, à des savoirs, matières, métiers et capacités internationales partagés.", "back_division": "Retour à la division", "other_maisons": "Autres Maisons de cette division", "discover": "Découvrir", "metiers_page_kicker": "Arapuã Métiers d’Art", "metiers_page_title": "Préserver les mains, les techniques et les matières derrière l’excellence du faire.", "metiers_page_desc": "Une infrastructure partagée de métiers, de production et de connaissance des matières — conçue pour renforcer des maisons distinctes, jamais les standardiser.", "knowledge_title": "Savoir Vivant", "knowledge_desc": "Les ateliers ne sont qu’une partie du système. Arapuã investit dans les maîtres, les apprentis, les programmes, les archives, les bibliothèques de matières, les processus documentés, la formation et les partenariats de long terme.", "ethics_title": "Un savoir avec auteur", "ethics_desc": "Le savoir traditionnel est abordé selon des principes clairs d’auteur, de rémunération, de partage des bénéfices et de consentement, notamment avec les communautés traditionnelles ou les pratiques culturellement sensibles.", "p1_eyebrow": "01 · Indépendance", "p1_title": "Maisons distinctes", "p1_desc": "Identité créative, patrimoine et leadership restent protégés. La valeur du groupe commence par la singularité de chaque maison.", "p2_eyebrow": "02 · Connexion", "p2_title": "Savoir-faire partagé", "p2_desc": "Matières, artisans, techniques et connaissances circulent dans l’écosystème, ouvrant des possibilités qu’aucune Maison n’aurait seule.", "p3_eyebrow": "03 · Élévation", "p3_title": "L’excellence avant l’étendue", "p3_desc": "Arapuã grandit en rendant ses Maisons plus pertinentes, désirables et durables — pas simplement en ajoutant de nouvelles marques.", "p4_eyebrow": "04 · Brésil", "p4_title": "L’origine comme avantage", "p4_desc": "Le Brésil n’est pas un thème visuel. Il est la source de matières, cultures, terroirs et façons de faire qui distinguent le groupe.", "city_sp": "Le cœur créatif et commercial du groupe — là où l’écosystème commence.", "city_rio": "Une expression culturelle de la joaillerie, du resort, de l’hospitalité et de l’art de vivre brésilien.", "city_paris": "Une scène pour la mode, la joaillerie, le parfum et la légitimité internationale du luxe brésilien.", "city_ny": "Un marché de taille, de collectionneurs, de culture et de visibilité mondiale.", "city_london": "Une porte vers la clientèle internationale du luxe, la culture et les relations UHNW.", "city_miami": "Un pont naturel entre le Brésil, les États-Unis et l’Amérique latine.", "city_milan": "Une plateforme pour le design, le mobilier, la mode et la culture matérielle.", "city_tokyo": "Une ville où métiers, précision, design et luxe culturel trouvent une résonance naturelle.", "inst_kicker": "Au-delà du produit", "inst_title": "Des institutions qui font du groupe plus qu’un portefeuille de marques.", "inst_desc": "Arapuã investit aussi dans l’infrastructure culturelle, expérientielle et relationnelle qui permet au luxe brésilien d’accumuler du sens dans le temps.", "foundation_title": "Légitimité culturelle", "foundation_desc": "Une institution de long terme dédiée à préserver et enrichir le savoir créatif brésilien.", "foundation_li1": "archives & numérisation", "foundation_li2": "formation des artisans", "foundation_li3": "recherche en design", "foundation_li4": "expositions & résidences", "foundation_li5": "recherche matière", "casa_title": "L’écosystème rendu physique", "casa_desc": "Très peu de maisons institutionnelles où culture, métiers, gastronomie et expériences private client se rencontrent.", "casa_li1": "expositions", "casa_li2": "démonstrations d’atelier", "casa_li3": "salons privés", "casa_li4": "gastronomie", "casa_li5": "résidences créatives", "private_title": "L’accès, jamais la remise", "private_desc": "Une relation transversale avec les clients les plus importants du groupe, construite autour d’un accès exceptionnel plutôt que de mécaniques de fidélité.", "private_li1": "visites d’ateliers", "private_li2": "présentations privées de haute joaillerie", "private_li3": "vins de bibliothèque", "private_li4": "expériences privées d’hospitalité", "private_li5": "couture & commandes", "no_info": "sans information", "ceo": "CEO", "creation_date": "Date de création", "headquarters": "Siège", "visit_website": "Visiter le site ↗", "identity": "Identité", "maison_summary_label": "La Maison", "right_to_exist": "Raison d’être", "code_metier": "Code / métier", "hero_label": "Hero", "scale_label": "Échelle", "back_to_division": "Retour à la division", "in_arapua": "Au sein d’Arapuã", "maison_short_intro": "Une Maison singulière, dont l’identité se définit par son territoire créatif et son savoir-faire propres.", "maison_story_kicker": "La Maison", "maison_story_title": "Une expression singulière de son métier.", "story_exist_intro": "Sa raison d’être est de", "story_metier_intro": "Au cœur de la Maison se trouve", "story_hero_intro": "Son expression la plus emblématique se révèle dans", "story_scale_intro": "Sa croissance est pensée de manière", "scale_global": "mondiale", "scale_selective": "internationale et sélective", "scale_scarce": "délibérément rare", "scale_medium": "internationale, avec une présence ciblée", "scale_high_global": "mondiale, avec une présence établie", "scale_global_flagship": "mondiale, avec un rôle de flagship", "scale_very_scarce": "extrêmement rare par choix", "scale_medium_atelier": "sélective, combinant échelle moyenne et travail rare d’atelier", "story_close": "Ensemble, ces éléments définissent une Maison capable de grandir sans diluer ce qui la rend singulière.", "positioning_kicker": "Positionnement", "positioning_title": "Comment la Maison est pensée pour grandir", "reach_label": "Rayonnement géographique", "model_label": "Modèle d’échelle", "reach_global": "Mondial", "reach_global_prestige": "Prestige mondial", "reach_international_selective": "International sélectif", "model_broad_luxury": "Luxe à large échelle", "model_specialist_growth": "Spécialiste à croissance mondiale", "model_specialist": "Spécialiste", "model_specialist_rare": "Spécialiste avec production d’atelier rare", "model_rare": "Délibérément rare", "model_ultra_rare": "Ultra-rare par choix", "positioning_note_global_broad": "Pensée pour devenir une grande maison de luxe internationale, avec une forte pertinence de catégorie et une distribution maîtrisée.", "positioning_note_global_specialist": "Pensée pour atteindre une échelle internationale significative tout en restant clairement associée à une catégorie ou un métier spécifique.", "positioning_note_selective_specialist": "Pensée pour croître à l’international par une distribution sélective et un territoire spécialiste clairement défini.", "positioning_note_rare": "Son prestige dépend de la rareté. La croissance doit rester sélective et ne jamais compromettre la rareté, l’auteur ou l’intégrité créative.", "positioning_note_ultra": "La Maison n’est pas conçue pour le volume. Sa valeur stratégique vient de sa rareté exceptionnelle, de son capital culturel et de son prestige.", "operating_model_label": "Modèle opérationnel", "stores_kicker": "Présence physique", "stores_title": "Des espaces qui donnent vie à l’univers de la Maison.", "stores_desc": "Boutiques et espaces physiques participent à la manière dont chaque Maison exprime son univers — par l’architecture, le service, les matières et l’atmosphère.", "stores_label": "Boutiques", "countries_label": "Pays", "cities_label": "Villes", "see_cities": "Voir les villes", "hide_cities": "Masquer les villes", "no_store_data": "Aucune information de présence physique", "store_image_alt": "Boutique de la Maison", "address_label": "Adresse", "store_type_label": "Type de boutique", "city_details": "Détails de la boutique", "click_city": "Sélectionnez une ville pour afficher les détails de la boutique", "key_position_default": "Fonction clé", "brand_logo_alt": "Logo de la Maison", "countries_list_label": "Pays & villes", "store_singular": "boutique", "store_plural": "boutiques", "boutique_photo_caption": "Boutique présentée"}};
-let currentLang = localStorage.getItem('arapua-language') || 'en';
-let currentCategory = null;
-let currentMaison = null;
+const $ = id => document.getElementById(id);
 
-const nav=document.getElementById('nav');
-const pages=[...document.querySelectorAll('.page')];
+function setStatus(msg){ $('status').textContent = msg; }
 
-function t(k){return (I18N[currentLang]||I18N.en)[k] || I18N.en[k] || k}
-function local(obj){return obj?.[currentLang] || obj?.en || ''}
-
-function applyStatic(){
-  document.documentElement.lang=currentLang==='pt'?'pt-BR':currentLang;
-  document.querySelectorAll('[data-k]').forEach(el=>el.textContent=t(el.dataset.k));
-  document.getElementById('logoTag').textContent=t('tagline');
-  document.getElementById('langBtn').textContent=currentLang.toUpperCase();
-  document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===currentLang));
-  const nl=document.querySelectorAll('#navLinks a');
-  nl[0].textContent=t('nav_about'); nl[1].textContent=t('nav_maisons'); nl[2].textContent=t('nav_metiers'); nl[3].textContent=t('nav_culture');
-  renderDivisionGrid();
-  if(maisonsMenu?.classList.contains('open')) renderMaisonsMenu();
-  if(currentCategory) renderCategory(currentCategory,false);
-  if(currentMaison) renderMaison(currentMaison,false);
+async function loadJSON(url){
+  const r = await fetch(url, {cache:'no-store'});
+  if(!r.ok) throw new Error(`${url}: ${r.status}`);
+  return r.json();
 }
 
-function showPage(id,light=true){
-  pages.forEach(p=>p.classList.toggle('active',p.id===id));
-  document.body.classList.toggle('light-header',light);
-  document.getElementById('footer').style.display = id==='homePage' ? '' : 'none';
-  window.scrollTo({top:0,behavior:'instant'});
+function folderFor(slug){ return `../images/${slug}`; }
+
+const WORKER = 'https://arapua-admin-api.hugocg95.workers.dev';
+let key = '', ready = false, busy = false;
+const versions = new Map(), originals = new Map(), dirty = new Set();
+const clone = value => JSON.parse(JSON.stringify(value));
+const message = text => { $('connectionStatus').textContent=text; };
+function syncControls(){
+  $('editor').disabled=busy||!ready||!currentSlug;
+  $('createMaison').disabled=busy||!ready;
+  $('deleteMaison').disabled=busy||!ready||!currentSlug;
+  $('maisonSelect').disabled=busy||!ready;
+  $('connectButton').disabled=busy||ready;
+  $('adminKey').disabled=busy||ready;
+  $('reloadButton').disabled=busy||!key;
+  $('logoutButton').disabled=busy||!key;
 }
-function showHome(target=null,push=true){
-  currentCategory=null;currentMaison=null;showPage('homePage',false);
-  if(push) history.pushState({},'', target ? '#'+target : '#home');
-  if(target) setTimeout(()=>document.getElementById(target)?.scrollIntoView({behavior:'smooth'}),30);
-  updateNav();
-}
-function updateNav(){ if(!document.body.classList.contains('light-header')) nav.classList.toggle('scrolled',window.scrollY>25) }
-window.addEventListener('scroll',updateNav,{passive:true});
-
-function renderDivisionGrid(){
-  const grid=document.getElementById('divisionGrid'); grid.innerHTML='';
-  Object.entries(CATEGORIES).forEach(([key,c])=>{
-    const a=document.createElement('a'); a.className='division'; a.href='#division/'+key;
-    a.innerHTML=`<div class="division-img" style="background-image:url('${c.image}')"></div><div class="division-copy"><div class="eyebrow">${c.count} maisons</div><h3>${local(c.name)}</h3><p>${local(c.intro)}</p><span class="text-link">${t('view_division')}</span></div>`;
-    a.addEventListener('click',e=>{e.preventDefault();renderCategory(key,true)});
-    grid.appendChild(a);
-  });
-}
-
-function brandImage(cat,index){
-  const c=CATEGORIES[cat];
-  const positions=['center','40% center','60% center','center 35%','center 65%'];
-  return {url:c.image,pos:positions[index%positions.length]};
-}
-function renderCategory(key,push=true){
-  currentCategory=key; currentMaison=null; const c=CATEGORIES[key];
-  document.getElementById('catName').textContent=local(c.name);
-  document.getElementById('catIntro').textContent=local(c.intro);
-  const grid=document.getElementById('brandGrid');grid.innerHTML='';
-  BRANDS.filter(b=>b.cat===key).sort((a,b)=>a.name.localeCompare(b.name,currentLang,{sensitivity:'base'})).forEach((b,i)=>{
-    const im=brandImage(key,i); const a=document.createElement('a');a.className='brand-card';a.href='#maison/'+b.slug;
-    const cardVisual=b.cover_image_url || b.cover_image || im.url;
-    a.innerHTML=`<div class="brandbg" data-photo-slug="${b.slug}" data-photo-kind="cover" style="background-image:url('${cardVisual}');background-position:${im.pos}"></div><div class="brand-center"><div><h2>${b.name}</h2><span>${t('discover')}</span></div></div>`;
-    a.addEventListener('click',e=>{e.preventDefault();renderMaison(b.slug,true)});
-    grid.appendChild(a);
-  });
-  showPage('categoryPage',true); if(push) history.pushState({},'', '#division/'+key);
-}
-
-
-function sentenceLower(text){
-  if(!text) return t('no_info');
-  const s=String(text).trim().replace(/[.!?]+$/,'');
-  return s.charAt(0).toLocaleLowerCase(currentLang)+s.slice(1);
-}
-
-function positioningLabel(type,value){
-  return t(`${type}_${value}`);
-}
-function positioningNote(pos){
-  if(!pos) return '';
-  if(pos.model==='ultra_rare') return t('positioning_note_ultra');
-  if(pos.model==='rare' || pos.model==='specialist_rare') return t('positioning_note_rare');
-  if(pos.reach==='global' && pos.model==='broad_luxury') return t('positioning_note_global_broad');
-  if(pos.reach==='global' || pos.reach==='global_prestige') return t('positioning_note_global_specialist');
-  return t('positioning_note_selective_specialist');
-}
-
-function scaleNarrative(scale){
-  if(!scale) return t('no_info');
-  const s=String(scale).toLowerCase();
-  if(s.includes('extremamente escassa')) return t('scale_very_scarce');
-  if(s.includes('média + atelier')) return t('scale_medium_atelier');
-  if(s.includes('global / flagship')) return t('scale_global_flagship');
-  if(s.includes('média-alta global')) return t('scale_high_global');
-  if(s.includes('global seletiva')) return t('scale_selective');
-  if(s.includes('média internacional')) return t('scale_medium');
-  if(s.includes('escassa')) return t('scale_scarce');
-  if(s.includes('global')) return t('scale_global');
-  return scale;
-}
-
-function renderMaison(slug,push=true){
-  const b=BRANDS.find(x=>x.slug===slug); if(!b)return;
-  currentMaison=slug;currentCategory=b.cat;
-  const c=CATEGORIES[b.cat];
-  const allInCat=BRANDS.filter(x=>x.cat===b.cat).sort((a,b)=>a.name.localeCompare(b.name,currentLang,{sensitivity:'base'}));
-  const idx=allInCat.findIndex(x=>x.slug===slug);
-  const fallback=brandImage(b.cat,idx);
-
-  // If an official website is known, use a live visual snapshot of the brand's own site.
-  // Otherwise keep the category visual as fallback rather than fabricate imagery.
-  const ownVisual=b.website
-    ? `https://image.thum.io/get/width/1800/crop/1050/noanimate/${b.website}`
-    : fallback.url;
-
-  const coverVisual=b.cover_image_url || b.cover_image || ownVisual;
-  const identityVisual=b.identity_image_url || b.identity_image || ownVisual;
-  const boutiqueVisual=b.boutique_image_url || b.store_image || null;
-
-  const noInfo=t('no_info');
-  const founded=b.founded||noInfo, hq=b.hq||noInfo;
-  const siteLink=b.website
-    ? `<a class="maison-site-link" href="${b.website}" target="_blank" rel="noopener">${t('visit_website')}</a>`
-    : `<span class="maison-site-link">${noInfo}</span>`;
-
-  const summary=`${t('maison_short_intro')} ${local(b.right)}`;
-
-  const others=allInCat.filter(x=>x.slug!==slug).slice(0,5);
-
-  document.getElementById('maisonContent').innerHTML=`
-  <div class="maison-shell">
-    <section class="maison-cover">
-      <div class="maison-cover-bg" data-photo-slug="${b.slug}" data-photo-kind="cover" style="background-image:url('${coverVisual}')"></div>
-      <div class="maison-cover-inner">
-        ${b.logo_image
-          ? `<img class="maison-cover-logo" src="${b.logo_image}" alt="${t('brand_logo_alt')}">`
-          : `<h1>${b.name}</h1>`
-        }
-        ${siteLink}
-      </div>
-      <div class="maison-facts">
-        <div class="maison-fact">
-          <span>${b.key_position || t('key_position_default')}</span>
-          <strong>${b.key_position_name || noInfo}</strong>
-        </div>
-        <div class="maison-fact"><span>${t('creation_date')}</span><strong>${founded}</strong></div>
-        <div class="maison-fact"><span>${t('headquarters')}</span><strong>${hq}</strong></div>
-      </div>
-    </section>
-
-    <section class="maison-identity-wrap">
-      <div class="maison-identity-stage" data-photo-slug="${b.slug}" data-photo-kind="identity" style="background-image:url('${identityVisual}')">
-        <article class="maison-identity-card">
-          <div class="eyebrow">${t('identity')}</div>
-          ${b.logo_image
-            ? `<img class="maison-identity-logo" src="${b.logo_image}" alt="${t('brand_logo_alt')}">`
-            : `<h2>${b.name}</h2>`
-          }
-          <p>${summary}</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="maison-story">
-      <div class="maison-story-head">
-        <div class="eyebrow">${t('maison_story_kicker')}</div>
-        <h2>${t('maison_story_title')}</h2>
-      </div>
-      <div class="maison-story-body">
-        <p class="maison-story-lead">${local(b.right)||noInfo}</p>
-        <div class="maison-story-copy">
-          <p>${t('story_exist_intro')} ${sentenceLower(local(b.right)||noInfo)}</p>
-          <p>${t('story_metier_intro')} ${sentenceLower(local(b.metier)||noInfo)}.</p>
-          <p>${t('story_hero_intro')} ${sentenceLower(local(b.icon)||noInfo)}.</p>
-          <p>${t('story_scale_intro')} ${scaleNarrative(b.scale ? local(b.scale) : null)}.</p>
-          ${b.operating_model ? `<p><strong>${t('operating_model_label')}.</strong> ${local(b.operating_model)}</p>` : ''}
-          <p>${t('story_close')}</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="maison-positioning">
-      <div class="maison-positioning-head">
-        <div class="eyebrow">${t('positioning_kicker')}</div>
-        <h2>${t('positioning_title')}</h2>
-      </div>
-      <div class="maison-positioning-grid">
-        <article>
-          <span>${t('reach_label')}</span>
-          <strong>${positioningLabel('reach',b.positioning?.reach)}</strong>
-        </article>
-        <article>
-          <span>${t('model_label')}</span>
-          <strong>${positioningLabel('model',b.positioning?.model)}</strong>
-        </article>
-      </div>
-      <p class="maison-positioning-note">${positioningNote(b.positioning)}</p>
-    </section>
-
-    <section class="maison-stores">
-      <div class="maison-stores-head">
-        <div>
-          <div class="eyebrow">${t('stores_kicker')}</div>
-          <h2>${t('stores_title')}</h2>
-        </div>
-        <p>${t('stores_desc')}</p>
-      </div>
-
-      <div class="maison-stores-layout">
-        <figure class="maison-store-figure">
-          ${boutiqueVisual
-            ? `<div class="maison-store-image" data-photo-slug="${b.slug}" data-photo-kind="boutique" role="img" aria-label="${t('store_image_alt')}" style="background-image:url('${boutiqueVisual}')"></div>`
-            : `<div class="maison-store-image empty"><span>${t('no_store_data')}</span></div>`
-          }
-          ${b.boutique_address
-            ? `<figcaption class="maison-store-caption"><span>${t('boutique_photo_caption')}</span><strong>${String(b.boutique_address).replace(/\n/g,' · ')}</strong></figcaption>`
-            : ''
-          }
-        </figure>
-
-        <div class="maison-store-panel">
-          <div>
-            <div class="maison-store-stats">
-              <article class="maison-store-stat">
-                <span>${t('stores_label')}</span>
-                <strong>${b.stores ?? noInfo}</strong>
-              </article>
-              <article class="maison-store-stat">
-                <span>${t('countries_label')}</span>
-                <strong>${b.countries ?? noInfo}</strong>
-              </article>
-            </div>
-
-            ${(b.retail_by_country && b.retail_by_country.length) || (b.cities && b.cities.length)
-              ? `<button class="store-cities-toggle" id="storeCitiesToggle">${t('see_cities')}</button>
-                 <div class="store-cities" id="storeCities">
-                   ${(b.retail_by_country || []).map((countryGroup,ci)=>`
-                     <section class="store-country">
-                       <button class="store-country-button" type="button">
-                         <span class="store-country-name">${countryGroup.country}</span>
-                         <span class="store-country-count">${
-                           countryGroup.cities.reduce((sum,c)=>sum+(c.stores?.length||0),0)
-                         } ${countryGroup.cities.reduce((sum,c)=>sum+(c.stores?.length||0),0)===1 ? t('store_singular') : t('store_plural')}</span>
-                       </button>
-                       <div class="store-country-cities">
-                         ${countryGroup.cities.map((x,i)=>`
-                           <div class="store-city" data-city-index="${ci}-${i}">
-                             <button class="store-city-button" type="button">
-                               <span class="store-city-name">${x.city}</span>
-                               <span class="store-city-country">${x.stores?.length || 0} ${(x.stores?.length || 0)===1 ? t('store_singular') : t('store_plural')}</span>
-                             </button>
-                             <div class="store-city-detail">
-                               ${(x.stores && x.stores.length ? x.stores : []).map((s,j)=>`
-                                 <div class="store-location-detail">
-                                   ${x.stores.length > 1 ? `<div class="store-location-number">${String(j+1).padStart(2,'0')}</div>` : ''}
-                                   <div class="store-city-detail-grid">
-                                     <div class="store-city-detail-item">
-                                       <span>${t('address_label')}</span>
-                                       <strong>${s.address || noInfo}</strong>
-                                     </div>
-                                     <div class="store-city-detail-item">
-                                       <span>${t('store_type_label')}</span>
-                                       <strong>${s.store_type || noInfo}</strong>
-                                     </div>
-                                   </div>
-                                 </div>
-                               `).join('')}
-                             </div>
-                           </div>
-                         `).join('')}
-                       </div>
-                     </section>
-                   `).join('')}
-                 </div>`
-              : `<p style="margin-top:28px;color:var(--muted)">${t('no_store_data')}</p>`
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="maison-context">
-      <div>
-        <div class="eyebrow">${t('maison_singular')}</div>
-        <h2 class="title">${local(b.right)||noInfo}</h2>
-      </div>
-      <div>
-        <div class="eyebrow">${t('in_arapua')}</div>
-        <p>${t('maison_group_desc')}</p>
-      </div>
-    </section>
-
-    <section class="maison-next">
-      <button class="crumb" id="backDivision">${t('back_to_division')}</button>
-      <div class="eyebrow" style="margin-top:42px">${t('other_maisons')}</div>
-      <h2 style="font-size:2.6rem">${local(c.name)}</h2>
-      <div class="maison-next-row">${others.map(o=>`<a class="maison-next-card" href="#maison/${o.slug}" data-other="${o.slug}"><h3>${o.name}</h3></a>`).join('')}</div>
-    </section>
-  </div>`;
-
-  const storeToggle=document.getElementById('storeCitiesToggle');
-  const storeCities=document.getElementById('storeCities');
-  if(storeToggle && storeCities){
-    storeToggle.addEventListener('click',()=>{
-      const isOpen=storeCities.classList.toggle('open');
-      storeToggle.textContent=isOpen ? t('hide_cities') : t('see_cities');
+function discardOK(){return !dirty.size||confirm('Há alterações não salvas. Deseja descartá-las?');}
+async function api(route, body){
+  let response;
+  try{
+    response=await fetch(WORKER+route,{
+      method:body===undefined?'GET':'POST',cache:'no-store',
+      headers:{Authorization:'Bearer '+key,...(body===undefined?{}:{'Content-Type':'application/json'})},
+      ...(body===undefined?{}:{body:JSON.stringify(body)}),signal:AbortSignal.timeout(route==='/maison'?120000:40000)
     });
+  }catch{throw Error('Não foi possível confirmar a operação. Verifique sua conexão. Se estava salvando, confira o GitHub antes de repetir.');}
+  let result;
+  try{result=await response.json();}catch{throw Error('O Worker não retornou uma resposta válida. Confira se o código foi publicado.');}
+  if(!response.ok){const e=Error(result.error||'Falha ao acessar o serviço.');e.status=response.status;throw e;}
+  return result;
+}
+async function loadFile(path, allowMissing=false){
+  let file;
+  try{file=await api('/file?path='+encodeURIComponent(path));}
+  catch(e){if(allowMissing&&e.status===404) file={sha:null,data:{}};else throw e;}
+  if(!file||!file.data||typeof file.data!=='object'||Array.isArray(file.data)||!(file.sha===null||typeof file.sha==='string'))throw Error('O Worker não retornou os dados do arquivo. Publique o código completo do Worker e tente novamente.');
+  versions.set(path,file.sha);originals.set(path,clone(file.data));
+  return file.data;
+}
+async function loadAll(preferred){
+  ready=false;
+  const [maisons,locations]=await Promise.all([loadFile('data/maisons.json'),loadFile('data/locations.json')]);
+  if(!maisons.maisons||!locations.locations)throw Error('Os arquivos de conteúdo estão em um formato inesperado.');
+  MAISONS_PAYLOAD=maisons;LOCATIONS_PAYLOAD=locations;
+  const select=$('maisonSelect');select.innerHTML='';
+  Object.values(maisons.maisons).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR')).forEach(m=>{
+    const option=document.createElement('option');option.value=m.slug;option.textContent=m.name;select.appendChild(option);
+  });
+  const slug=maisons.maisons[preferred]?preferred:select.options[0]?.value;
+  if(!slug){currentSlug=null;currentInfo={};$('maisonSelect').innerHTML='<option>Nenhuma Maison</option>';dirty.clear();ready=true;setStatus('Crie sua primeira Maison');return;}
+  await selectMaison(slug);dirty.clear();ready=true;
+}
+async function selectMaison(slug){
+  const info=await loadFile('images/'+slug+'/info.json',true);
+  currentSlug=slug;currentInfo=info;$('maisonSelect').value=slug;
+  clearRetailFilters(false);fillInfo();fillEditorial();fillRetail();
+  setStatus(MAISONS_PAYLOAD.maisons[slug].name);
+}
+async function connect(){
+  if(busy||ready)return;
+  key=$('adminKey').value.trim();
+  if(!key){message('Digite a chave de acesso do admin.');return;}
+  if(key.startsWith('github_pat_')||key.startsWith('ghp_')){
+    key='';$('adminKey').value='';message('Use a chave ADMIN_TOKEN. O token do GitHub fica somente na Cloudflare.');return;
   }
-
-  document.querySelectorAll('.store-country-button').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const row=btn.closest('.store-country');
-      const wasOpen=row.classList.contains('open');
-      document.querySelectorAll('.store-country').forEach(r=>r.classList.remove('open'));
-      if(!wasOpen) row.classList.add('open');
-    });
-  });
-
-  document.querySelectorAll('.store-city-button').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const row=btn.closest('.store-city');
-      const wasOpen=row.classList.contains('open');
-      document.querySelectorAll('.store-city').forEach(r=>r.classList.remove('open'));
-      if(!wasOpen) row.classList.add('open');
-    });
-  });
-
-  document.getElementById('backDivision').addEventListener('click',()=>renderCategory(b.cat,true));
-  document.querySelectorAll('[data-other]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();renderMaison(a.dataset.other,true)}));
-  showPage('maisonPage',true);
-  if(push)history.pushState({},'', '#maison/'+slug);
+  busy=true;syncControls();message('Conectando e carregando os dados atuais…');
+  try{await loadAll(currentSlug);$('adminKey').value='';message('Conectado. Edite uma seção e clique em Salvar.');}
+  catch(e){key='';ready=false;message(e.message);setStatus('Falha ao conectar');}
+  finally{busy=false;syncControls();}
 }
-function renderMetiers(push=true){currentCategory=null;currentMaison=null;showPage('metiersPage',true);if(push)history.pushState({},'','#metiers')}
+async function reload(){
+  if(busy||!key||!discardOK())return;
+  busy=true;syncControls();message('Recarregando…');
+  try{await loadAll(currentSlug);message('Dados atualizados com a versão do GitHub.');}
+  catch(e){ready=false;message(e.message);}
+  finally{busy=false;syncControls();}
+}
+async function switchMaison(slug){
+  if(busy||!ready)return;
+  if(!discardOK()){$('maisonSelect').value=currentSlug;return;}
+  busy=true;syncControls();
+  try{
+    // Discard only after the requested Maison has loaded successfully.
+    const info=await loadFile('images/'+slug+'/info.json',true);
+    MAISONS_PAYLOAD=clone(originals.get('data/maisons.json'));
+    LOCATIONS_PAYLOAD=clone(originals.get('data/locations.json'));
+    currentSlug=slug;currentInfo=info;
+    clearRetailFilters(false);fillInfo();fillEditorial();fillRetail();dirty.clear();
+    setStatus(MAISONS_PAYLOAD.maisons[slug].name);message('Maison carregada.');
+  }catch(e){$('maisonSelect').value=currentSlug;message(e.message);}
+  finally{busy=false;syncControls();}
+}
+async function saveSection(section){
+  if(busy||!ready)return;
+  let path,data;
+  if(section==='info'){path='images/'+currentSlug+'/info.json';data=readInfo();}
+  else if(section==='editorial'){path='data/maisons.json';readEditorial();data=MAISONS_PAYLOAD;}
+  else{path='data/locations.json';readRetail();data=LOCATIONS_PAYLOAD;}
+  if(!versions.has(path)){message('Recarregue os dados antes de salvar.');return;}
+  const snapshot=clone(data);
+  busy=true;syncControls();setStatus('Salvando…');message('Salvando no GitHub…');
+  try{
+    const result=await api('/save',{path,data:snapshot,sha:versions.get(path)});
+    versions.set(path,result.sha);originals.set(path,snapshot);dirty.delete(section);
+    if(section==='editorial'){
+      const option=[...$('maisonSelect').options].find(o=>o.value===currentSlug);
+      if(option)option.textContent=MAISONS_PAYLOAD.maisons[currentSlug].name;
+    }
+    setStatus('Salvo');message('Salvo no GitHub. Aguarde alguns minutos para o site publicar a alteração.'+(dirty.size?' Ainda há alterações não salvas em outras seções.':''));
+  }catch(e){
+    dirty.add(section);setStatus('Não confirmado');
+    message(e.message+(e.status===409?' Seus campos foram preservados. Baixe uma cópia do JSON antes de recarregar, se precisar guardar suas alterações.':''));
+  }finally{busy=false;syncControls();}
+}
 
-document.querySelectorAll('[data-home]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showHome(null,true)}));
+function fillInfo(){
+  ['key_position','key_position_name','founded','hq','website','boutique_address'].forEach(k=>{
+    $(k).value = currentInfo[k] ?? '';
+  });
+  updateStats();
+}
 
+function readInfo(){
+  ['key_position','key_position_name','founded','hq','website','boutique_address'].forEach(k=>{
+    let v=$(k).value.trim();
+    if(k==='founded' && /^\d+$/.test(v)) v=Number(v);
+    currentInfo[k]=v || null;
+  });
+  return currentInfo;
+}
 
-// Maisons navigation mega menu
-const maisonsMenu=document.getElementById('maisonsMenu');
-const maisonsMenuTrigger=document.getElementById('maisonsMenuTrigger');
-const maisonsMenuClose=document.getElementById('maisonsMenuClose');
-const maisonsMenuGrid=document.getElementById('maisonsMenuGrid');
-const maisonsMenuAll=document.getElementById('maisonsMenuAll');
+function makeLangFields(containerId, objectKey){
+  const c=$(containerId); c.innerHTML='';
+  LANGS.forEach(lang=>{
+    const wrap=document.createElement('div');
+    wrap.innerHTML=`<label>${lang.toUpperCase()}</label><textarea data-object="${objectKey}" data-lang="${lang}"></textarea>`;
+    c.appendChild(wrap);
+  });
+}
 
-function renderMaisonsBrandList(categoryKey){
-  const c=CATEGORIES[categoryKey];
-  const title=document.getElementById('maisonsMenuBrandsTitle');
-  const list=document.getElementById('maisonsMenuBrandsList');
-  if(!c || !title || !list) return;
+makeLangFields('rightFields','right');
+makeLangFields('metierFields','metier');
+makeLangFields('iconFields','icon');
 
-  title.textContent=local(c.name);
-  list.innerHTML='';
+function fillEditorial(){
+  const m=MAISONS_PAYLOAD.maisons[currentSlug];
+  $('name').value=m.name ?? '';
+  $('cat').value=m.cat ?? '';
+  $('reach').value=m.positioning?.reach ?? '';
+  $('model').value=m.positioning?.model ?? '';
 
-  const brands=BRANDS
-    .filter(b=>b.cat===categoryKey)
-    .sort((a,b)=>a.name.localeCompare(b.name,currentLang,{sensitivity:'base'}));
+  document.querySelectorAll('textarea[data-object]').forEach(t=>{
+    t.value = m[t.dataset.object]?.[t.dataset.lang] ?? '';
+  });
 
-  if(!brands.length){
-    list.innerHTML='<div class="maisons-menu-brands-empty">No maisons available.</div>';
-    return;
+  const f=folderFor(currentSlug);
+  $('prevLogo').src=`${f}/logo.png`;
+  
+  
+  fillPhotoFrames();
+}
+
+function readEditorial(){
+  const m=MAISONS_PAYLOAD.maisons[currentSlug];
+  m.name=$('name').value.trim();
+  m.cat=$('cat').value.trim();
+  m.positioning=m.positioning||{};
+  m.positioning.reach=$('reach').value.trim();
+  m.positioning.model=$('model').value.trim();
+
+  ['right','metier','icon'].forEach(key=>{
+    m[key]=m[key]||{};
+    document.querySelectorAll(`textarea[data-object="${key}"]`).forEach(t=>{
+      m[key][t.dataset.lang]=t.value;
+    });
+  });
+}
+
+function currentStores(){
+  if(!LOCATIONS_PAYLOAD.locations) LOCATIONS_PAYLOAD.locations={};
+  if(!Array.isArray(LOCATIONS_PAYLOAD.locations[currentSlug])) LOCATIONS_PAYLOAD.locations[currentSlug]=[];
+  return LOCATIONS_PAYLOAD.locations[currentSlug];
+}
+
+function updateStats(){
+  const rows=currentStores();
+  $('statStores').textContent=rows.length;
+  $('statCountries').textContent=new Set(rows.map(x=>x.country).filter(Boolean)).size;
+  $('statCities').textContent=new Set(rows.filter(x=>x.country&&x.city).map(x=>`${x.country}|||${x.city}`)).size;
+}
+
+const retailView={sort:'country',direction:1,page:1,size:25};
+const retailKeys=['country','city','location','format'];
+const normalize=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR');
+function filteredStores(){
+  const query=normalize($('retailSearch').value);
+  const filters=Object.fromEntries(retailKeys.map(k=>[k,normalize($('filter-'+k).value)]));
+  const rows=currentStores().map((store,index)=>({store,index})).filter(({store})=>
+    (!query||retailKeys.some(k=>normalize(store[k]).includes(query)))&&
+    retailKeys.every(k=>normalize(store[k]).includes(filters[k])));
+  if(retailView.sort)rows.sort((a,b)=>String(a.store[retailView.sort]??'').localeCompare(String(b.store[retailView.sort]??''),'pt-BR',{sensitivity:'base',numeric:true})*retailView.direction||a.index-b.index);
+  return rows;
+}
+function fillRetail(){
+  const body=$('retailBody');body.replaceChildren();
+  const rows=filteredStores(),pages=Math.max(1,Math.ceil(rows.length/retailView.size));
+  retailView.page=Math.min(retailView.page,pages);
+  const start=(retailView.page-1)*retailView.size;
+  for(const {store,index} of rows.slice(start,start+retailView.size)){
+    const tr=document.createElement('tr');tr.dataset.index=index;
+    for(const k of retailKeys){
+      const td=document.createElement('td'),input=document.createElement('input');
+      input.value=store[k]??'';input.dataset.k=k;input.setAttribute('aria-label',k+' — loja '+(index+1));
+      input.addEventListener('input',()=>{store[k]=input.value;dirty.add('retail');updateStats();});
+      // Keep focus and row position while the user edits; filters reapply on navigation.
+      td.append(input);tr.append(td);
+    }
+    const td=document.createElement('td'),button=document.createElement('button');
+    button.type='button';button.className='danger';button.textContent='Excluir';button.setAttribute('aria-label','Excluir loja '+(store.location||index+1));
+    button.onclick=()=>{
+      if(!confirm('Excluir esta loja? A exclusão será aplicada ao clicar em Salvar lojas.'))return;
+      const i=currentStores().indexOf(store);if(i>=0)currentStores().splice(i,1);
+      dirty.add('retail');fillRetail();
+    };
+    td.append(button);tr.append(td);body.append(tr);
   }
-
-  brands.forEach(b=>{
-    const a=document.createElement('a');
-    a.href='#maison/'+b.slug;
-    a.className='maisons-menu-brand';
-    a.innerHTML=`<span>${b.name}</span><span>↗</span>`;
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      closeMaisonsMenu();
-      renderMaison(b.slug,true);
-    });
-    list.appendChild(a);
+  if(!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=5;td.className='empty-table';td.textContent='Nenhuma loja encontrada. Ajuste os filtros ou adicione uma loja.';tr.append(td);body.append(tr);}
+  $('retailCount').textContent=rows.length?`${start+1}–${Math.min(start+retailView.size,rows.length)} de ${rows.length} lojas filtradas · ${currentStores().length} no total`:`0 lojas filtradas · ${currentStores().length} no total`;
+  $('retailPage').textContent=`Página ${retailView.page} de ${pages}`;
+  $('retailPrev').disabled=retailView.page===1;$('retailNext').disabled=retailView.page===pages;
+  document.querySelectorAll('[data-sort]').forEach(button=>{
+    const active=button.dataset.sort===retailView.sort;
+    button.parentElement.setAttribute('aria-sort',active?(retailView.direction===1?'ascending':'descending'):'none');
+    button.querySelector('span').textContent=active?(retailView.direction===1?' ↑':' ↓'):' ↕';
   });
+  updateStats();
 }
-
-function setActiveMaisonsCategory(key){
-  document.querySelectorAll('.maisons-menu-item').forEach(el=>{
-    el.classList.toggle('active',el.dataset.category===key);
-  });
-  renderMaisonsBrandList(key);
+function readRetail(){const stores=currentStores();stores.forEach(store=>{delete store.rationale;});return stores;}
+function clearRetailFilters(render=true){
+  $('retailSearch').value='';retailKeys.forEach(k=>$('filter-'+k).value='');retailView.page=1;
+  if(render&&currentSlug)fillRetail();
 }
-
-function renderMaisonsMenu(){
-  maisonsMenuGrid.innerHTML='';
-  const entries=Object.entries(CATEGORIES);
-
-  entries.forEach(([key,c],index)=>{
-    const count=BRANDS.filter(b=>b.cat===key).length;
-    const a=document.createElement('a');
-    a.href='#division/'+key;
-    a.className='maisons-menu-item';
-    a.dataset.category=key;
-    a.innerHTML=`<div><h3>${local(c.name)}</h3><small>${count} maisons</small></div><span class="maisons-menu-arrow">↗</span>`;
-
-    // Hover/focus opens the Maison list on the right.
-    a.addEventListener('mouseenter',()=>setActiveMaisonsCategory(key));
-    a.addEventListener('focus',()=>setActiveMaisonsCategory(key));
-
-    // Clicking the category still opens the division page.
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      closeMaisonsMenu();
-      renderCategory(key,true);
-    });
-
-    maisonsMenuGrid.appendChild(a);
-    if(index===0) setTimeout(()=>setActiveMaisonsCategory(key),0);
-  });
-
-  document.getElementById('maisonsMenuCount').textContent=`${BRANDS.length} maisons · ${Object.keys(CATEGORIES).length} divisions`;
-
-  const labels={
-    en:['Our Maisons','Discover by division','View all divisions','Maisons'],
-    pt:['Nossas Maisons','Descubra por divisão','Ver todas as divisões','Maisons'],
-    es:['Nuestras Maisons','Descubra por división','Ver todas las divisiones','Maisons'],
-    fr:['Nos Maisons','Découvrir par division','Voir toutes les divisions','Maisons']
-  };
-  const l=labels[currentLang]||labels.en;
-  document.getElementById('maisonsMenuKicker').textContent=l[0];
-  document.getElementById('maisonsMenuTitle').textContent=l[1];
-  document.getElementById('maisonsMenuBrandsKicker').textContent=l[3];
-  maisonsMenuAll.textContent=l[2];
+function addStoreRow(){
+  clearRetailFilters(false);retailView.sort='';currentStores().push({country:'',city:'',location:'',format:''});
+  dirty.add('retail');retailView.page=Math.ceil(currentStores().length/retailView.size);fillRetail();
+  $('retailBody').lastElementChild?.querySelector('input')?.focus();
 }
-function openMaisonsMenu(){
-  renderMaisonsMenu();
-  maisonsMenu.classList.add('open');document.body.classList.add('maisons-menu-open');maisonsMenu.setAttribute('aria-hidden','false');
-}
-function closeMaisonsMenu(){
-  maisonsMenu.classList.remove('open');document.body.classList.remove('maisons-menu-open');maisonsMenu.setAttribute('aria-hidden','true');
-}
-maisonsMenuTrigger?.addEventListener('click',e=>{e.preventDefault();openMaisonsMenu()});
-maisonsMenuClose?.addEventListener('click',closeMaisonsMenu);
-maisonsMenu?.addEventListener('click',e=>{if(e.target===maisonsMenu)closeMaisonsMenu()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMaisonsMenu()});
-maisonsMenuAll?.addEventListener('click',e=>{e.preventDefault();closeMaisonsMenu();showHome('maisons',true)});
+document.querySelectorAll('[data-sort]').forEach(button=>button.onclick=()=>{
+  const k=button.dataset.sort;retailView.direction=retailView.sort===k?-retailView.direction:1;retailView.sort=k;retailView.page=1;fillRetail();
+});
+[$('retailSearch'),...retailKeys.map(k=>$('filter-'+k))].forEach(input=>input.oninput=()=>{retailView.page=1;fillRetail();});
+$('clearRetailFilters').onclick=()=>clearRetailFilters();
+$('retailSize').onchange=()=>{retailView.size=Number($('retailSize').value);retailView.page=1;fillRetail();};
+$('retailPrev').onclick=()=>{retailView.page--;fillRetail();};
+$('retailNext').onclick=()=>{retailView.page++;fillRetail();};
 
-document.querySelectorAll('[data-home-target]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showHome(a.dataset.homeTarget,true)}));
-document.querySelectorAll('[data-metiers]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();renderMetiers(true)}));
-
-const lang=document.getElementById('lang'),langBtn=document.getElementById('langBtn');
-langBtn.addEventListener('click',e=>{e.stopPropagation();lang.classList.toggle('open')});
-document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();currentLang=b.dataset.lang;localStorage.setItem('arapua-language',currentLang);lang.classList.remove('open');applyStatic()}));
-document.addEventListener('click',()=>lang.classList.remove('open'));
-
-
-async function loadCMSData(){
-  const [maisonsResponse, locationsResponse] = await Promise.all([
-    fetch('./data/maisons.json', {cache:'no-store'}),
-    fetch('./data/locations.json', {cache:'no-store'})
-  ]);
-
-  if(!maisonsResponse.ok){
-    throw new Error(`Unable to load data/maisons.json (${maisonsResponse.status})`);
+function parseBoutiquesCSV(text,maison){
+  text=text.replace(/^\uFEFF/,'');
+  const first=text.split(/\r?\n/)[0];
+  const delimiter=first.includes(';')?';':first.includes('\t')?'\t':',';
+  const records=[];let row=[],cell='',quoted=false,closed=false,line=1,startLine=1;
+  const finishCell=()=>{row.push(cell.trim());cell='';closed=false;};
+  const finishRow=()=>{finishCell();if(row.some(x=>x!==''))records.push({cells:row,line:startLine});row=[];startLine=line+1;};
+  for(let i=0;i<text.length;i++){
+    const ch=text[i];
+    if(quoted){if(ch==='"'){if(text[i+1]==='"'){cell+='"';i++;}else{quoted=false;closed=true;}}else{cell+=ch;if(ch==='\n')line++;}continue;}
+    if(ch===delimiter){finishCell();continue;}
+    if(ch==='\r'||ch==='\n'){if(ch==='\r'&&text[i+1]==='\n')i++;finishRow();line++;continue;}
+    if(closed){if(!/\s/.test(ch))throw Error('Linha '+line+': conteúdo inesperado após aspas.');continue;}
+    if(ch==='"'){if(cell.trim())throw Error('Linha '+line+': aspas em posição inválida.');cell='';quoted=true;continue;}
+    cell+=ch;
   }
-  if(!locationsResponse.ok){
-    throw new Error(`Unable to load data/locations.json (${locationsResponse.status})`);
+  if(quoted)throw Error('CSV contém um campo com aspas não fechadas.');
+  finishRow();if(records.length<2)throw Error('O CSV deve conter um cabeçalho e pelo menos uma boutique.');
+  const aliases={brand:'brand',marca:'brand',maison:'brand',country:'country',pais:'country',city:'city',cidade:'city',
+    'addresslocation':'location',location:'location',locations:'location',address:'location',endereco:'location',local:'location',
+    format:'format',formato:'format'};
+  const fields=records[0].cells.map(s=>aliases[normalize(s).replace(/[^a-z0-9]/g,'')]);
+  for(const k of ['country','city','location'])if(!fields.includes(k))throw Error('Coluna obrigatória ausente: '+k+'.');
+  for(const k of fields.filter(Boolean))if(fields.filter(x=>x===k).length>1)throw Error('Coluna repetida: '+k+'.');
+  const ignored=records[0].cells.filter((_,i)=>!fields[i]);
+  const errors=[],rows=[],groups=Object.create(null);
+  const all=maison.all;
+  if(all&&!fields.includes('brand'))throw Error('Para importar várias marcas, inclua a coluna Brand.');
+  for(const rec of records.slice(1)){
+    if(rec.cells.length!==fields.length){errors.push('Linha '+rec.line+': quantidade de colunas diferente do cabeçalho.');continue;}
+    const mapped={};fields.forEach((k,i)=>{if(k)mapped[k]=rec.cells[i];});
+    let target=maison;
+    if(all){
+      const matches=Object.values(all).filter(m=>[m.name,m.slug].some(x=>normalize(x).trim()===normalize(mapped.brand).trim()));
+      if(matches.length!==1){errors.push('Linha '+rec.line+': marca "'+(mapped.brand||'vazia')+'" '+(matches.length?'ambígua. Use o identificador.':'não cadastrada. Crie a Maison ou corrija Brand.') );continue;}
+      target=matches[0];
+    }
+    if(!all&&fields.includes('brand')&&(!mapped.brand||![maison.name,maison.slug].some(x=>normalize(x).trim()===normalize(mapped.brand).trim()))){errors.push('Linha '+rec.line+': marca "'+(mapped.brand||'vazia')+'" não corresponde a '+maison.name+'.');continue;}
+    const missing=['country','city','location'].filter(k=>!mapped[k]);
+    if(missing.length){errors.push('Linha '+rec.line+': preencha '+missing.join(', ')+'.');continue;}
+    const store=Object.fromEntries(['country','city','location','format'].map(k=>[k,mapped[k]||'']));
+    rows.push(store);if(all)(groups[target.slug]??=[]).push(store);
   }
-
-  const maisonsPayload = await maisonsResponse.json();
-  const locationsPayload = await locationsResponse.json();
-
-  const maisonObject = maisonsPayload.maisons || {};
-  const locationObject = locationsPayload.locations || {};
-
-  const maisonEntries = await Promise.all(
-    Object.values(maisonObject).map(async sourceMaison => {
-      const b = JSON.parse(JSON.stringify(sourceMaison));
-      const folder = `./images/${b.slug}`;
-
-      // Objective Maison information lives beside the Maison's images.
-      try{
-        const infoResponse = await fetch(`${folder}/info.json`, {cache:'no-store'});
-        if(infoResponse.ok){
-          const info = await infoResponse.json();
-          Object.assign(b, info);
-        }else{
-          console.warn(`No info.json for ${b.slug}: ${infoResponse.status}`);
-        }
-      }catch(error){
-        console.warn(`Could not load info.json for ${b.slug}`, error);
-      }
-
-      // Image paths are inferred; they no longer need to be stored in JSON.
-      b.logo_image = `${folder}/logo.png`;
-      b.cover_image_url = `${folder}/cover.png`;
-      b.identity_image_url = `${folder}/identity.png`;
-      b.boutique_image_url = `${folder}/boutique.png`;
-
-      const rawLocations = Array.isArray(locationObject[b.slug]) ? locationObject[b.slug] : [];
-
-      if(rawLocations.length){
-        const grouped = new Map();
-
-        rawLocations.forEach(store => {
-          const country = store.country || '';
-          const city = store.city || '';
-
-          if(!grouped.has(country)) grouped.set(country, new Map());
-          const cities = grouped.get(country);
-          if(!cities.has(city)) cities.set(city, []);
-
-          cities.get(city).push({
-            address: store.location || null,
-            store_type: store.format || null,
-            rationale: store.rationale || null
-          });
-        });
-
-        b.retail_by_country = [...grouped.entries()]
-          .sort(([a],[b]) => a.localeCompare(b, undefined, {sensitivity:'base'}))
-          .map(([country, cities]) => ({
-            country,
-            cities: [...cities.entries()]
-              .sort(([a],[b]) => a.localeCompare(b, undefined, {sensitivity:'base'}))
-              .map(([city, stores]) => ({city, stores}))
-          }));
-
-        b.cities = b.retail_by_country.flatMap(group =>
-          group.cities.map(city => ({
-            city: city.city,
-            country: group.country,
-            stores: city.stores
-          }))
-        );
-
-        // Network metrics are always calculated from locations.json.
-        b.stores = rawLocations.length;
-        b.countries = new Set(rawLocations.map(x => x.country).filter(Boolean)).size;
-        b.city_count = new Set(
-          rawLocations
-            .filter(x => x.country && x.city)
-            .map(x => `${x.country}|||${x.city}`)
-        ).size;
-      }else{
-        b.retail_by_country = [];
-        b.cities = [];
-        b.stores = 0;
-        b.countries = 0;
-        b.city_count = 0;
-      }
-
-      return b;
-    })
-  );
-
-  BRANDS = maisonEntries;
-  Object.entries(CATEGORIES).forEach(([key,category]) => { category.count = BRANDS.filter(brand => brand.cat === key).length; });
+  if(errors.length)throw Error(errors.slice(0,8).join('\n')+(errors.length>8?'\n… e mais '+(errors.length-8)+' linhas inválidas.':'')+'\nCorrija o arquivo e tente novamente. Nenhuma linha foi importada.');
+  return {rows,ignored,groups};
 }
-
-function showCMSLoadError(error){
-  console.error('ARAPUÃ CMS load error:', error);
-  document.body.innerHTML = `
-    <main style="min-height:100vh;display:grid;place-items:center;background:#f2efe8;padding:32px;font-family:Arial,sans-serif;color:#182018">
-      <div style="max-width:680px;background:white;padding:42px;border:1px solid rgba(0,0,0,.12)">
-        <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px">ARAPUÃ</div>
-        <h1 style="font-family:Georgia,serif;font-weight:400;margin:0 0 18px;font-size:36px">Content could not be loaded.</h1>
-        <p style="line-height:1.6;color:#596059">Check that <strong>data/maisons.json</strong>, <strong>data/locations.json</strong> and each <strong>maisons/&lt;slug&gt;/info.json</strong> exist and contain valid JSON.</p>
-        <p style="line-height:1.6;color:#777;font-size:13px;margin-top:24px">${String(error.message || error)}</p>
-      </div>
-    </main>`;
+const csvIdentity=store=>JSON.stringify(['country','city','location','format'].map(k=>String(store[k]??'').trim()));
+function planCSVImport(incoming,existing,replace){
+  const seen=new Set((replace?[]:existing).map(csvIdentity)),added=[];let duplicates=0;
+  for(const store of incoming){const id=csvIdentity(store);if(seen.has(id)){duplicates++;continue;}seen.add(id);added.push({...store});}
+  return {result:replace?added:[...existing,...added],added:added.length,duplicates};
 }
-
-function route(){
-  const h=location.hash.slice(1);
-  if(h.startsWith('division/'))return renderCategory(h.split('/')[1],false);
-  if(h.startsWith('maison/'))return renderMaison(h.split('/')[1],false);
-  if(h==='metiers')return renderMetiers(false);
-  if(['about','maisons','institutional','metiers-home'].includes(h))return showHome(h,false);
-  return showHome(null,false);
+let csvPending=null,csvRead=0,csvAll=false;
+$('importCSV').onclick=()=>openCSV(false);
+$('importAllCSV').onclick=()=>openCSV(true);
+function openCSV(all){
+  csvAll=all;$('csvBrandSummary').textContent='';
+  $('csvMode').options[1].textContent=all?'Substituir as lojas das marcas presentes no CSV':'Substituir todas as boutiques desta Maison';
+  if(!ready||busy||!currentSlug)return;
+  csvPending=null;csvRead++;$('csvFile').value='';$('csvMode').value='append';$('csvError').textContent='';$('csvPreview').replaceChildren();$('csvSummary').textContent='Escolha um CSV para conferir as boutiques antes de importar.';$('csvApply').disabled=true;
+  $('csvMaison').textContent=all?'Várias marcas — identificadas pela coluna Brand':MAISONS_PAYLOAD.maisons[currentSlug].name;$('csvDialog').showModal();
+};
+$('csvFile').onchange=async()=>{
+  const seq=++csvRead,file=$('csvFile').files[0],slug=currentSlug;
+  csvPending=null;$('csvApply').disabled=true;$('csvError').textContent='';$('csvPreview').replaceChildren();$('csvSummary').textContent='Lendo arquivo…';
+  if(!file){$('csvSummary').textContent='Selecione um arquivo.';return;}
+  try{
+    if(file.size>8*1024*1024)throw Error('O CSV deve ter no máximo 8 MB.');
+    const buffer=await file.arrayBuffer();let text;
+    try{text=new TextDecoder('utf-8',{fatal:true}).decode(buffer);}catch{text=new TextDecoder('windows-1252').decode(buffer);}
+    if(seq!==csvRead||!$('csvDialog').open||slug!==currentSlug)return;
+    const parsed=parseBoutiquesCSV(text,csvAll?{all:MAISONS_PAYLOAD.maisons}:MAISONS_PAYLOAD.maisons[slug]);csvPending={...parsed,slug,all:csvAll};renderCSVPreview();
+  }catch(e){if(seq===csvRead){$('csvError').textContent=e.message;$('csvSummary').textContent='Arquivo não importado.';}}
+};
+function globalCSVPlan(){
+  return Object.entries(csvPending.groups).map(([slug,rows])=>({slug,before:(LOCATIONS_PAYLOAD.locations[slug]||[]).length,...planCSVImport(rows,LOCATIONS_PAYLOAD.locations[slug]||[],$('csvMode').value==='replace')}));
 }
-window.addEventListener('popstate',route);
-
-loadCMSData()
-  .then(()=>{
-    applyStatic();
-    route();
-  })
-  .catch(showCMSLoadError);
+function renderCSVPreview(){
+  if(csvPending?.all){
+    const plans=globalCSVPlan(),added=plans.reduce((n,p)=>n+p.added,0);
+    $('csvSummary').textContent=csvPending.rows.length+' linhas válidas em '+plans.length+' marcas. '+added+' boutiques a importar. '+plans.reduce((n,p)=>n+p.duplicates,0)+' duplicatas idênticas ignoradas. Marcas ausentes no CSV serão preservadas.';
+    $('csvBrandSummary').textContent=plans.map(p=>MAISONS_PAYLOAD.maisons[p.slug].name+': '+p.before+' atuais → '+p.result.length+' após importar').join('\n');
+    $('csvPreview').replaceChildren();let count=0;
+    for(const [slug,stores]of Object.entries(csvPending.groups))for(const store of stores){if(count++>=8)break;const tr=document.createElement('tr');for(const value of [MAISONS_PAYLOAD.maisons[slug].name,...['country','city','location','format'].map(k=>store[k])]){const td=document.createElement('td');td.textContent=value;tr.append(td);}$('csvPreview').append(tr);}
+    $('csvApply').disabled=!added;return;
+  }
+  if(!csvPending)return;
+  const replace=$('csvMode').value==='replace',plan=planCSVImport(csvPending.rows,currentStores(),replace);
+  $('csvSummary').textContent=`${csvPending.rows.length} linhas válidas. ${plan.added} boutiques a importar. ${plan.duplicates} duplicatas idênticas ignoradas. Total após aplicar: ${plan.result.length}.`+
+    (replace?` As ${currentStores().length} lojas atuais desta Maison serão substituídas.`:' As boutiques atuais serão mantidas.')+
+    (csvPending.ignored.length?' Colunas não utilizadas: '+csvPending.ignored.join(', ')+'.':'');
+  $('csvPreview').replaceChildren();
+  csvPending.rows.slice(0,8).forEach(store=>{const tr=document.createElement('tr'),brand=document.createElement('td');brand.textContent=MAISONS_PAYLOAD.maisons[currentSlug].name;tr.append(brand);for(const k of ['country','city','location','format']){const td=document.createElement('td');td.textContent=store[k];tr.append(td);}$('csvPreview').append(tr);});
+  $('csvApply').disabled=!plan.added;
+}
+$('csvMode').onchange=renderCSVPreview;
+$('csvApply').onclick=()=>{
+  if(!csvPending||csvPending.slug!==currentSlug||!ready||busy)return;
+  if(csvPending.all){
+    const plans=globalCSVPlan();
+    if($('csvMode').value==='replace'&&!confirm('Substituir as lojas das '+plans.length+' marcas presentes no CSV? Marcas ausentes serão mantidas.'))return;
+    const next={...LOCATIONS_PAYLOAD.locations};for(const p of plans)next[p.slug]=p.result;
+    const payload={...LOCATIONS_PAYLOAD,locations:next};
+    if(new TextEncoder().encode(JSON.stringify({path:'data/locations.json',data:payload,sha:versions.get('data/locations.json')},null,2)).length>8*1024*1024){$('csvError').textContent='A lista final excede 8 MB. Reduza o arquivo antes de aplicar.';return;}
+    LOCATIONS_PAYLOAD.locations=next;dirty.add('retail');clearRetailFilters(false);fillRetail();
+    $('csvDialog').close();setStatus('Importação em lote pendente');message('Importação aplicada a '+plans.length+' marcas. Clique em Salvar lojas para publicar todas juntas.');return;
+  }
+  const replace=$('csvMode').value==='replace',plan=planCSVImport(csvPending.rows,currentStores(),replace);
+  if(replace&&!confirm(`Substituir as ${currentStores().length} boutiques de ${MAISONS_PAYLOAD.maisons[currentSlug].name} pelas ${plan.result.length} boutiques do CSV?`))return;
+  LOCATIONS_PAYLOAD.locations[currentSlug]=plan.result;dirty.add('retail');clearRetailFilters(false);fillRetail();
+  $('csvDialog').close();csvPending=null;setStatus('Importação pendente');message('CSV aplicado à tabela. Revise os dados e clique em Salvar lojas para publicar.');
+};
+$('csvDialog').addEventListener('close',()=>{csvRead++;csvPending=null;});
 
 const frameImages=new Map(),frameElements=new WeakMap();
 function frameSettings(value={}){
@@ -1317,13 +586,149 @@ function setPhotoFrame(element,url,value){
   if(image.complete)paintPhotoFrame(element);else image.addEventListener('load',()=>paintPhotoFrame(element),{once:true});
 }
 
-function attachPhotoFrames(root){
-  const elements=[...(root.matches?.('[data-photo-kind]')?[root]:[]),...root.querySelectorAll('[data-photo-kind]')];
-  for(const element of elements){const brand=BRANDS.find(b=>b.slug===element.dataset.photoSlug),kind=element.dataset.photoKind;
-    if(brand?.photo_framing?.[kind])setPhotoFrame(element,brand[kind+'_image_url'],brand.photo_framing[kind]);}
+function fillPhotoFrames(){
+  for(const kind of ['cover','identity','boutique']){
+    const settings=frameSettings(currentInfo.photo_framing?.[kind]);
+    for(const key of ['x','y','zoom']){
+      const input=document.querySelector(`[data-frame-kind="${kind}"][data-frame-key="${key}"]`);
+      input.value=key==='zoom'?Math.round(settings[key]*100):settings[key];
+      input.nextElementSibling.textContent=input.value+'%';
+    }
+    setPhotoFrame($('frame-'+kind),folderFor(currentSlug)+'/'+kind+'.png',settings);
+  }
 }
-new MutationObserver(records=>{for(const record of records){for(const removed of record.removedNodes)if(removed.nodeType===1){frameResize.unobserve(removed);removed.querySelectorAll('[data-photo-kind]').forEach(el=>frameResize.unobserve(el));}for(const node of record.addedNodes)if(node.nodeType===1)attachPhotoFrames(node);}}).observe(document.body,{childList:true,subtree:true});
+document.querySelectorAll('[data-frame-key]').forEach(input=>input.oninput=()=>{
+  const kind=input.dataset.frameKind,settings={};
+  for(const key of ['x','y','zoom'])settings[key]=Number(document.querySelector(`[data-frame-kind="${kind}"][data-frame-key="${key}"]`).value)/(key==='zoom'?100:1);
+  currentInfo.photo_framing??={};currentInfo.photo_framing[kind]=settings;
+  input.nextElementSibling.textContent=input.value+'%';dirty.add('info');
+  setPhotoFrame($('frame-'+kind),folderFor(currentSlug)+'/'+kind+'.png',settings);
+});
+document.querySelectorAll('[data-frame-reset]').forEach(button=>button.onclick=()=>{
+  currentInfo.photo_framing??={};currentInfo.photo_framing[button.dataset.frameReset]={x:50,y:50,zoom:1};dirty.add('info');fillPhotoFrames();
+});
+$('savePhotoFrames').onclick=()=>saveSection('info');
 
+let liveCoverReady=false,liveCoverLoaded=false;
+function sizeLiveCover(){
+  const preset=$('coverViewport').value;
+  const [w,h]=preset==='current'?[window.innerWidth,window.innerHeight]:preset.split('x').map(Number);
+  const scale=Math.min(($('coverLiveDialog').clientWidth-48)/w,Math.max(180,window.innerHeight-430)/h,1);
+  const frame=$('coverLiveFrame');frame.style.width=w+'px';frame.style.height=h+'px';frame.style.transform=`scale(${scale})`;
+  $('coverLiveStage').style.width=w*scale+'px';$('coverLiveStage').style.height=h*scale+'px';
+  $('coverViewportSize').textContent=`Página em ${w} × ${h} px, reduzida para caber na prévia.`;
+}
+function syncLiveCover(){
+  if(!$('coverLiveDialog').open)return;
+  for(const k of ['x','y','zoom']){const source=$('frame-cover-'+k),input=$('live-cover-'+k);input.value=source.value;input.nextElementSibling.textContent=source.value+'%';}
+  if(liveCoverReady)$('coverLiveFrame').contentWindow.postMessage({type:'arapua-cover-preview',slug:currentSlug,framing:frameSettings(currentInfo.photo_framing?.cover)},location.origin);
+}
+$('openLiveCover').onclick=()=>{
+  $('coverLiveDialog').showModal();liveCoverReady=false;liveCoverLoaded=false;$('coverLiveStatus').textContent='Carregando a página real…';$('coverLiveSave').disabled=true;
+  sizeLiveCover();syncLiveCover();
+  if(location.protocol==='file:'){$('coverLiveStatus').textContent='Abra o admin publicado no GitHub Pages para usar a prévia da página.';return;}
+  $('coverLiveFrame').src='../?adminPreview=cover&v=live-cover-1#maison/'+encodeURIComponent(currentSlug);
+};
+window.addEventListener('message',event=>{
+  if(event.origin!==location.origin||event.source!==$('coverLiveFrame').contentWindow||event.data?.type!=='arapua-cover-ready')return;
+  liveCoverReady=true;$('coverLiveSave').disabled=false;$('coverLiveStatus').textContent='Prévia real. Os ajustes ainda não salvos aparecem aqui.';syncLiveCover();
+});
+$('coverLiveFrame').onload=()=>{
+  liveCoverLoaded=true;
+  if(!liveCoverReady)$('coverLiveStatus').textContent='Aguardando a página. Se a prévia não ativar, publique também o index.html principal atualizado.';
+};
+$('coverViewport').onchange=()=>{sizeLiveCover();syncLiveCover();};
+window.addEventListener('resize',()=>{if($('coverLiveDialog').open)sizeLiveCover();});
+for(const k of ['x','y','zoom'])$('live-cover-'+k).oninput=()=>{
+  const source=$('frame-cover-'+k);source.value=$('live-cover-'+k).value;source.dispatchEvent(new Event('input',{bubbles:true}));syncLiveCover();
+};
+$('coverLiveReset').onclick=()=>{document.querySelector('[data-frame-reset="cover"]').click();syncLiveCover();};
+$('coverLiveSave').onclick=async()=>{
+  if(busy||!liveCoverReady)return;
+  const controls=$('coverLiveDialog').querySelectorAll('button,input,select');controls.forEach(el=>el.disabled=true);
+  try{await saveSection('info');$('coverLiveStatus').textContent=$('connectionStatus').textContent;}
+  finally{controls.forEach(el=>el.disabled=false);}
+};
+$('coverLiveDialog').addEventListener('cancel',e=>{if(busy)e.preventDefault();});
+$('closeLiveCover').onclick=()=>{if(!busy)$('coverLiveDialog').close();};
+$('coverLiveDialog').addEventListener('close',()=>{liveCoverReady=false;$('coverLiveFrame').src='about:blank';});
+
+const categoryNames={fashion:'Moda & Artigos de Couro',jewelry:'Joalheria & Alta Joalheria',home:'Casa & Art de Vivre',beauty:'Beleza & Artes Olfativas',terroir:'Gastronomia & Terroir Brasileiro',hospitality:'Hospitalidade & Gastronomia',wines:'Vinhos & Terroirs'};
+for(const [value,label]of Object.entries(categoryNames)){
+  const option=document.createElement('option');option.value=value;option.textContent=label;$('newMaisonCat').append(option);
+}
+const slugify=name=>normalize(name).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80).replace(/-$/,'');
+$('newMaisonName').oninput=()=>{if(!$('newMaisonSlug').dataset.manual)$('newMaisonSlug').value=slugify($('newMaisonName').value);};
+$('newMaisonSlug').oninput=()=>{$('newMaisonSlug').dataset.manual='yes';};
+$('createMaison').onclick=()=>{
+  if(dirty.size){message('Salve suas alterações ou recarregue os dados antes de criar uma Maison.');return;}
+  $('createMaisonForm').reset();delete $('newMaisonSlug').dataset.manual;$('createError').textContent='';$('createDialog').showModal();
+};
+$('deleteMaison').onclick=()=>{
+  if(dirty.size){message('Salve suas alterações ou recarregue os dados antes de excluir uma Maison.');return;}
+  $('deleteName').textContent=MAISONS_PAYLOAD.maisons[currentSlug].name;
+  $('deleteDetails').textContent=`A Maison e suas ${currentStores().length} lojas serão removidas do cadastro publicado. As imagens serão mantidas no GitHub.`;
+  $('confirmMaisonName').value='';$('deleteError').textContent='';$('deleteDialog').showModal();
+};
+document.querySelectorAll('[data-close-dialog]').forEach(b=>b.onclick=()=>$(b.dataset.closeDialog).close());
+for(const id of ['createDialog','deleteDialog'])$(id).addEventListener('cancel',e=>{if(busy)e.preventDefault();});
+async function submitMaison(action){
+  if(busy||!ready)return;
+  const creating=action==='create',dialog=$(creating?'createDialog':'deleteDialog'),error=$(creating?'createError':'deleteError');
+  const slug=creating?$('newMaisonSlug').value.trim():currentSlug;
+  const body={action,slug,versions:{maisons:versions.get('data/maisons.json'),locations:versions.get('data/locations.json'),info:versions.get('images/'+slug+'/info.json')??null}};
+  if(creating){body.name=$('newMaisonName').value.trim();body.cat=$('newMaisonCat').value;if(Object.hasOwn(MAISONS_PAYLOAD.maisons,slug)){error.textContent='Esse identificador já existe. Escolha outro.';return;}}
+  else{body.confirmName=$('confirmMaisonName').value;if(body.confirmName!==MAISONS_PAYLOAD.maisons[slug].name){error.textContent='Digite o nome exatamente como exibido.';return;}}
+  error.textContent='Salvando…';busy=true;syncControls();dialog.querySelectorAll('button,input,select').forEach(el=>el.disabled=true);
+  let published=false;
+  try{
+    await api('/maison',body);published=true;dialog.close();clearRetailFilters(false);
+    await loadAll(creating?slug:null);
+    message(creating?'Maison criada. Complete suas informações e salve cada seção.':'Maison excluída. Aguarde a publicação do site.');
+  }catch(e){
+    if(published){ready=false;message('Operação salva. Não foi possível recarregar o painel. Clique em Recarregar dados.');}
+    else{error.textContent=e.message;message(e.message);}
+  }finally{busy=false;syncControls();dialog.querySelectorAll('button,input,select').forEach(el=>el.disabled=false);}
+}
+$('createMaisonForm').onsubmit=e=>{e.preventDefault();submitMaison('create');};
+$('deleteMaisonForm').onsubmit=e=>{e.preventDefault();submitMaison('delete');};
+
+function escapeAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function downloadJSON(filename,obj){
+  const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=filename; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),500);
+}
+
+$('downloadInfo').onclick=()=>downloadJSON('info.json',readInfo());
+$('downloadMaisons').onclick=()=>{readEditorial();downloadJSON('maisons.json',MAISONS_PAYLOAD)};
+$('downloadLocations').onclick=()=>{readRetail();downloadJSON('locations.json',LOCATIONS_PAYLOAD)};
+$('addStore').onclick=()=>{addStoreRow();readRetail();dirty.add('retail')};
+
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active'); $(btn.dataset.tab).classList.add('active');
+  };
+});
+
+$('maisonSelect').disabled=true;
+setStatus('Conecte para editar');
+$('connectForm').onsubmit=e=>{e.preventDefault();connect();};
+$('reloadButton').onclick=()=>reload();
+$('logoutButton').onclick=()=>{
+  if(!discardOK())return;
+  key=''; ready=false; dirty.clear(); $('adminKey').value='';
+  syncControls(); setStatus('Desconectado'); message('Chave removida desta aba. Conecte novamente para editar.');
+};
+$('maisonSelect').onchange=()=>switchMaison($('maisonSelect').value);
+document.querySelectorAll('.panel').forEach(panel=>panel.addEventListener('input',e=>{if(e.target.matches('[data-frame-key],#retailSearch,#retailSize,[id^="filter-"]'))return;dirty.add(panel.id);}));
+$('saveInfo').onclick=()=>saveSection('info');
+$('saveMaisons').onclick=()=>saveSection('editorial');
+$('saveLocations').onclick=()=>saveSection('retail');
+window.addEventListener('beforeunload',e=>{if(dirty.size){e.preventDefault();e.returnValue='';}});
 </script>
 </body>
 </html>
