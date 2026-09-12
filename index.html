@@ -107,9 +107,9 @@ body.light-header .langmenu{background:rgba(247,244,237,.98);border-color:var(--
 
 
 /* Maison detail — LVMH-inspired editorial skeleton */
-.maison-shell{background:#f7f4ed;min-height:100vh}
+.maison-shell{background:#f7f4ed;min-height:100vh;padding-top:var(--maison-nav-height,110px)}
 .maison-cover{
-  min-height:100vh;padding-top:86px;position:relative;display:flex;flex-direction:column;
+  min-height:calc(100svh - var(--maison-nav-height,110px));padding-top:0;position:relative;display:flex;flex-direction:column;
   align-items:center;justify-content:center;color:#fff;text-align:center;overflow:hidden;background:#767874
 }
 .maison-cover-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.88)}
@@ -1342,6 +1342,11 @@ if(isCoverPreview){
   });
 }
 
+// Reserve the measured fixed menu height above the Maison cover.
+const maisonMenuElement=document.getElementById('nav');
+function syncMaisonMenuHeight(){document.documentElement.style.setProperty('--maison-nav-height',maisonMenuElement.getBoundingClientRect().height+'px');}
+new ResizeObserver(syncMaisonMenuHeight).observe(maisonMenuElement);
+syncMaisonMenuHeight();
 </script>
 </body>
 </html>
